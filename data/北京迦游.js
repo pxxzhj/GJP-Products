@@ -409,10 +409,10 @@ window._loadCompany("北京迦游", [
     "dev_link": "https://apps.apple.com/us/developer/nebula-studio/id1795182714?uo=4",
     "developer": "Nebula Studio",
     "downloads": "",
-    "rating_count": "0",
-    "last_update": "2026-04-27",
+    "rating_count": 0,
+    "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": "2026-04-26"
+    "release_date": "2026/04/26"
   }
 ]);

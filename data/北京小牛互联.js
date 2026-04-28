@@ -521,10 +521,10 @@ window._loadCompany("北京小牛互联", [
     "dev_link": "https://apps.apple.com/us/developer/orange-one-limited/id1649476488?uo=4",
     "developer": "Orange One Limited",
     "downloads": "",
-    "rating_count": "0",
-    "last_update": "2026-04-28",
+    "rating_count": 0,
+    "last_update": "2026/04/28",
     "tags": "",
     "removed": false,
-    "release_date": "2026-04-27"
+    "release_date": "2026/04/27"
   }
 ]);

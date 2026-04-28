@@ -13001,8 +13001,8 @@ window._loadCompany("武汉多比特", [
     "dev_link": "https://play.google.com/store/apps/dev?id=6344458365284520738",
     "developer": "Yelo Hood",
     "downloads": "10K+",
-    "rating_count": "",
-    "last_update": "Mar 13, 2026",
+    "rating_count": 0,
+    "last_update": "2026/03/13",
     "tags": "",
     "removed": false,
     "release_date": ""
@@ -13017,11 +13017,11 @@ window._loadCompany("武汉多比特", [
     "dev_link": "https://apps.apple.com/us/developer/gloryway-puzzle/id1853465960?uo=4",
     "developer": "Gloryway Puzzle",
     "downloads": "",
-    "rating_count": "0",
-    "last_update": "2026-04-28",
+    "rating_count": 0,
+    "last_update": "2026/04/28",
     "tags": "",
     "removed": false,
-    "release_date": "2026-04-28"
+    "release_date": "2026/04/28"
   },
   {
     "name": "Ruin Survivor - Zombie Shooter",
@@ -13033,10 +13033,10 @@ window._loadCompany("武汉多比特", [
     "dev_link": "https://apps.apple.com/us/developer/shycheese/id1866477580?uo=4",
     "developer": "Shycheese",
     "downloads": "",
-    "rating_count": "0",
-    "last_update": "2026-04-27",
+    "rating_count": 0,
+    "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": "2026-04-26"
+    "release_date": "2026/04/26"
   }
 ]);

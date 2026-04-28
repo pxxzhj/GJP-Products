@@ -2553,10 +2553,10 @@ window._loadCompany("上海正朗", [
     "dev_link": "https://apps.apple.com/us/developer/shanghai-zhenglang-technology-co-ltd/id492012994?uo=4",
     "developer": "Shanghai Zhenglang Technology Co., Ltd.",
     "downloads": "",
-    "rating_count": "68",
-    "last_update": "2017-06-22",
+    "rating_count": 68,
+    "last_update": "2017/06/22",
     "tags": "",
     "removed": false,
-    "release_date": "2015-10-16"
+    "release_date": "2015/10/16"
   }
 ]);
