@@ -148,8 +148,8 @@ th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
       <input type="text" id="searchInput" placeholder="搜索产品名称、包名、ID、公司、开发者...">
     </div>
     <div class="filters" id="filterBar" style="display:none">
-      <button class="fbtn active" data-filter="all">全部</button>
-      <button class="fbtn" data-filter="live">在线</button>
+      <button class="fbtn" data-filter="all">全部</button>
+      <button class="fbtn active" data-filter="live">在线</button>
       <button class="fbtn" data-filter="removed">已下架</button>
       <button class="fbtn" data-filter="gp">GP</button>
       <button class="fbtn" data-filter="ios">iOS</button>
@@ -216,7 +216,7 @@ let currentApps = [];
 let currentTab = 'company';
 let currentView = 'list';
 let currentSort = {key:'update', dir:'desc'};
-let currentFilter = 'all';
+let currentFilter = 'live';
 let activeCompany = null;
 let coSort = {key:'total', dir:'desc'};
 var _pendingLoads = {};
@@ -329,8 +329,8 @@ function showCompanyProducts(companyName) {
 
   loadCompanyScript(companyName).then(function() {
     currentApps = appCache[companyName] || [];
-    currentFilter = 'all';
-    document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='all'); });
+    currentFilter = 'live';
+    document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='live'); });
     renderProducts();
     document.getElementById('backRow').innerHTML = '<button class="back-btn" onclick="switchTab(\'company\')">← 返回公司总览</button> <span style="font-size:13px;color:#64748b;font-weight:600">'+companyName+'</span>';
   });
@@ -348,8 +348,8 @@ function showAllProducts() {
     var all = [];
     companiesData.forEach(function(c) { all = all.concat(appCache[c.name] || []); });
     currentApps = all;
-    currentFilter = 'all';
-    document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='all'); });
+    currentFilter = 'live';
+    document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='live'); });
     renderProducts();
     document.getElementById('backRow').innerHTML = '<button class="back-btn" onclick="switchTab(\'company\')">← 返回公司总览</button> <span style="font-size:13px;color:#64748b;font-weight:600">全部产品</span>';
   });
