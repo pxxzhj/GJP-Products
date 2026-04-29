@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>游戏公司产品库</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:#f0f2f5;color:#333}
+.header{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#fff;padding:28px 20px 20px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.header-top{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.header h1{font-size:22px;white-space:nowrap}
+.stats{display:flex;gap:20px}
+.stat{text-align:center}
+.stat .num{font-size:22px;font-weight:700;color:#60a5fa}
+.stat .label{font-size:11px;color:#94a3b8;margin-top:2px}
+.toolbar{max-width:1600px;margin:12px auto 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search-box{flex:1;min-width:200px;position:relative}
+.search-box input{width:100%;padding:9px 14px 9px 36px;border:none;border-radius:8px;font-size:14px;background:rgba(255,255,255,.12);color:#fff;outline:none}
+.search-box input::placeholder{color:#94a3b8}
+.search-box input:focus{background:rgba(255,255,255,.2)}
+.search-box svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#94a3b8}
+.tab-bar{display:flex;gap:0;margin-right:auto}
+.tab-btn{padding:7px 16px;border:1px solid rgba(255,255,255,.2);background:transparent;color:#cbd5e1;cursor:pointer;font-size:12px;font-weight:600;transition:all .2s;white-space:nowrap}
+.tab-btn:first-child{border-radius:8px 0 0 8px}
+.tab-btn:last-child{border-radius:0 8px 8px 0}
+.tab-btn.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.filters{display:flex;gap:5px;flex-wrap:wrap}
+.fbtn{padding:5px 10px;border:1px solid rgba(255,255,255,.2);border-radius:16px;background:transparent;color:#cbd5e1;cursor:pointer;font-size:11px;transition:all .2s;white-space:nowrap}
+.fbtn:hover{border-color:#60a5fa;color:#60a5fa}
+.fbtn.active{background:#3b82f6;color:#fff;border-color:#3b82f6}
+.view-toggle{display:flex;border:1px solid rgba(255,255,255,.2);border-radius:8px;overflow:hidden;margin-left:auto}
+.vbtn{padding:5px 11px;background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:16px;transition:all .2s}
+.vbtn.active{background:rgba(255,255,255,.15);color:#fff}
+.container{max-width:1600px;margin:0 auto;padding:16px}
+.result-info{font-size:13px;color:#64748b;margin-bottom:12px}
+.app-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.app-card{background:#fff;border-radius:10px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:all .2s;position:relative;border-left:3px solid transparent}
+.app-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.12);transform:translateY(-1px)}
+.app-card.removed{opacity:.45}
+.app-card[data-company="武汉多比特"]{border-left-color:#3b82f6}
+.app-card[data-company="北京小牛互联"]{border-left-color:#10b981}
+.app-card[data-company="上海正朗"]{border-left-color:#f59e0b}
+.app-card[data-company="上海迪果"]{border-left-color:#8b5cf6}
+.app-card[data-company="北京克鲁"]{border-left-color:#ef4444}
+.app-card[data-company="北京乐信圣文"]{border-left-color:#06b6d4}
+.app-card[data-company="北京迦游"]{border-left-color:#ec4899}
+.app-card[data-company="playvalve"]{border-left-color:#64748b}
+.app-card[data-company="北京奇妙王国"]{border-left-color:#f97316}
+.app-card[data-company="英国tripledot"]{border-left-color:#14b8a6}
+.app-card[data-company="奇讯新游"]{border-left-color:#a855f7}
+.app-card[data-company="深圳乐言科技"]{border-left-color:#84cc16}
+.app-card[data-company="上海襄翼"]{border-left-color:#e11d48}
+.app-card[data-company="杭州胜加"]{border-left-color:#0ea5e9}
+.app-card[data-company="北京红海无限"]{border-left-color:#d946ef}
+.app-card[data-company="北京棕榈创想"]{border-left-color:#22d3ee}
+.app-card[data-company="北京珑索科技"]{border-left-color:#fb923c}
+.badge.removed-b{position:absolute;top:8px;right:8px;font-size:10px;padding:2px 7px;border-radius:4px;font-weight:500;background:#fee2e2;color:#dc2626}
+.app-top{display:flex;gap:10px;align-items:flex-start}
+.app-icon{width:60px;height:60px;border-radius:14px;flex-shrink:0;object-fit:cover;background:#f1f5f9}
+.app-info{flex:1;min-width:0}
+.app-name{font-size:14px;font-weight:600;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-name a{color:inherit;text-decoration:none}.app-name a:hover{color:#3b82f6;text-decoration:underline}
+.app-dev{font-size:11px;color:#64748b;margin-bottom:4px}
+.app-dev a{color:#64748b;text-decoration:none}.app-dev a:hover{color:#3b82f6;text-decoration:underline}
+.app-tags{display:flex;gap:3px;flex-wrap:wrap}
+.tag{font-size:10px;padding:1px 6px;background:#f1f5f9;border-radius:3px;color:#475569}
+.app-meta{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid #f1f5f9}
+.meta-item{font-size:11px}
+.meta-label{color:#94a3b8;font-size:10px}
+.meta-value{font-weight:500;margin-top:1px}
+.app-list{width:100%}
+.app-list table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.app-list th{background:#f8fafc;padding:10px 8px;text-align:left;font-size:11px;color:#64748b;font-weight:600;border-bottom:1px solid #e2e8f0;white-space:nowrap;position:sticky;top:0;z-index:10}
+.app-list td{padding:6px 8px;border-bottom:1px solid #f1f5f9;font-size:11px;vertical-align:middle}
+.app-list tr:hover{background:#f8fafc}
+.app-list tr.removed-row{opacity:.45}
+.app-list .icon-sm{width:32px;height:32px;border-radius:8px;object-fit:cover;background:#f1f5f9}
+.app-list .name-cell{font-weight:600;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-list .pkg-cell{font-size:10px;max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-list .pkg-cell a{color:#64748b;text-decoration:none}.app-list .pkg-cell a:hover{color:#3b82f6;text-decoration:underline}
+.app-list .dev-cell{max-width:160px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app-list .dev-cell a{color:#333;text-decoration:none}.app-list .dev-cell a:hover{color:#3b82f6;text-decoration:underline}
+.company-tag{font-size:10px;padding:1px 6px;border-radius:3px;font-weight:500;white-space:nowrap;display:inline-block}
+.company-tag.c1{background:#dbeafe;color:#2563eb}
+.company-tag.c2{background:#d1fae5;color:#059669}
+.company-tag.c3{background:#fef3c7;color:#b45309}
+.company-tag.c4{background:#ede9fe;color:#6d28d9}
+.company-tag.c5{background:#fee2e2;color:#dc2626}
+.company-tag.c6{background:#cffafe;color:#0891b2}
+.company-tag.c7{background:#fce7f3;color:#db2777}
+.company-tag.c8{background:#f1f5f9;color:#475569}
+.company-tag.c9{background:#ffedd5;color:#ea580c}
+.company-tag.c10{background:#ccfbf1;color:#0d9488}
+.company-tag.c11{background:#f3e8ff;color:#9333ea}
+.company-tag.c12{background:#ecfccb;color:#65a30d}
+.company-tag.c13{background:#ffe4e6;color:#be123c}
+.company-tag.c14{background:#e0f2fe;color:#0284c7}
+.company-tag.c15{background:#fae8ff;color:#a21caf}
+.company-tag.c16{background:#cffafe;color:#0e7490}
+.company-tag.c17{background:#fff7ed;color:#c2410c}
+.platform-tag{font-size:10px;padding:1px 6px;border-radius:3px;font-weight:600;white-space:nowrap}
+.platform-tag.gp{background:#dcfce7;color:#166534}
+.platform-tag.ios{background:#dbeafe;color:#1d4ed8}
+.removed-tag{color:#dc2626;font-size:10px;font-weight:500}
+.footer{text-align:center;padding:30px 20px;color:#94a3b8;font-size:11px}
+th.sortable{cursor:pointer;user-select:none}
+th.sortable:hover{color:#3b82f6}
+th.sort-asc::after{content:" ↑";font-size:10px;color:#3b82f6}
+th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
+.company-overview{width:100%}
+.company-overview table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.company-overview th{background:#f8fafc;padding:12px 12px;text-align:left;font-size:12px;color:#64748b;font-weight:600;border-bottom:2px solid #e2e8f0;white-space:nowrap}
+.company-overview td{padding:10px 12px;border-bottom:1px solid #f1f5f9;font-size:13px;vertical-align:middle}
+.company-overview tr:hover{background:#f0f7ff}
+.company-overview tr{cursor:pointer;transition:background .15s}
+.company-overview .co-name{font-weight:700;font-size:14px;color:#1e293b}
+.company-overview .co-name:hover{color:#3b82f6}
+.company-overview .co-num{font-weight:600;font-size:14px;color:#334155;text-align:right}
+.company-overview .co-dl{font-weight:600;color:#059669;text-align:right}
+.company-overview .co-date{color:#64748b;text-align:right;white-space:nowrap}
+.company-overview th.sortable{cursor:pointer;user-select:none}
+.company-overview th.sortable:hover{color:#3b82f6}
+.company-overview th.sort-asc::after{content:" ↑";font-size:10px;color:#3b82f6}
+.company-overview th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
+.back-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border:1px solid #e2e8f0;border-radius:6px;background:#fff;color:#475569;cursor:pointer;font-size:12px;margin-bottom:12px;transition:all .2s}
+.back-btn:hover{border-color:#3b82f6;color:#3b82f6}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-top">
+    <h1>游戏公司产品库</h1>
+    <div class="stats">
+      <div class="stat"><div class="num" id="totalCompanies">-</div><div class="label">公司</div></div>
+      <div class="stat"><div class="num" id="totalCount">-</div><div class="label">总条目</div></div>
+      <div class="stat"><div class="num" id="gpCount">-</div><div class="label">Google Play</div></div>
+      <div class="stat"><div class="num" id="iosCount">-</div><div class="label">App Store</div></div>
+    </div>
+  </div>
+  <div class="toolbar">
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="company">公司总览</button>
+      <button class="tab-btn" data-tab="products">产品列表</button>
+    </div>
+    <div class="search-box">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      <input type="text" id="searchInput" placeholder="搜索产品名称、包名、ID、公司、开发者...">
+    </div>
+    <div class="filters" id="filterBar" style="display:none">
+      <button class="fbtn" data-filter="all">全部</button>
+      <button class="fbtn active" data-filter="live">在线</button>
+      <button class="fbtn" data-filter="removed">已下架</button>
+      <button class="fbtn" data-filter="gp">GP</button>
+      <button class="fbtn" data-filter="ios">iOS</button>
+    </div>
+    <div class="view-toggle" id="viewToggle" style="display:none">
+      <button class="vbtn" data-view="grid" title="卡片视图">&#9638;</button>
+      <button class="vbtn active" data-view="list" title="列表视图">&#9776;</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div id="companyTab">
+    <div class="result-info" id="companyInfo"></div>
+    <div class="company-overview" id="companyOverview">
+      <table>
+        <thead><tr>
+          <th style="width:30px">#</th>
+          <th class="sortable" data-cosort="name">公司名称</th>
+          <th class="sortable" data-cosort="devs" style="text-align:right">开发者数</th>
+          <th class="sortable" data-cosort="gp" style="text-align:right">GP产品</th>
+          <th class="sortable" data-cosort="ios" style="text-align:right">iOS产品</th>
+          <th class="sortable sort-desc" data-cosort="total" style="text-align:right">总产品</th>
+          <th class="sortable" data-cosort="dl" style="text-align:right">GP下载量</th>
+          <th class="sortable" data-cosort="rat" style="text-align:right">iOS评分数</th>
+          <th class="sortable" data-cosort="date" style="text-align:right">最近更新</th>
+        </tr></thead>
+        <tbody id="companyBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <div id="productsTab" style="display:none">
+    <div id="backRow"></div>
+    <div class="result-info" id="resultInfo"></div>
+    <div class="app-grid" id="gridView"></div>
+    <div class="app-list" id="listView">
+      <table>
+        <thead><tr>
+          <th style="width:36px"></th>
+          <th class="sortable" data-sort="name">产品名称</th>
+          <th>平台</th>
+          <th>公司</th>
+          <th class="sortable" data-sort="dev">开发者</th>
+          <th>包名/ID</th>
+          <th class="sortable" data-sort="dl">下载量/评分数</th>
+          <th class="sortable sort-desc" data-sort="update">更新日期</th>
+          <th class="sortable" data-sort="release">上架日期</th>
+        </tr></thead>
+        <tbody id="listBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="footer">游戏公司产品库 — 数据来源: AppMagic + Google Play + App Store</div>
+
+<script>
+const COMPANY_NAMES = ["武汉多比特","北京小牛互联","上海正朗","上海迪果","北京克鲁","北京乐信圣文","北京迦游","playvalve","北京奇妙王国","英国tripledot","奇讯新游","深圳乐言科技","上海襄翼","杭州胜加","北京红海无限","北京棕榈创想","北京珑索科技"];
+const COMPANY_CLASS = {};
+COMPANY_NAMES.forEach((n,i) => COMPANY_CLASS[n] = 'c'+(i+1));
+
+const companiesData = [
+      {
+            "name": "playvalve",
+            "developer_count": 2,
+            "gp_count": 26,
+            "ios_count": 20,
+            "total_count": 46,
+            "gp_downloads": 4300000,
+            "ios_ratings": 1408978,
+            "latest_update": "2026/04/24"
+      },
+      {
+            "name": "上海正朗",
+            "developer_count": 13,
+            "gp_count": 97,
+            "ios_count": 63,
+            "total_count": 160,
+            "gp_downloads": 30025003,
+            "ios_ratings": 4220346,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "上海襄翼",
+            "developer_count": 5,
+            "gp_count": 29,
+            "ios_count": 12,
+            "total_count": 41,
+            "gp_downloads": 4130002,
+            "ios_ratings": 17436,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "上海迪果",
+            "developer_count": 5,
+            "gp_count": 60,
+            "ios_count": 25,
+            "total_count": 85,
+            "gp_downloads": 1215002,
+            "ios_ratings": 388684,
+            "latest_update": "2026/04/24"
+      },
+      {
+            "name": "北京乐信圣文",
+            "developer_count": 15,
+            "gp_count": 106,
+            "ios_count": 65,
+            "total_count": 171,
+            "gp_downloads": 29500004,
+            "ios_ratings": 10278985,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "北京克鲁",
+            "developer_count": 2,
+            "gp_count": 46,
+            "ios_count": 33,
+            "total_count": 79,
+            "gp_downloads": 9685003,
+            "ios_ratings": 3358328,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "北京奇妙王国",
+            "developer_count": 3,
+            "gp_count": 35,
+            "ios_count": 7,
+            "total_count": 42,
+            "gp_downloads": 3405007,
+            "ios_ratings": 149284,
+            "latest_update": "2026/04/25"
+      },
+      {
+            "name": "北京小牛互联",
+            "developer_count": 2,
+            "gp_count": 22,
+            "ios_count": 11,
+            "total_count": 33,
+            "gp_downloads": 38670060,
+            "ios_ratings": 84064,
+            "latest_update": "2026/04/28"
+      },
+      {
+            "name": "北京棕榈创想",
+            "developer_count": 8,
+            "gp_count": 9,
+            "ios_count": 20,
+            "total_count": 29,
+            "gp_downloads": 14350000,
+            "ios_ratings": 605456,
+            "latest_update": "2026/04/24"
+      },
+      {
+            "name": "北京珑索科技",
+            "developer_count": 6,
+            "gp_count": 34,
+            "ios_count": 7,
+            "total_count": 41,
+            "gp_downloads": 27760110,
+            "ios_ratings": 18732,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "北京红海无限",
+            "developer_count": 48,
+            "gp_count": 149,
+            "ios_count": 84,
+            "total_count": 233,
+            "gp_downloads": 2233555611,
+            "ios_ratings": 704358,
+            "latest_update": "2026/04/28"
+      },
+      {
+            "name": "北京迦游",
+            "developer_count": 4,
+            "gp_count": 13,
+            "ios_count": 13,
+            "total_count": 26,
+            "gp_downloads": 16625000,
+            "ios_ratings": 8368025,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "奇讯新游",
+            "developer_count": 3,
+            "gp_count": 28,
+            "ios_count": 15,
+            "total_count": 43,
+            "gp_downloads": 325003,
+            "ios_ratings": 104194,
+            "latest_update": "2026/04/25"
+      },
+      {
+            "name": "杭州胜加",
+            "developer_count": 2,
+            "gp_count": 6,
+            "ios_count": 3,
+            "total_count": 9,
+            "gp_downloads": 205000,
+            "ios_ratings": 20218,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "武汉多比特",
+            "developer_count": 35,
+            "gp_count": 402,
+            "ios_count": 413,
+            "total_count": 815,
+            "gp_downloads": 18015020,
+            "ios_ratings": 14626110,
+            "latest_update": "2026/04/28"
+      },
+      {
+            "name": "深圳乐言科技",
+            "developer_count": 4,
+            "gp_count": 90,
+            "ios_count": 48,
+            "total_count": 138,
+            "gp_downloads": 3810017,
+            "ios_ratings": 171802,
+            "latest_update": "2026/04/27"
+      },
+      {
+            "name": "英国tripledot",
+            "developer_count": 2,
+            "gp_count": 75,
+            "ios_count": 75,
+            "total_count": 150,
+            "gp_downloads": 4285008,
+            "ios_ratings": 2495637,
+            "latest_update": "2026/04/25"
+      }
+];
+
+const appCache = {};
+let currentApps = [];
+let currentTab = 'company';
+let currentView = 'list';
+let currentSort = {key:'update', dir:'desc'};
+let currentFilter = 'live';
+let activeCompany = null;
+let coSort = {key:'total', dir:'desc'};
+var _pendingLoads = {};
+
+window._loadCompany = function(name, data) {
+  appCache[name] = data;
+  if (_pendingLoads[name]) { _pendingLoads[name](); delete _pendingLoads[name]; }
+};
+
+function fmtNum(n) {
+  if (n === null || n === undefined) return '-';
+  n = Number(n);
+  if (isNaN(n)) return '-';
+  if (n >= 1e9) return (n/1e9).toFixed(1)+'B';
+  if (n >= 1e6) return (n/1e6).toFixed(1)+'M';
+  if (n >= 1e3) return (n/1e3).toFixed(1)+'K';
+  return n.toLocaleString();
+}
+
+function parseDl(s) {
+  if (!s) return 0;
+  s = String(s).replace(/,/g,'').replace(/\+/g,'').trim();
+  var m = s.match(/^([\d.]+)\s*([KMBkmb])?/);
+  if (!m) return 0;
+  var n = parseFloat(m[1]);
+  var u = (m[2]||'').toUpperCase();
+  if (u==='K') n*=1e3; else if (u==='M') n*=1e6; else if (u==='B') n*=1e9;
+  return n;
+}
+
+function loadCompanyScript(name) {
+  return new Promise(function(resolve) {
+    if (appCache[name]) { resolve(); return; }
+    _pendingLoads[name] = resolve;
+    var s = document.createElement('script');
+    s.src = 'data/' + encodeURIComponent(name) + '.js';
+    s.onerror = function() { appCache[name] = []; delete _pendingLoads[name]; resolve(); };
+    document.body.appendChild(s);
+  });
+}
+
+function loadAllScripts() {
+  var promises = companiesData.map(function(c) { return loadCompanyScript(c.name); });
+  return Promise.all(promises);
+}
+
+function initStats() {
+  var totalApps = companiesData.reduce(function(s,c){return s+c.total_count;},0);
+  var totalGP = companiesData.reduce(function(s,c){return s+c.gp_count;},0);
+  var totalIOS = companiesData.reduce(function(s,c){return s+c.ios_count;},0);
+  document.getElementById('totalCompanies').textContent = companiesData.length;
+  document.getElementById('totalCount').textContent = totalApps;
+  document.getElementById('gpCount').textContent = totalGP;
+  document.getElementById('iosCount').textContent = totalIOS;
+}
+
+function renderCompanyTable() {
+  var sorted = companiesData.slice();
+  var key = coSort.key, dir = coSort.dir;
+  sorted.sort(function(a,b) {
+    var va, vb;
+    if (key==='name') { va=a.name; vb=b.name; return dir==='asc'? va.localeCompare(vb,'zh'):vb.localeCompare(va,'zh'); }
+    if (key==='devs') { va=a.developer_count; vb=b.developer_count; }
+    else if (key==='gp') { va=a.gp_count; vb=b.gp_count; }
+    else if (key==='ios') { va=a.ios_count; vb=b.ios_count; }
+    else if (key==='total') { va=a.total_count; vb=b.total_count; }
+    else if (key==='dl') { va=a.gp_downloads; vb=b.gp_downloads; }
+    else if (key==='rat') { va=a.ios_ratings; vb=b.ios_ratings; }
+    else if (key==='date') { va=a.latest_update||''; vb=b.latest_update||''; return dir==='asc'? va.localeCompare(vb):vb.localeCompare(va); }
+    else { va=a.total_count; vb=b.total_count; }
+    return dir==='asc'? va-vb : vb-va;
+  });
+
+  document.querySelectorAll('.company-overview th.sortable').forEach(function(th) {
+    th.classList.remove('sort-asc','sort-desc');
+    if (th.dataset.cosort === key) th.classList.add(dir==='asc'?'sort-asc':'sort-desc');
+  });
+
+  var q = document.getElementById('searchInput').value.trim().toLowerCase();
+  var filtered = q ? sorted.filter(function(c) { return c.name.toLowerCase().indexOf(q) >= 0; }) : sorted;
+
+  document.getElementById('companyInfo').textContent = '共 ' + filtered.length + ' 家公司';
+
+  var tbody = document.getElementById('companyBody');
+  tbody.innerHTML = '';
+  filtered.forEach(function(c, i) {
+    var cls = COMPANY_CLASS[c.name] || 'c1';
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td style="color:#94a3b8;font-size:12px">'+(i+1)+'</td>' +
+      '<td><span class="company-tag '+cls+'" style="font-size:13px;padding:3px 10px;font-weight:700;cursor:pointer" data-company="'+c.name+'">'+c.name+'</span></td>' +
+      '<td class="co-num">'+c.developer_count+'</td>' +
+      '<td class="co-num">'+c.gp_count+'</td>' +
+      '<td class="co-num">'+c.ios_count+'</td>' +
+      '<td class="co-num" style="font-size:15px">'+c.total_count+'</td>' +
+      '<td class="co-dl">'+fmtNum(c.gp_downloads)+'</td>' +
+      '<td class="co-dl" style="color:#2563eb">'+fmtNum(c.ios_ratings)+'</td>' +
+      '<td class="co-date">'+(c.latest_update||'-')+'</td>';
+    tr.addEventListener('click', function() { showCompanyProducts(c.name); });
+    tbody.appendChild(tr);
+  });
+}
+
+function showCompanyProducts(companyName) {
+  activeCompany = companyName;
+  document.getElementById('searchInput').value = '';
+  switchTab('products');
+  document.getElementById('resultInfo').textContent = '加载中...';
+  document.getElementById('listBody').innerHTML = '';
+  document.getElementById('gridView').innerHTML = '';
+
+  loadCompanyScript(companyName).then(function() {
+    currentApps = appCache[companyName] || [];
+    currentFilter = 'live';
+    document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='live'); });
+    renderProducts();
+    document.getElementById('backRow').innerHTML = '<button class="back-btn" onclick="switchTab(\'company\')">← 返回公司总览</button> <span style="font-size:13px;color:#64748b;font-weight:600">'+companyName+'</span>';
+  });
+}
+
+function showAllProducts() {
+  activeCompany = null;
+  document.getElementById('searchInput').value = '';
+  switchTab('products');
+  document.getElementById('resultInfo').textContent = '加载中...';
+  document.getElementById('listBody').innerHTML = '';
+  document.getElementById('gridView').innerHTML = '';
+
+  loadAllScripts().then(function() {
+    var all = [];
+    companiesData.forEach(function(c) { all = all.concat(appCache[c.name] || []); });
+    currentApps = all;
+    currentFilter = 'live';
+    document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='live'); });
+    renderProducts();
+    document.getElementById('backRow').innerHTML = '<button class="back-btn" onclick="switchTab(\'company\')">← 返回公司总览</button> <span style="font-size:13px;color:#64748b;font-weight:600">全部产品</span>';
+  });
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.tab === tab); });
+  document.getElementById('companyTab').style.display = tab==='company' ? '' : 'none';
+  document.getElementById('productsTab').style.display = tab==='products' ? '' : 'none';
+  document.getElementById('filterBar').style.display = tab==='products' ? 'flex' : 'none';
+  document.getElementById('viewToggle').style.display = tab==='products' ? 'flex' : 'none';
+  if (tab === 'company') { renderCompanyTable(); }
+}
+
+function getFiltered() {
+  var q = document.getElementById('searchInput').value.trim().toLowerCase();
+  var list = currentApps;
+  if (currentFilter === 'live') list = list.filter(function(a) { return !a.removed; });
+  else if (currentFilter === 'removed') list = list.filter(function(a) { return a.removed; });
+  else if (currentFilter === 'gp') list = list.filter(function(a) { return a.platform === 'GP'; });
+  else if (currentFilter === 'ios') list = list.filter(function(a) { return a.platform === 'iOS'; });
+  if (q) {
+    list = list.filter(function(a) {
+      return (a.name||'').toLowerCase().indexOf(q) >= 0 ||
+        (a.pkg_or_id||'').toLowerCase().indexOf(q) >= 0 ||
+        (a.company_cn||'').toLowerCase().indexOf(q) >= 0 ||
+        (a.developer||'').toLowerCase().indexOf(q) >= 0 ||
+        (a.tags||'').toLowerCase().indexOf(q) >= 0;
+    });
+  }
+  return list;
+}
+
+function sortApps(list) {
+  var key = currentSort.key, dir = currentSort.dir;
+  var sorted = list.slice();
+  sorted.sort(function(a,b) {
+    var va, vb;
+    if (key==='name') { va=(a.name||'').toLowerCase(); vb=(b.name||'').toLowerCase(); return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
+    if (key==='dev') { va=(a.developer||'').toLowerCase(); vb=(b.developer||'').toLowerCase(); return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
+    if (key==='dl') { va=parseDl(a.platform==='GP'?a.downloads:a.rating_count); vb=parseDl(b.platform==='GP'?b.downloads:b.rating_count); }
+    else if (key==='update') { va=a.last_update||''; vb=b.last_update||''; return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
+    else if (key==='release') { va=a.release_date||''; vb=b.release_date||''; return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
+    else { va=0; vb=0; }
+    return dir==='asc'?va-vb:vb-va;
+  });
+  return sorted;
+}
+
+function renderProducts() {
+  var filtered = getFiltered();
+  var sorted = sortApps(filtered);
+
+  document.getElementById('resultInfo').textContent = '显示 ' + sorted.length + ' 条' + (activeCompany ? ' — '+activeCompany : '');
+
+  document.querySelectorAll('#listView th.sortable').forEach(function(th) {
+    th.classList.remove('sort-asc','sort-desc');
+    if (th.dataset.sort === currentSort.key) th.classList.add(currentSort.dir==='asc'?'sort-asc':'sort-desc');
+  });
+
+  if (currentView === 'list') {
+    document.getElementById('listView').style.display = '';
+    document.getElementById('gridView').style.display = 'none';
+    renderList(sorted);
+  } else {
+    document.getElementById('listView').style.display = 'none';
+    document.getElementById('gridView').style.display = 'grid';
+    renderGrid(sorted);
+  }
+}
+
+function renderList(apps) {
+  var tbody = document.getElementById('listBody');
+  var fragment = document.createDocumentFragment();
+  apps.forEach(function(app) {
+    var tr = document.createElement('tr');
+    if (app.removed) tr.className = 'removed-row';
+    var cls = COMPANY_CLASS[app.company_cn] || 'c1';
+    var platCls = app.platform==='GP'?'gp':'ios';
+    var platLabel = app.platform==='GP'?'GP':'iOS';
+    var metric = app.platform==='GP' ? (app.downloads||'-') : (app.rating_count ? fmtNum(parseDl(app.rating_count)) : '-');
+    var devHtml = app.dev_link ? '<a href="'+app.dev_link+'" target="_blank" title="'+(app.developer||'')+'">'+(app.developer||'-')+'</a>' : (app.developer||'-');
+    var pkgHtml = app.store_link ? '<a href="'+app.store_link+'" target="_blank" title="'+(app.pkg_or_id||'')+'">'+(app.pkg_or_id||'-')+'</a>' : (app.pkg_or_id||'-');
+    var removedTag = app.removed ? ' <span class="removed-tag">已下架</span>' : '';
+
+    tr.innerHTML = '<td><img class="icon-sm" src="'+(app.icon||'')+'" loading="lazy" onerror="this.style.display=\'none\'"></td>' +
+      '<td class="name-cell" title="'+(app.name||'')+'">'+(app.name||'-')+removedTag+'</td>' +
+      '<td><span class="platform-tag '+platCls+'">'+platLabel+'</span></td>' +
+      '<td><span class="company-tag '+cls+'">'+(app.company_cn||'-')+'</span></td>' +
+      '<td class="dev-cell" title="'+(app.developer||'')+'">'+devHtml+'</td>' +
+      '<td class="pkg-cell" title="'+(app.pkg_or_id||'')+'">'+pkgHtml+'</td>' +
+      '<td style="text-align:right;white-space:nowrap">'+metric+'</td>' +
+      '<td style="white-space:nowrap">'+(app.last_update||'-')+'</td>' +
+      '<td style="white-space:nowrap">'+(app.release_date||'-')+'</td>';
+    fragment.appendChild(tr);
+  });
+  tbody.innerHTML = '';
+  tbody.appendChild(fragment);
+}
+
+function renderGrid(apps) {
+  var grid = document.getElementById('gridView');
+  var fragment = document.createDocumentFragment();
+  apps.forEach(function(app) {
+    var card = document.createElement('div');
+    card.className = 'app-card' + (app.removed?' removed':'');
+    card.dataset.company = app.company_cn||'';
+    var cls = COMPANY_CLASS[app.company_cn]||'c1';
+    var platCls = app.platform==='GP'?'gp':'ios';
+    var platLabel = app.platform==='GP'?'GP':'iOS';
+    var metric = app.platform==='GP' ? (app.downloads||'-') : (app.rating_count ? fmtNum(parseDl(app.rating_count)) : '-');
+    var metricLabel = app.platform==='GP' ? '下载量' : '评分数';
+    var devHtml = app.dev_link ? '<a href="'+app.dev_link+'" target="_blank">'+(app.developer||'-')+'</a>' : (app.developer||'-');
+    var tags = (app.tags||'').split(',').filter(function(t){return t.trim();}).map(function(t){return '<span class="tag">'+t.trim()+'</span>';}).join('');
+    var removedBadge = app.removed ? '<span class="badge removed-b">已下架</span>' : '';
+
+    card.innerHTML = removedBadge +
+      '<div class="app-top">' +
+        '<img class="app-icon" src="'+(app.icon||'')+'" loading="lazy" onerror="this.style.display=\'none\'">' +
+        '<div class="app-info">' +
+          '<div class="app-name">'+(app.store_link?'<a href="'+app.store_link+'" target="_blank">'+(app.name||'-')+'</a>':(app.name||'-'))+'</div>' +
+          '<div class="app-dev">'+devHtml+'</div>' +
+          '<div class="app-tags"><span class="platform-tag '+platCls+'">'+platLabel+'</span> <span class="company-tag '+cls+'">'+app.company_cn+'</span> '+tags+'</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="app-meta">' +
+        '<div class="meta-item"><div class="meta-label">'+metricLabel+'</div><div class="meta-value">'+metric+'</div></div>' +
+        '<div class="meta-item"><div class="meta-label">更新日期</div><div class="meta-value">'+(app.last_update||'-')+'</div></div>' +
+        '<div class="meta-item"><div class="meta-label">上架日期</div><div class="meta-value">'+(app.release_date||'-')+'</div></div>' +
+        '<div class="meta-item"><div class="meta-label">包名/ID</div><div class="meta-value" style="font-size:9px;word-break:break-all">'+(app.pkg_or_id||'-')+'</div></div>' +
+      '</div>';
+    fragment.appendChild(card);
+  });
+  grid.innerHTML = '';
+  grid.appendChild(fragment);
+}
+
+// Event listeners
+document.querySelectorAll('.tab-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var tab = btn.dataset.tab;
+    if (tab === 'products') {
+      showAllProducts();
+    } else {
+      switchTab(tab);
+    }
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', function() {
+  if (currentTab === 'company') {
+    renderCompanyTable();
+  } else {
+    renderProducts();
+  }
+});
+
+document.querySelectorAll('.filters .fbtn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    currentFilter = btn.dataset.filter;
+    document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter===currentFilter); });
+    renderProducts();
+  });
+});
+
+document.querySelectorAll('.view-toggle .vbtn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    currentView = btn.dataset.view;
+    document.querySelectorAll('.view-toggle .vbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.view===currentView); });
+    renderProducts();
+  });
+});
+
+document.querySelectorAll('#listView th.sortable').forEach(function(th) {
+  th.addEventListener('click', function() {
+    var key = th.dataset.sort;
+    if (currentSort.key === key) {
+      currentSort.dir = currentSort.dir==='asc'?'desc':'asc';
+    } else {
+      currentSort = {key:key, dir:'desc'};
+    }
+    renderProducts();
+  });
+});
+
+document.querySelectorAll('.company-overview th.sortable').forEach(function(th) {
+  th.addEventListener('click', function() {
+    var key = th.dataset.cosort;
+    if (coSort.key === key) {
+      coSort.dir = coSort.dir==='asc'?'desc':'asc';
+    } else {
+      coSort = {key:key, dir:'desc'};
+    }
+    renderCompanyTable();
+  });
+});
+
+// Init
+initStats();
+renderCompanyTable();
+</script>
+</body>
+</html>
