@@ -423,8 +423,10 @@ def regenerate_files(all_apps, affected_companies):
         if a['platform'] == 'GP':
             c['gp'] += 1
             rc = a.get('rating_count', 0)
-            if isinstance(rc, (int, float)):
-                c['gp_dl'] += int(rc)
+            if not isinstance(rc, (int, float)):
+                rc = 0
+            dl = parse_downloads(a.get('downloads', ''))
+            c['gp_dl'] += max(int(rc), dl)
         else:
             c['ios'] += 1
             rc = a.get('rating_count', 0)
