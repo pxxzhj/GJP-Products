@@ -26,7 +26,7 @@ MONTH_MAP = {
 def log(msg):
     ts = datetime.now().strftime('%H:%M:%S')
     line = f"[{ts}] {msg}"
-    print(line)
+    print(line, flush=True)
     REPORT_LINES.append(line)
 
 def normalize_date(d):
@@ -476,7 +476,7 @@ def git_commit_push(new_count, update_count):
     subprocess.run(['git', 'commit', '-m', msg], check=True)
     log("Git commit done")
 
-    result = subprocess.run(['git', 'push'], capture_output=True, text=True, timeout=60)
+    result = subprocess.run(['git', 'push'], capture_output=True, text=True, timeout=120)
     if result.returncode == 0:
         log("Git push done")
     else:
