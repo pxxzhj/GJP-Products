@@ -2749,6 +2749,6 @@ window._loadCompany("北京乐信圣文", [
     "last_update": "2026/04/29",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/24"
   }
 ]);

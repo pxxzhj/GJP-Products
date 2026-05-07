@@ -2445,6 +2445,6 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/04/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/30"
   }
 ]);

@@ -2589,6 +2589,6 @@ window._loadCompany("上海正朗", [
     "last_update": "2026/05/06",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/05/06"
   }
 ]);

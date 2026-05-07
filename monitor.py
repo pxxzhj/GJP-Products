@@ -4,6 +4,7 @@
 手动运行: python3 monitor.py
 """
 import json
+import html
 import os
 import re
 import time
@@ -181,6 +182,51 @@ def extract_gp_developers(all_apps):
         devs[dev_link]['known_pkgs'].add(a['pkg_or_id'])
     return devs
 
+def clean_detail_text(value):
+    value = re.sub(r'<[^>]+>', '', value or '')
+    return html.unescape(value).strip()
+
+def extract_gp_detail_value(driver, label):
+    """Read a Google Play detail value from page HTML or visible text."""
+    try:
+        body = driver.page_source
+        m = re.search(rf'{re.escape(label)}\s*</div>.*?<div[^>]*>(.*?)</div>', body, re.S)
+        if m:
+            value = clean_detail_text(m.group(1))
+            if value:
+                return value
+    except Exception:
+        pass
+
+    try:
+        from selenium.webdriver.common.by import By
+        text = driver.find_element(By.TAG_NAME, 'body').text
+    except Exception:
+        return ''
+
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    for i, line in enumerate(lines):
+        if line == label:
+            for value in lines[i + 1:]:
+                if value not in ('arrow_forward', 'chevron_right', 'expand_more'):
+                    return value
+    return ''
+
+def open_gp_about_panel(driver):
+    """Open the Google Play about panel where Released on is often shown."""
+    try:
+        from selenium.webdriver.common.by import By
+        controls = driver.find_elements(By.CSS_SELECTOR, 'button, div[role="button"]')
+        for control in controls:
+            label = (control.text or control.get_attribute('aria-label') or '').strip()
+            if label == 'arrow_forward' or 'About this' in label:
+                driver.execute_script('arguments[0].click()', control)
+                time.sleep(1)
+                return True
+    except Exception:
+        pass
+    return False
+
 def check_gp_developers(all_apps):
     from selenium import webdriver
     from selenium.webdriver.common.by import By
@@ -291,14 +337,13 @@ def check_gp_developers(all_apps):
             except:
                 pass
 
-            last_update = ''
-            try:
-                body = driver.page_source
-                m = re.search(r'Updated on\s*</div>.*?<div[^>]*>(.*?)</div>', body, re.S)
-                if m:
-                    last_update = normalize_date(m.group(1).strip())
-            except:
-                pass
+            last_update = normalize_date(extract_gp_detail_value(driver, 'Updated on'))
+            open_gp_about_panel(driver)
+            if not last_update:
+                last_update = normalize_date(extract_gp_detail_value(driver, 'Updated on'))
+            release_date = normalize_date(extract_gp_detail_value(driver, 'Released on'))
+            if not release_date:
+                log(f"  GP release date not shown: {pkg}")
 
             removed = False
             try:
@@ -321,7 +366,7 @@ def check_gp_developers(all_apps):
                 'last_update': last_update,
                 'tags': '',
                 'removed': removed,
-                'release_date': '',
+                'release_date': release_date,
             }
             new_gp_apps.append(app)
             log(f"  Fetched: {name} ({pkg}) dl={downloads}")
