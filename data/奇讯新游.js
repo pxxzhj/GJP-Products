@@ -3773,7 +3773,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/29",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/04/16"
   },
   {
     "name": "Cat Cooking Bar - Food game",
@@ -3789,7 +3789,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/26",
     "tags": "Simulation, Management, Restaurant, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/03/10"
   },
   {
     "name": "Screw Spin: Color Crash",
@@ -3805,7 +3805,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/12/14",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/29"
   },
   {
     "name": "Fruits Bomb",
@@ -3821,7 +3821,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/27",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/03"
   },
   {
     "name": "Sort Factory",
@@ -3853,7 +3853,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/21",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2013/09/23"
   },
   {
     "name": "Marble Legend Pro",
@@ -3869,7 +3869,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/18",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2013/10/18"
   },
   {
     "name": "Solitaire",
@@ -3885,7 +3885,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/26",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/01/18"
   },
   {
     "name": "Solitaire",
@@ -3901,7 +3901,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/28",
     "tags": "Card, Solitaire",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/02/23"
   },
   {
     "name": "Monster Cher Adventu",
@@ -3933,7 +3933,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/28",
     "tags": "Puzzle, Match 3, Match 3 adventure, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/06/30"
   },
   {
     "name": "Baby Mansion-home makeover",
@@ -3949,7 +3949,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/08",
     "tags": "Puzzle, Match 3, Match 3 adventure, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/30"
   },
   {
     "name": "Number Puzzle: Ten & Pair",
@@ -3981,7 +3981,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/24",
     "tags": "Simulation, Lifestyle, Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/19"
   },
   {
     "name": "Ruler Match - Tile Puzzle Game",
@@ -3997,7 +3997,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/29",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/08/22"
   },
   {
     "name": "Calm Logic: Words",
@@ -4013,7 +4013,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/12/11",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/09"
   },
   {
     "name": "Trials Of Eternity",
@@ -4045,7 +4045,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/12/11",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/19"
   },
   {
     "name": "My Cooking: Restaurant Game",
@@ -4061,7 +4061,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/23",
     "tags": "Simulation, Time management, Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/12/05"
   },
   {
     "name": "Diner Fever® Cooking Game",
@@ -4077,7 +4077,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/10",
     "tags": "Simulation, Management, Restaurant",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/27"
   },
   {
     "name": "Candy Smash Mania: Match 3 Pop",
@@ -4093,7 +4093,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/27",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/10/25"
   },
   {
     "name": "Cooking Diner: Chef Game",
@@ -4109,7 +4109,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/03/26",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/12/23"
   },
   {
     "name": "Tasty Diary: Chef Cooking Game",
@@ -4125,7 +4125,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/28",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/05/17"
   },
   {
     "name": "Candy Witch - Match 3 Puzzle",
@@ -4141,7 +4141,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/27",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/10/25"
   },
   {
     "name": "Cooking Tycoon",
@@ -4157,7 +4157,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2024/09/19",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/11/01"
   },
   {
     "name": "Cooking Legend",
@@ -4173,7 +4173,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2023/11/20",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/07/06"
   },
   {
     "name": "Hotel Fever Tycoon",
@@ -4189,7 +4189,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/04/17",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/09/05"
   },
   {
     "name": "Merge Journey",
@@ -4221,7 +4221,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2024/08/28",
     "tags": "Puzzle, Pair matching, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/09/15"
   },
   {
     "name": "Bubble Shooter Adventure: Pop",
@@ -4237,7 +4237,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/21",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/09"
   },
   {
     "name": "Cookie Mania - Sweet Match 3",
@@ -4253,7 +4253,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2024/03/04",
     "tags": "Puzzle, Match 3, Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/02/08"
   },
   {
     "name": "Super Jungle Jump",
@@ -4269,7 +4269,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/12/02",
     "tags": "Action, Platformer, Hack & slash, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/03/17"
   },
   {
     "name": "Candy Smash Mania 2",
@@ -4301,7 +4301,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/06/18",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/02/04"
   },
   {
     "name": "Super  Adventure of Jabber",
@@ -4317,7 +4317,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2023/10/18",
     "tags": "Action, Platformer, Hack & slash, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/09/22"
   },
   {
     "name": "Super Jabber Jump 3",
@@ -4333,7 +4333,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2023/10/18",
     "tags": "Action, Platformer, Hack & slash, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/03"
   },
   {
     "name": "Candy Pop Story : Match 3",
@@ -4349,7 +4349,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/06",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/11/08"
   },
   {
     "name": "Sorting Store - Goods Puzzle",
@@ -4365,7 +4365,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/24",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/09"
   },
   {
     "name": "Baby Manor: Home Design Dreams",
@@ -4381,7 +4381,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/21",
     "tags": "Puzzle, Match 3, Match 3 adventure, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/11/22"
   },
   {
     "name": "Magic Candy",
@@ -4397,7 +4397,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/15",
     "tags": "Puzzle, Match 3, Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/09"
   },
   {
     "name": "Sweet Candy Puzzle: Match Game",
@@ -4413,7 +4413,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/07",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/03/02"
   },
   {
     "name": "Match Smash 3D®- Triple Puzzle",
@@ -4429,7 +4429,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/29",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/06/01"
   },
   {
     "name": "Sort Fever:3D Goods Match",
@@ -4445,7 +4445,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/30",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/14"
   },
   {
     "name": "Sort Match™:3D Goods Puzzle",
@@ -4461,7 +4461,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/07",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/06"
   },
   {
     "name": "Crazy Sort ® - Sort Challenge",
@@ -4477,7 +4477,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/30",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/10"
   },
   {
     "name": "Toy Bomb: Match Blast Puzzles",
@@ -4493,7 +4493,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/20",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/08/27"
   },
   {
     "name": "Candy Fever Smash - Match 3",
@@ -4509,7 +4509,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/26",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/09/16"
   },
   {
     "name": "Sorting Joy: Goods Puzzle Sort",
@@ -4525,7 +4525,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/23",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/26"
   },
   {
     "name": "Grill Fever: Sizzle Match",
@@ -4557,7 +4557,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/19",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/07/11"
   },
   {
     "name": "Wood Block Puzzle: Jigsaw Game",
@@ -4573,7 +4573,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/26",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/05/25"
   },
   {
     "name": "Cooking Sort-Sizzle&Grill",
@@ -4621,7 +4621,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/14",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/03/24"
   },
   {
     "name": "Cooking World® Restaurant Game",
@@ -4637,7 +4637,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/06",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/17"
   },
   {
     "name": "Idle Food Bar: Idle Games",
@@ -4653,7 +4653,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/09",
     "tags": "Simulation, Management, Restaurant, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/10/25"
   },
   {
     "name": "Idle Airport Empire",
@@ -4669,7 +4669,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/17",
     "tags": "Simulation, Management, Tycoon",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/26"
   },
   {
     "name": "Merge Legends",
@@ -4685,7 +4685,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/05",
     "tags": "Puzzle, Merge, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/07/24"
   },
   {
     "name": "Idle Dragon School—Tycoon Game",
@@ -4701,7 +4701,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/09",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/11/08"
   },
   {
     "name": "Idle Cinema Empire Idle Games",
@@ -4717,7 +4717,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/28",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/01/03"
   },
   {
     "name": "Idle Vegas Resort - Tycoon",
@@ -4733,7 +4733,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/26",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/06/24"
   },
   {
     "name": "Idle Music Star Tycoon Games",
@@ -4749,7 +4749,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/30",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/24"
   },
   {
     "name": "Sim Hotel Tycoon: Tycoon Games",
@@ -4765,7 +4765,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/26",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/10/21"
   },
   {
     "name": "Cooking Kingdom",
@@ -4797,7 +4797,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/29",
     "tags": "Simulation",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/15"
   },
   {
     "name": "Idle Train Empire - Idle Games",
@@ -4813,7 +4813,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/28",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/08/22"
   },
   {
     "name": "Petdise Tycoon - Idle Game",
@@ -4829,7 +4829,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/25",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/02/13"
   },
   {
     "name": "Island Farm Adventure",
@@ -4845,7 +4845,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/03/19",
     "tags": "Simulation, Management, Farming, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/08/14"
   },
   {
     "name": "Idle Car Show Master - Tycoon",
@@ -4861,7 +4861,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/23",
     "tags": "Simulation, Management, Tycoon",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/12"
   },
   {
     "name": "Railway Tycoon - Idle Game",
@@ -4877,7 +4877,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/03",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/12/19"
   },
   {
     "name": "Idle Office Empire Get Rich",
@@ -4909,7 +4909,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/29",
     "tags": "Simulation",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/05"
   },
   {
     "name": "Idle Mall Empire: Idle Game",
@@ -4941,7 +4941,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/30",
     "tags": "Puzzle, Match 3, Match 3 adventure",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/04"
   },
   {
     "name": "Cake Smash Mania - Match 3",
@@ -4957,7 +4957,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/26",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/07/30"
   },
   {
     "name": "Sweet Crush Royal - Match 3",
@@ -4973,7 +4973,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/07",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/02/21"
   },
   {
     "name": "Merge Diner - Restaurant Games",
@@ -4989,7 +4989,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/21",
     "tags": "Simulation, Lifestyle, Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/17"
   },
   {
     "name": "Cube Blast Pop - Toy Matching",
@@ -5005,7 +5005,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/13",
     "tags": "Puzzle, Pair matching, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/12/18"
   },
   {
     "name": "Candy Fever Bomb - Match 3",
@@ -5021,7 +5021,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/06",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/10/19"
   },
   {
     "name": "Merge Farm Life: Mansion Decor",
@@ -5037,7 +5037,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/14",
     "tags": "Puzzle, Merge, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/09"
   },
   {
     "name": "Super Sort ® - Goods Puzzle",
@@ -5053,7 +5053,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/17",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/14"
   },
   {
     "name": "Triple Joy 3D - Triple Match",
@@ -5069,7 +5069,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/30",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/26"
   },
   {
     "name": "Super Sort Mania: Goods Puzzle",
@@ -5085,7 +5085,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/15",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/07"
   },
   {
     "name": "Triple Frenzy 3D: Goods Match",
@@ -5101,7 +5101,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/09",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/26"
   },
   {
     "name": "Happy Wool - Yarn Stitch",
@@ -5133,7 +5133,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/29",
     "tags": "Puzzle, Match 3, Match 3 adventure, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/12"
   },
   {
     "name": "Dream Resort",
@@ -5149,7 +5149,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/07",
     "tags": "Puzzle, Match 3, Match 3 adventure, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/10"
   },
   {
     "name": "Town Horizon: Merge It",
@@ -5165,7 +5165,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/10",
     "tags": "Simulation, Lifestyle, Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/13"
   },
   {
     "name": "Sweet Candy Journey-Fun Match",
@@ -5181,7 +5181,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/14",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/07"
   },
   {
     "name": "Bubble Panda Legend: Blast Pop",
@@ -5197,7 +5197,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/21",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/14"
   },
   {
     "name": "Bubble Shooter Balls: Popping",
@@ -5213,7 +5213,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/12",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/07/21"
   },
   {
     "name": "Candy Bomb",
@@ -5229,7 +5229,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/03/11",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/04/11"
   },
   {
     "name": "Candy Crack Mania",
@@ -5245,7 +5245,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2024/08/22",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/09/28"
   },
   {
     "name": "Triple Family 3D™- Match Story",
@@ -5261,7 +5261,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/03/27",
     "tags": "Puzzle, Match 3, Match 3 adventure, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/03"
   },
   {
     "name": "Candy Mania",
@@ -5277,7 +5277,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/10",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/01/18"
   },
   {
     "name": "Toy Crush",
@@ -5293,7 +5293,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/12",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/01/24"
   },
   {
     "name": "Bubble Shooter - Mania Blast",
@@ -5309,7 +5309,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/28",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/01/21"
   },
   {
     "name": "Jewels Match Adventure",
@@ -5325,7 +5325,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/17",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/01/30"
   },
   {
     "name": "Fruit Fever",
@@ -5341,7 +5341,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2023/12/01",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/01/24"
   },
   {
     "name": "Happy Fruits Bomb - Cube Blast",
@@ -5357,7 +5357,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/13",
     "tags": "Puzzle, Pair matching, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/01/31"
   },
   {
     "name": "Fruit Cruise",
@@ -5373,7 +5373,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/10",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/04/13"
   },
   {
     "name": "Candy Burst",
@@ -5389,7 +5389,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/09",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/07/17"
   },
   {
     "name": "Bubble Shooter",
@@ -5405,7 +5405,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/09",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/10/13"
   },
   {
     "name": "Toy Fever",
@@ -5421,7 +5421,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2024/07/30",
     "tags": "Puzzle, Pair matching, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/11/22"
   },
   {
     "name": "Hospital Frenzy: Doctor Games",
@@ -5437,7 +5437,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/01",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/03/20"
   },
   {
     "name": "Cooking Go® Airplane Game",
@@ -5453,7 +5453,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/24",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/04"
   },
   {
     "name": "Badminton League",
@@ -5469,7 +5469,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/12/18",
     "tags": "Sports, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/11/02"
   },
   {
     "name": "Toy Tap Fever - Puzzle Blast",
@@ -5485,7 +5485,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/07",
     "tags": "Puzzle, Pair matching, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/01/09"
   },
   {
     "name": "My Flower Shop-Design &Dressup",
@@ -5501,7 +5501,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/25",
     "tags": "Simulation, Management, Tycoon, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/25"
   },
   {
     "name": "Garden Dressup Flower Princess",
@@ -5517,7 +5517,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/05",
     "tags": "Simulation, Management, Farming",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/11/05"
   },
   {
     "name": "Airport Manager",
@@ -5533,7 +5533,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/05",
     "tags": "Simulation, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/03/15"
   },
   {
     "name": "Happy Kitchen World",
@@ -5549,7 +5549,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Time management, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/02/27"
   },
   {
     "name": "Dessert Cooking:ice candy make",
@@ -5565,7 +5565,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/05",
     "tags": "Simulation, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/10/27"
   },
   {
     "name": "Pocket Pony - Horse Run",
@@ -5581,7 +5581,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Care, Pet, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/04/28"
   },
   {
     "name": "Dream Flower Dressup",
@@ -5597,7 +5597,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/24",
     "tags": "Simulation, Lifestyle, Dress-up, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/24"
   },
   {
     "name": "Cute Monster - Virtual Pet",
@@ -5613,7 +5613,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Care, Pet",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/04/14"
   },
   {
     "name": "Sweet Yummy Cookie Shop",
@@ -5629,7 +5629,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/05",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/08/01"
   },
   {
     "name": "Pet Beauty Salon: Cute Animal",
@@ -5645,7 +5645,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Care, Pet",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/03/21"
   },
   {
     "name": "Restaurant Tycoon：Best Chef",
@@ -5661,7 +5661,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/06/06"
   },
   {
     "name": "My Pet Loki - Virtual Dog",
@@ -5677,7 +5677,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Care, Pet, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/08/17"
   },
   {
     "name": "Dream Chibi Dolls: Doll Maker",
@@ -5693,7 +5693,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/05",
     "tags": "Simulation, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/04/25"
   },
   {
     "name": "Happy Tailor4: Fashion Sewing",
@@ -5709,7 +5709,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/12/13"
   },
   {
     "name": "Kitty Café: Make Yummy Coffee",
@@ -5725,7 +5725,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/04/02"
   },
   {
     "name": "Cake Shop 2 - To Be a Master",
@@ -5741,7 +5741,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/05",
     "tags": "Simulation, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/03/18"
   },
   {
     "name": "My Smart Dog: Virtual Puppy",
@@ -5757,7 +5757,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Care, Pet, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/05/22"
   },
   {
     "name": "Little Tailor 5:  Happy Sewing",
@@ -5773,7 +5773,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/14",
     "tags": "Simulation, Lifestyle, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/10/12"
   },
   {
     "name": "Cotton Candy Shop Cooking Game",
@@ -5789,7 +5789,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/08/05",
     "tags": "Simulation, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/11/09"
   },
   {
     "name": "Hello！Virtual Space Puppy：3D",
@@ -5805,7 +5805,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/24",
     "tags": "Simulation, Care, Pet, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/09/25"
   },
   {
     "name": "Word MindSort: Solitaire",
@@ -5821,7 +5821,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/08",
     "tags": "Word, Search",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/28"
   },
   {
     "name": "Marble Master",
@@ -5837,7 +5837,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/08",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/05/23"
   },
   {
     "name": "Word Search",
@@ -5853,7 +5853,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/15",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/09/08"
   },
   {
     "name": "Jigsaw Puzzle - Classic Puzzle",
@@ -5869,7 +5869,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/23",
     "tags": "Puzzle, Jigsaw, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/09/15"
   },
   {
     "name": "Loopy Ducky",
@@ -5901,7 +5901,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/06",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/09/30"
   },
   {
     "name": "Toy Cubes Pop - Match 3 Game",
@@ -5917,7 +5917,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2024/08/29",
     "tags": "Puzzle, Pair matching, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/04/12"
   },
   {
     "name": "Candy Tales - Match 3 Puzzle",
@@ -5933,7 +5933,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/02",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/04/16"
   },
   {
     "name": "Candy Frenzy - Match 3 Mania",
@@ -5949,7 +5949,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/28",
     "tags": "Puzzle, Match 3, Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2014/06/18"
   },
   {
     "name": "Pet Candy Puzzle-Match 3 games",
@@ -5965,7 +5965,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/06",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/02/15"
   },
   {
     "name": "Digit Logic Match",
@@ -5997,7 +5997,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/10/21",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/06/04"
   },
   {
     "name": "Idle Barn Tycoon",
@@ -6013,7 +6013,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/12/26",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/17"
   },
   {
     "name": "Makeup Water Puzzle",

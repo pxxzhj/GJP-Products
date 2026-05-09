@@ -685,7 +685,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/04/14",
     "tags": "Music, Performance, Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/03/26"
   },
   {
     "name": "Piano Rush: Magic Rhythm",
@@ -701,7 +701,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/04/10",
     "tags": "Music",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/21"
   },
   {
     "name": "Piano Beat: Music Game",
@@ -717,7 +717,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/03/04",
     "tags": "Music, Performance, Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/20"
   },
   {
     "name": "Tile Match Zen Puzzle",
@@ -733,7 +733,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/04/16",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/20"
   },
   {
     "name": "Mahjong Tiles - Puzzle Game",
@@ -797,7 +797,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/04/21",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/06"
   },
   {
     "name": "Bloom Tiles: Flower Match Game",

@@ -13,7 +13,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2026/03/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/01/27"
   },
   {
     "name": "Block Dash: Color Block Puzzle",
@@ -29,7 +29,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2026/04/16",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/29"
   },
   {
     "name": "Cooking Fun®: Cooking Games",
@@ -45,7 +45,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2026/01/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/06/27"
   },
   {
     "name": "Cooking Trip: Taste America",
@@ -61,7 +61,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2025/11/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/03/05"
   },
   {
     "name": "Otium Word - Relax Puzzle Game",
@@ -77,7 +77,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2026/04/21",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/12"
   },
   {
     "name": "Otium Word: Word Search",
@@ -93,7 +93,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2025/12/01",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/11/08"
   },
   {
     "name": "Solitaire Relax®: Classic Card",
@@ -109,7 +109,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2026/01/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/05/29"
   },
   {
     "name": "Otium Mahjong: Wafū Tile Match",
@@ -125,7 +125,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2026/03/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/19"
   },
   {
     "name": "Solitaire Relax® Big Card Game",
@@ -141,7 +141,7 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2025/12/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/02/07"
   },
   {
     "name": "Otium Word: Relax Puzzle Game",
@@ -477,6 +477,6 @@ window._loadCompany("北京棕榈创想", [
     "last_update": "2026/04/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/30"
   }
 ]);

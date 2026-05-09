@@ -2797,7 +2797,7 @@ window._loadCompany("北京乐信圣文", [
     "last_update": "2026/04/24",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/14"
   },
   {
     "name": "Mystery Town: Merge Games",
@@ -2813,7 +2813,7 @@ window._loadCompany("北京乐信圣文", [
     "last_update": "2026/04/24",
     "tags": "Simulation, Lifestyle, Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/04/11"
   },
   {
     "name": "Word Sort Fun!",
@@ -2829,7 +2829,7 @@ window._loadCompany("北京乐信圣文", [
     "last_update": "2026/05/07",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/23"
   },
   {
     "name": "Superhero & Puzzles Match3 RPG",
@@ -2845,6 +2845,6 @@ window._loadCompany("北京乐信圣文", [
     "last_update": "2026/01/28",
     "tags": "Role Playing, Puzzle Role-playing, Match 3 RPG, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/19"
   }
 ]);

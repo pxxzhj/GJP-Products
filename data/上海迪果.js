@@ -1437,7 +1437,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/03/25",
     "tags": "Card, Solitaire, Spider solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/05/28"
   },
   {
     "name": "Color by Number",
@@ -1453,7 +1453,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/04/22",
     "tags": "Puzzle, Coloring",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/16"
   },
   {
     "name": "Amor Jigsaw - Seniors Game",
@@ -1469,7 +1469,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/04/12",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/12"
   },
   {
     "name": "Solitaire Classic Card",
@@ -1485,7 +1485,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/04/24",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/05/23"
   },
   {
     "name": "Solitaire Card Game",
@@ -1501,7 +1501,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/04/14",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/02"
   },
   {
     "name": "Spider Solitaire Card Game",
@@ -1517,7 +1517,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/04/14",
     "tags": "Card, Solitaire, Spider solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/10/09"
   },
   {
     "name": "Tap to Merge",
@@ -1533,7 +1533,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2025/11/07",
     "tags": "Puzzle, Merge, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/05/08"
   },
   {
     "name": "Daily Number Match",
@@ -1549,7 +1549,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/05/07",
     "tags": "Puzzle, Logic",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/02/04"
   },
   {
     "name": "Daily Tile Match",
@@ -1565,7 +1565,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/04/22",
     "tags": "Puzzle, Pair matching",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/03"
   },
   {
     "name": "Spider Solitaire Classic",
@@ -1581,7 +1581,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2026/04/20",
     "tags": "Card, Solitaire, Spider solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/09/01"
   },
   {
     "name": "Solitaire Mania",
@@ -1597,7 +1597,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2025/11/11",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/04/06"
   },
   {
     "name": "Merge Block Puzzle",
@@ -1613,7 +1613,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2025/11/13",
     "tags": "Puzzle, Merge, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/10/08"
   },
   {
     "name": "Dot Puzzle",
@@ -1629,7 +1629,7 @@ window._loadCompany("上海迪果", [
     "last_update": "2025/11/13",
     "tags": "Puzzle, Merge, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/04/04"
   },
   {
     "name": "Daily Block - Brain Game",

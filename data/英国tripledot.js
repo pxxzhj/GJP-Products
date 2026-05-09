@@ -2413,7 +2413,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/04/29",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/29"
   },
   {
     "name": "Cube Loop Sort",
@@ -2541,7 +2541,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/03/24",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/02"
   },
   {
     "name": "Word Association Tiles",
@@ -2557,7 +2557,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/04/27",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/06"
   },
   {
     "name": "What The Jelly?",
@@ -2573,7 +2573,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/04/23",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/28"
   },
   {
     "name": "Dot Paint - ASMR Flow Puzzle",
@@ -2589,7 +2589,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/05/08",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/11"
   },
   {
     "name": "Sizzle Sort",
@@ -2605,7 +2605,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/04/28",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/11"
   },
   {
     "name": "Spider Solitaire Associations",
@@ -2621,7 +2621,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/03/23",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/03"
   },
   {
     "name": "Word Search Associations",
@@ -2637,7 +2637,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/01/29",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/27"
   },
   {
     "name": "Word Rush",
@@ -2653,7 +2653,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2025/12/08",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/02"
   },
   {
     "name": "Live Play Bingo: Real Hosts",
@@ -2669,7 +2669,7 @@ window._loadCompany("英国tripledot", [
     "last_update": "2026/04/21",
     "tags": "Casino, Bingo, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/06/23"
   },
   {
     "name": "Sushi Flow",

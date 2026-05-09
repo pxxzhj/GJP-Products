@@ -18,6 +18,7 @@ LOOKUP_CACHE = '/tmp/dev_supplement_lookup_results.json'
 IMPORT_REPORT = []
 FAILED_ITEMS = []
 LOOKUP_BY_DEV = {}
+GP_RELEASE_DRIVER = None
 
 
 def log(msg):
@@ -43,12 +44,15 @@ def fetch_text_with_selenium(url, wait=3):
     from selenium import webdriver
     from selenium.webdriver.chrome.options import Options
 
+    proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('HTTP_PROXY')
     opts = Options()
     opts.add_argument('--headless=new')
     opts.add_argument('--no-sandbox')
     opts.add_argument('--disable-dev-shm-usage')
     opts.add_argument('--lang=en-US')
     opts.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+    if proxy:
+        opts.add_argument(f'--proxy-server={proxy}')
     driver = webdriver.Chrome(options=opts)
     try:
         driver.set_page_load_timeout(35)
@@ -64,6 +68,54 @@ def fetch_gp_detail_html(url):
         return fetch_text(url, timeout=20, retries=2)
     except Exception:
         return fetch_text_with_selenium(url)
+
+
+def make_gp_release_driver():
+    from selenium import webdriver
+    from selenium.webdriver.chrome.options import Options
+
+    proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('HTTP_PROXY')
+    opts = Options()
+    opts.add_argument('--headless=new')
+    opts.add_argument('--no-sandbox')
+    opts.add_argument('--disable-dev-shm-usage')
+    opts.add_argument('--lang=en-US')
+    opts.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+    if proxy:
+        opts.add_argument(f'--proxy-server={proxy}')
+
+    driver = webdriver.Chrome(options=opts)
+    driver.set_page_load_timeout(35)
+    return driver
+
+
+def fetch_gp_release_date(pkg):
+    global GP_RELEASE_DRIVER
+    if GP_RELEASE_DRIVER is None:
+        GP_RELEASE_DRIVER = make_gp_release_driver()
+
+    try:
+        GP_RELEASE_DRIVER.get(f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us')
+        time.sleep(2)
+        monitor.open_gp_about_panel(GP_RELEASE_DRIVER)
+        return monitor.normalize_date(monitor.extract_gp_detail_value(GP_RELEASE_DRIVER, 'Released on'))
+    except Exception:
+        try:
+            GP_RELEASE_DRIVER.quit()
+        except Exception:
+            pass
+        GP_RELEASE_DRIVER = None
+        raise
+
+
+def close_gp_release_driver():
+    global GP_RELEASE_DRIVER
+    if GP_RELEASE_DRIVER is not None:
+        try:
+            GP_RELEASE_DRIVER.quit()
+        except Exception:
+            pass
+        GP_RELEASE_DRIVER = None
 
 
 def clean_text(value):
@@ -109,6 +161,10 @@ def parse_gp_app_detail(pkg, dev_name, dev_url, company):
         if tag and tag not in tags:
             tags.append(tag)
 
+    release_date = monitor.normalize_date(parse_gp_detail_value(body, 'Released on'))
+    if not release_date:
+        release_date = fetch_gp_release_date(pkg)
+
     return {
         'name': name,
         'company_cn': company,
@@ -123,7 +179,7 @@ def parse_gp_app_detail(pkg, dev_name, dev_url, company):
         'last_update': monitor.normalize_date(parse_gp_detail_value(body, 'Updated on')),
         'tags': ', '.join(tags),
         'removed': False,
-        'release_date': monitor.normalize_date(parse_gp_detail_value(body, 'Released on')),
+        'release_date': release_date,
     }
 
 
@@ -237,67 +293,70 @@ def regenerate(all_apps, affected_companies):
 
 
 def main():
-    load_lookup_cache()
-    all_apps = load_apps()
-    existing = set((a['platform'], a['pkg_or_id']) for a in all_apps)
-    candidates = load_candidates()
-    affected = set()
-    added_by_company = {}
-    added_by_platform = {'GP': 0, 'iOS': 0}
+    try:
+        load_lookup_cache()
+        all_apps = load_apps()
+        existing = set((a['platform'], a['pkg_or_id']) for a in all_apps)
+        candidates = load_candidates()
+        affected = set()
+        added_by_company = {}
+        added_by_platform = {'GP': 0, 'iOS': 0}
 
-    log(f'Loaded {len(all_apps)} existing apps')
-    log(f'Importing {len(candidates)} candidate developers')
+        log(f'Loaded {len(all_apps)} existing apps')
+        log(f'Importing {len(candidates)} candidate developers')
 
-    for idx, row in enumerate(candidates, 1):
-        company = row['company']
-        name = row['name']
-        platform = row['platform']
-        found = []
+        for idx, row in enumerate(candidates, 1):
+            company = row['company']
+            name = row['name']
+            platform = row['platform']
+            found = []
 
-        if 'GP' in platform:
-            gp_apps = fetch_gp_developer_apps(name, company)
-            found.extend(gp_apps)
-        if 'iOS' in platform:
-            for artist_id in extract_ios_artist_ids(row.get('links', '')):
-                found.extend(fetch_ios_developer_apps(artist_id, company))
-                time.sleep(0.3)
+            if 'GP' in platform:
+                gp_apps = fetch_gp_developer_apps(name, company)
+                found.extend(gp_apps)
+            if 'iOS' in platform:
+                for artist_id in extract_ios_artist_ids(row.get('links', '')):
+                    found.extend(fetch_ios_developer_apps(artist_id, company))
+                    time.sleep(0.3)
 
-        added = 0
-        for app in found:
-            key = (app['platform'], app['pkg_or_id'])
-            if key in existing:
-                continue
-            existing.add(key)
-            all_apps.append(app)
-            affected.add(app['company_cn'])
-            added += 1
-            added_by_platform[app['platform']] = added_by_platform.get(app['platform'], 0) + 1
+            added = 0
+            for app in found:
+                key = (app['platform'], app['pkg_or_id'])
+                if key in existing:
+                    continue
+                existing.add(key)
+                all_apps.append(app)
+                affected.add(app['company_cn'])
+                added += 1
+                added_by_platform[app['platform']] = added_by_platform.get(app['platform'], 0) + 1
 
-        if added:
-            added_by_company[company] = added_by_company.get(company, 0) + added
-        log(f'[{idx}/{len(candidates)}] {company} / {name}: found {len(found)}, added {added}')
-        time.sleep(1.5)
+            if added:
+                added_by_company[company] = added_by_company.get(company, 0) + added
+            log(f'[{idx}/{len(candidates)}] {company} / {name}: found {len(found)}, added {added}')
+            time.sleep(1.5)
 
-    with open('/tmp/all_apps_v6.json', 'w', encoding='utf-8') as f:
-        json.dump(all_apps, f, ensure_ascii=False, indent=2)
+        with open('/tmp/all_apps_v6.json', 'w', encoding='utf-8') as f:
+            json.dump(all_apps, f, ensure_ascii=False, indent=2)
 
-    if affected:
-        regenerate(all_apps, affected)
+        if affected:
+            regenerate(all_apps, affected)
 
-    log('=' * 60)
-    log(f'Added total: {sum(added_by_company.values())} ({added_by_platform})')
-    for company, count in sorted(added_by_company.items(), key=lambda item: (-item[1], item[0])):
-        log(f'  {company}: +{count}')
-    log(f'Database total: {len(all_apps)}')
-    if FAILED_ITEMS:
-        log(f'Failed items: {len(FAILED_ITEMS)}')
-        for item in FAILED_ITEMS:
-            log(f"  {item}")
+        log('=' * 60)
+        log(f'Added total: {sum(added_by_company.values())} ({added_by_platform})')
+        for company, count in sorted(added_by_company.items(), key=lambda item: (-item[1], item[0])):
+            log(f'  {company}: +{count}')
+        log(f'Database total: {len(all_apps)}')
+        if FAILED_ITEMS:
+            log(f'Failed items: {len(FAILED_ITEMS)}')
+            for item in FAILED_ITEMS:
+                log(f"  {item}")
 
-    report_path = os.path.join(BASE_DIR, f'import_developers_report_{datetime.now().strftime("%Y%m%d_%H%M%S")}.txt')
-    with open(report_path, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(IMPORT_REPORT))
-    log(f'Report saved: {report_path}')
+        report_path = os.path.join(BASE_DIR, f'import_developers_report_{datetime.now().strftime("%Y%m%d_%H%M%S")}.txt')
+        with open(report_path, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(IMPORT_REPORT))
+        log(f'Report saved: {report_path}')
+    finally:
+        close_gp_release_driver()
 
 
 if __name__ == '__main__':

@@ -13,7 +13,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/08/22"
   },
   {
     "name": "Bubble Shooter",
@@ -29,7 +29,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/01",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/09/24"
   },
   {
     "name": "Bubble Shooter",
@@ -45,7 +45,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/03/04"
   },
   {
     "name": "Bubble Shooter - Home Design",
@@ -61,7 +61,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/16",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/05/26"
   },
   {
     "name": "Bubble Shooter",
@@ -77,7 +77,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/01",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/01/02"
   },
   {
     "name": "Shoot Bubble - Fruit Splash",
@@ -93,7 +93,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/01/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/01/26"
   },
   {
     "name": "Bubble Shooter",
@@ -109,7 +109,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/10/31",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/11/12"
   },
   {
     "name": "Help the lady",
@@ -125,7 +125,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/10/31",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/02/20"
   },
   {
     "name": "Birdpapa - Bubble Crush",
@@ -141,7 +141,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/12/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/11/11"
   },
   {
     "name": "Sweet Fruit Candy",
@@ -157,7 +157,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/06/22"
   },
   {
     "name": "Fruit Candy Blast",
@@ -173,7 +173,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/09/24"
   },
   {
     "name": "com.cookiecrush.legend",
@@ -205,7 +205,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/05/31"
   },
   {
     "name": "Block Puzzle Jewel",
@@ -221,7 +221,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/07",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/01/29"
   },
   {
     "name": "Puzzle Game",
@@ -237,7 +237,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/09/21"
   },
   {
     "name": "Block Puzzle - Wood Legend",
@@ -253,7 +253,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/10/31",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/08/09"
   },
   {
     "name": "Wood Block - Music Box",
@@ -269,7 +269,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/12/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/08/14"
   },
   {
     "name": "com.charmnecessaryyet.expression",
@@ -317,7 +317,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/02",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/06/05"
   },
   {
     "name": "com.yytpro.chipdom",
@@ -349,7 +349,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/05/20"
   },
   {
     "name": "Dropdom - Jewel Blast",
@@ -365,7 +365,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/02",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/01/16"
   },
   {
     "name": "Candy Legend",
@@ -381,7 +381,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/15",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/11"
   },
   {
     "name": "Fruit Block - Puzzle Legend",
@@ -397,7 +397,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/15",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/09/16"
   },
   {
     "name": "com.candytown.juicycandyblock",
@@ -445,7 +445,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2024/11/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/04/19"
   },
   {
     "name": "Pooking - Billiards City",
@@ -461,7 +461,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/05/15"
   },
   {
     "name": "Shooting Ball",
@@ -477,7 +477,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/11/16"
   },
   {
     "name": "Solitaire Jigsaw kingdom",
@@ -493,7 +493,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/05/27"
   },
   {
     "name": "Unblock Red Wood",
@@ -509,7 +509,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/16",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/10/25"
   },
   {
     "name": "Unblock Ball - Block Puzzle",
@@ -525,7 +525,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/21",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/08/11"
   },
   {
     "name": "Shooting Archery",
@@ -541,7 +541,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/01/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/03/29"
   },
   {
     "name": "Shooting Zombie",
@@ -557,7 +557,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/02",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/10/13"
   },
   {
     "name": "Billiards Nation",
@@ -573,7 +573,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/06/29"
   },
   {
     "name": "Fruit Block Friends",
@@ -589,7 +589,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/16",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/11/19"
   },
   {
     "name": "Marble Puzzle Shoot",
@@ -605,7 +605,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/26",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/10/13"
   },
   {
     "name": "com.zuma.shooter.marblepuzzle.puzzlegame",
@@ -637,7 +637,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/01",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/11/05"
   },
   {
     "name": "Candy Manor - Home Design",
@@ -653,7 +653,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/12/05"
   },
   {
     "name": "com.zombie.shooting.survival.sniper",
@@ -797,7 +797,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/07/23"
   },
   {
     "name": "com.candylegend.manordesign",
@@ -829,7 +829,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/07",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/08/21"
   },
   {
     "name": "Sky Survivor: WWII Aircraft",
@@ -845,7 +845,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/20",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/09/30"
   },
   {
     "name": "com.art.blast.jigsaw",
@@ -877,7 +877,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/10/21",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/05/13"
   },
   {
     "name": "Marble Smash Ancient",
@@ -893,7 +893,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/08/03"
   },
   {
     "name": "com.blockjigsaw.gallery.buildstory",
@@ -973,7 +973,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/11/01"
   },
   {
     "name": "Mother Match: Home Design",
@@ -989,7 +989,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/09"
   },
   {
     "name": "com.gaolipeigame.build.dreamhome",
@@ -1021,7 +1021,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/14",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/29"
   },
   {
     "name": "easejoy.moon.cas.tilemanor",
@@ -1069,7 +1069,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/10",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/03/05"
   },
   {
     "name": "com.soccer.football.frenzy.hot",
@@ -1133,7 +1133,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/10/31",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/17"
   },
   {
     "name": "Goods Merge - Jigsaw Puzzles",
@@ -1149,7 +1149,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/25",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/27"
   },
   {
     "name": "Family Life: Match Story",
@@ -1165,7 +1165,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/19",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/28"
   },
   {
     "name": "Break & Run",
@@ -1181,7 +1181,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/01"
   },
   {
     "name": "8 Ball Challenge",
@@ -1197,7 +1197,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/07"
   },
   {
     "name": "Bubble Crush : Pop Game",
@@ -1213,7 +1213,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/14"
   },
   {
     "name": "com.love.and.match",
@@ -1341,7 +1341,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/20",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/12"
   },
   {
     "name": "com.matchjewelry.store",
@@ -1405,7 +1405,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/12/31",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/27"
   },
   {
     "name": "com.billiards.billiardburstblitzshot",
@@ -1469,7 +1469,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/13"
   },
   {
     "name": "com.billiards.endurancepool.fullshot",
@@ -1501,7 +1501,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/30"
   },
   {
     "name": "com.soccer.football.saga.star",
@@ -1549,7 +1549,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/01",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/04"
   },
   {
     "name": "Hexa Run - Block Puzzle",
@@ -1565,7 +1565,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/07"
   },
   {
     "name": "Wool Painting",
@@ -1581,7 +1581,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/15"
   },
   {
     "name": "3D Bubble Shoot - ASMR Game",
@@ -1597,7 +1597,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/23",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/03"
   },
   {
     "name": "Gossip Domino Game",
@@ -1613,7 +1613,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/10/09",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/12"
   },
   {
     "name": "Flower Group",
@@ -1629,7 +1629,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/13",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/19"
   },
   {
     "name": "Match Screw 3D",
@@ -1645,7 +1645,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/22"
   },
   {
     "name": "Jigblock Puzzles",
@@ -1661,7 +1661,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/14",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/17"
   },
   {
     "name": "Search Differences-find it out",
@@ -1677,7 +1677,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/10",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/10"
   },
   {
     "name": "Sticker Sort-Merge Game",
@@ -1693,7 +1693,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/21",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/28"
   },
   {
     "name": "Footy Journey:Soccer Club 2026",
@@ -1741,7 +1741,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/29"
   },
   {
     "name": "Footy Journey™Soccer Saga 2026",
@@ -1757,7 +1757,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/22",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/31"
   },
   {
     "name": "Ballsort - solar system",
@@ -1773,7 +1773,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/30"
   },
   {
     "name": "Wordsort",
@@ -1789,7 +1789,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/11",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/24"
   },
   {
     "name": "Goods Game:Sort Party",
@@ -1805,7 +1805,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/12/19",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/31"
   },
   {
     "name": "Mahjong Match Healthy Puzzle",
@@ -1821,7 +1821,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/17",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/31"
   },
   {
     "name": "Order Up! - Food Puzzle",
@@ -1837,7 +1837,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/06"
   },
   {
     "name": "Arrowscapes™ - Arrows Puzzle",
@@ -1853,7 +1853,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/30"
   },
   {
     "name": "Link Up: 2248 Merge Puzzle",
@@ -1869,7 +1869,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2025/11/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/11"
   },
   {
     "name": "Home Again: Merge & Rebuild",
@@ -1885,7 +1885,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/23",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/20"
   },
   {
     "name": "com.zumabus.trafficjam.girlrescue.jamgame",
@@ -1933,7 +1933,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/15"
   },
   {
     "name": "Catscapes - Arrows Puzzle",
@@ -1949,7 +1949,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/23",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/24"
   },
   {
     "name": "com.merge15.mergeremove.fruitmajiang",
@@ -1981,7 +1981,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/02",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/06"
   },
   {
     "name": "Juice Manor - ASMR Water Sort",
@@ -1997,7 +1997,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/23",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/22"
   },
   {
     "name": "Arrow Out - Escape Puzzle",
@@ -2013,7 +2013,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/24",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/10"
   },
   {
     "name": "Word Sort",
@@ -2029,7 +2029,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/13",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/25"
   },
   {
     "name": "Super Dispatcher:Traffic Jam",
@@ -2045,7 +2045,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/31"
   },
   {
     "name": "BlockSaga – Pocket Minesweeper",
@@ -2061,7 +2061,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/09"
   },
   {
     "name": "Sheepy Town:Wooly Jam",
@@ -2077,7 +2077,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/14",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/21"
   },
   {
     "name": "Seek and Find",
@@ -2093,7 +2093,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/25",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/21"
   },
   {
     "name": "Fruit Mahjong - Slice Master",
@@ -2109,7 +2109,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/06",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/21"
   },
   {
     "name": "com.red.allInHole.android",
@@ -2141,7 +2141,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/13",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/12"
   },
   {
     "name": "Fruit Sort: Zen Slice",
@@ -2157,7 +2157,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/11",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/05"
   },
   {
     "name": "com.red.brilliantsort.android",
@@ -2189,7 +2189,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/11"
   },
   {
     "name": "FurrJam:Hop In!",
@@ -2205,7 +2205,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/02/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/12"
   },
   {
     "name": "Fruit Pair",
@@ -2221,7 +2221,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/03/17",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/06"
   },
   {
     "name": "com.red.duckduck.android",
@@ -2253,7 +2253,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/09",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/25"
   },
   {
     "name": "Bubble Shooter - Fashion Bird",
@@ -3469,7 +3469,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/24",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/24"
   },
   {
     "name": "Sticker Room Design:Home Decor",
@@ -3485,7 +3485,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/23",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/23"
   },
   {
     "name": "Bus Loop: Car jam",
@@ -3501,7 +3501,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/22",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/26"
   },
   {
     "name": "Hexascapes - Block Puzzle",
@@ -3517,7 +3517,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/08",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/02"
   },
   {
     "name": "Fruit Jam: Pack & Truck",
@@ -3533,7 +3533,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/23",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/20"
   },
   {
     "name": "Knit Puzzle: Connect Shapes",
@@ -3549,7 +3549,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/18"
   },
   {
     "name": "Perfect Cooking: Food Sort",
@@ -3565,7 +3565,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/23",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/26"
   },
   {
     "name": "Bus Loop Fever",
@@ -3581,7 +3581,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/23"
   },
   {
     "name": "Dominoes Block Puzzle",
@@ -3741,7 +3741,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/29",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/12"
   },
   {
     "name": "Jigsaw Block Match",
@@ -3757,7 +3757,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/30",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/09"
   },
   {
     "name": "NumJam - Cross Number Puzzle",
@@ -3773,6 +3773,6 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/02",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/20"
   }
 ]);

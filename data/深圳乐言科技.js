@@ -3197,7 +3197,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/29",
     "tags": "Puzzle, Bubble shooter",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/21"
   },
   {
     "name": "Save the Girl: Dragon Puzzle",
@@ -3213,7 +3213,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/07",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/02"
   },
   {
     "name": "Mahjong Solitaire - Tile Match",
@@ -3229,7 +3229,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/03",
     "tags": "Puzzle, Pair matching, Mahjong solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/02/06"
   },
   {
     "name": "3D Unscrew Star",
@@ -3245,7 +3245,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/24",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/24"
   },
   {
     "name": "Solitaire Tripeaks : Blooming",
@@ -3261,7 +3261,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/02",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/09"
   },
   {
     "name": "Mahjong: Triple Match 3D",
@@ -3277,7 +3277,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/29",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/21"
   },
   {
     "name": "Wood Unscrew Master :Nuts Puz",
@@ -3293,7 +3293,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/12/30",
     "tags": "Puzzle, Logic, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/07/02"
   },
   {
     "name": "Word Piles - Stacks Word Games",
@@ -3309,7 +3309,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/07",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/01/15"
   },
   {
     "name": "Wool Knit Sort",
@@ -3325,7 +3325,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/20",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/15"
   },
   {
     "name": "Carrom - A Disc Board Game",
@@ -3341,7 +3341,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/27",
     "tags": "Sports, Billiards, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/11/24"
   },
   {
     "name": "Word Search - Find Word Puzzle",
@@ -3357,7 +3357,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/11/27",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/12/24"
   },
   {
     "name": "Word Cross Jigsaw - Word Games",
@@ -3373,7 +3373,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/03",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/08/14"
   },
   {
     "name": "Word Connect - Search Games",
@@ -3389,7 +3389,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/12",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/12/09"
   },
   {
     "name": "Word Move - Search& Find Words",
@@ -3405,7 +3405,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/12/30",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/06/11"
   },
   {
     "name": "Solitaire Card Games",
@@ -3421,7 +3421,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/19",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/12/02"
   },
   {
     "name": "Trivia Cross -Trivia Word Game",
@@ -3437,7 +3437,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/03",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/07/30"
   },
   {
     "name": "Word Most - Trivia Puzzle Game",
@@ -3453,7 +3453,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/30",
     "tags": "Trivia",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/08/10"
   },
   {
     "name": "Word Blocks Puzzle - Word Game",
@@ -3469,7 +3469,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/27",
     "tags": "Word, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/06/11"
   },
   {
     "name": "Daifugo",
@@ -3485,7 +3485,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/03",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/17"
   },
   {
     "name": "Block Puzzle - Wood Jigsaw",
@@ -3501,7 +3501,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/27",
     "tags": "Puzzle, Block",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/06/30"
   },
   {
     "name": "Flashlight",
@@ -3517,7 +3517,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/01/16",
     "tags": "Tools",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/11"
   },
   {
     "name": "Face Swap - Live Face Sticker",
@@ -3533,7 +3533,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2021/10/29",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/01/26"
   },
   {
     "name": "Viviface",
@@ -3549,7 +3549,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2024/06/07",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/03"
   },
   {
     "name": "Photo Filter",
@@ -3565,7 +3565,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2018/10/12",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/11"
   },
   {
     "name": "Word Riddle: Offline Word Game",
@@ -3581,7 +3581,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/03/20",
     "tags": "Trivia, Multiple-choice",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/04/15"
   },
   {
     "name": "Word Trivia - Word Quiz Games",
@@ -3597,7 +3597,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/04",
     "tags": "Trivia, Multiple-choice, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/03/11"
   },
   {
     "name": "Word Connect - Word Games",
@@ -3613,7 +3613,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/26",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/08/22"
   },
   {
     "name": "Word Think - Word Puzzle Games",
@@ -3629,7 +3629,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/12/24",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/06/17"
   },
   {
     "name": "1 Pic Word Parts - Word Puzzle",
@@ -3645,7 +3645,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2023/07/05",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/05/21"
   },
   {
     "name": "Klondike Solitaire - Patience",
@@ -3661,7 +3661,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/26",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/06/28"
   },
   {
     "name": "1 Pic N Words - Word Puzzle",
@@ -3677,7 +3677,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/04",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/04/21"
   },
   {
     "name": "Water Sort Puzzle - Color Sort",
@@ -3693,7 +3693,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/13",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/08/02"
   },
   {
     "name": "Logo Trivia - Guess Logo Quiz",
@@ -3709,7 +3709,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/02",
     "tags": "Trivia",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/04/13"
   },
   {
     "name": "2 Emoji 1 Word - Emoji Games",
@@ -3725,7 +3725,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/21",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/11/26"
   },
   {
     "name": "Ball Sort - Color Sort Puzzle",
@@ -3741,7 +3741,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/03/18",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/04/06"
   },
   {
     "name": "Spades: Classic Card Game",
@@ -3757,7 +3757,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/04",
     "tags": "Card, Classic cards, Spades, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/05/12"
   },
   {
     "name": "Solitaire Tripeaks Decor",
@@ -3773,7 +3773,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/29",
     "tags": "Card, Solitaire, Tripeaks",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/07/07"
   },
   {
     "name": "Dragon Rescue: Save the Girl",
@@ -3789,7 +3789,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/30",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/13"
   },
   {
     "name": "Tripeaks Solitaire - Home Town",
@@ -3805,7 +3805,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/25",
     "tags": "Card, Solitaire, Tripeaks",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/09/30"
   },
   {
     "name": "Flower Match Sort",
@@ -3821,7 +3821,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/03/01",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/22"
   },
   {
     "name": "Wool Thread 3D",
@@ -3837,7 +3837,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/05/08",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/12"
   },
   {
     "name": "Tile Trip -Match 3 Puzzle Game",
@@ -3853,7 +3853,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/03/30",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/28"
   },
   {
     "name": "Palace Solitaire - Card Games",
@@ -3869,7 +3869,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/12/22",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/07/21"
   },
   {
     "name": "Yatzy: Classic Fun Dice Game",
@@ -3901,7 +3901,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/03",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/06/03"
   },
   {
     "name": "Nuts Bolt Sort - Screw 3D",
@@ -3917,7 +3917,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/03/25",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/04/06"
   },
   {
     "name": "Word Connect - Word Search",
@@ -3933,7 +3933,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/12/14",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/01/21"
   },
   {
     "name": "Knit Thread Jam",
@@ -3949,7 +3949,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/01",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/16"
   },
   {
     "name": "Word String Puzzle - Word Game",
@@ -3965,7 +3965,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/30",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/06/24"
   },
   {
     "name": "Solitaire Tripeaks Ocean",
@@ -3981,7 +3981,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/16",
     "tags": "Card, Solitaire, Tripeaks, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/12/16"
   },
   {
     "name": "Solitaire Farm",
@@ -3997,7 +3997,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/03",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/02/10"
   },
   {
     "name": "Block Jigsaw - Block Puzzle",
@@ -4013,7 +4013,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/24",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/04/29"
   },
   {
     "name": "Word Puzzle - Crossword Games",
@@ -4029,7 +4029,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/11/06",
     "tags": "Word, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/07/28"
   },
   {
     "name": "Word Connect - Word Search",
@@ -4045,7 +4045,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/05",
     "tags": "Word, Search, Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/11"
   },
   {
     "name": "Solitaire Pal: Big Card",
@@ -4061,7 +4061,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/12",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/11/25"
   },
   {
     "name": "Spider Solitaire - Card Games",
@@ -4077,7 +4077,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/10",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/18"
   },
   {
     "name": "FreeCell Solitaire - Card Pro",
@@ -4093,7 +4093,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/03",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/08/02"
   },
   {
     "name": "Solitaire Match - Match 3 Card",
@@ -4109,7 +4109,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/04/17",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/05/19"
   },
   {
     "name": "Weather Forecast",
@@ -4125,7 +4125,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2024/03/22",
     "tags": "Weather",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/06/29"
   },
   {
     "name": "FreeCell Solitaire",
@@ -4141,7 +4141,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/12/19",
     "tags": "Card, Solitaire, Freecell, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/08/17"
   },
   {
     "name": "Mahjong",
@@ -4157,7 +4157,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2019/04/30",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/11/25"
   },
   {
     "name": "Solitaire",
@@ -4173,7 +4173,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2024/12/20",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/08/17"
   },
   {
     "name": "Spider Solitaire",
@@ -4189,7 +4189,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2025/11/20",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/08/03"
   },
   {
     "name": "Blackjack",
@@ -4205,7 +4205,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/02/09",
     "tags": "Casino",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/08/07"
   },
   {
     "name": "Pencil Sketch Photo Editor",
@@ -4221,7 +4221,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2018/10/16",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/08/16"
   },
   {
     "name": "Jigsaw Puzzles - Jigsaw Games",

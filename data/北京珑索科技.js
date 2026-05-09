@@ -13,7 +13,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/02/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/12/30"
   },
   {
     "name": "FallingUnBlock",
@@ -29,7 +29,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2024/10/07",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/06/15"
   },
   {
     "name": "Hidden Objects Master: Retro",
@@ -77,7 +77,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/04/14",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/10"
   },
   {
     "name": "Magic Flow! Water Color Puzzle",
@@ -109,7 +109,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/11/11",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/09"
   },
   {
     "name": "Water Puzzle: Sort Color Jam",
@@ -125,7 +125,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/04/09",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/23"
   },
   {
     "name": "Falling Puzzle®",
@@ -141,7 +141,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2024/05/06",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/02/26"
   },
   {
     "name": "Diamond Art Master: Color&Sort",
@@ -173,7 +173,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/04/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/09"
   },
   {
     "name": "Hidden Objects: Seek & Find",
@@ -189,7 +189,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/02/05"
   },
   {
     "name": "Screw Out Story:Jam Puzzle",
@@ -221,7 +221,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/16",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/06"
   },
   {
     "name": "Find The Difference:Help Her",
@@ -237,7 +237,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2024/02/07",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/09/28"
   },
   {
     "name": "Find It Out:Find & Spot Them",
@@ -253,7 +253,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/10",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/11/07"
   },
   {
     "name": "Word Spark: Solitaire Journey",
@@ -301,7 +301,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2024/04/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/09/27"
   },
   {
     "name": "Arrow Clear Master: Color Maze",
@@ -333,7 +333,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/02/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/28"
   },
   {
     "name": "Wood Block Journey",
@@ -349,7 +349,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/11/22",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/08/10"
   },
   {
     "name": "Goods 3D Sorting: Organizing",
@@ -365,7 +365,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/11/11",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/19"
   },
   {
     "name": "Screw Up Family: Story Puzzle",
@@ -381,7 +381,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/12/04",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/13"
   },
   {
     "name": "Island Designer",
@@ -525,7 +525,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/11/15"
   },
   {
     "name": "Tile Legend Journey-Match game",
@@ -541,7 +541,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2023/10/25",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/09/16"
   },
   {
     "name": "Jigsaw Story",
@@ -557,7 +557,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/16",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/31"
   },
   {
     "name": "Block Puzzle 108",
@@ -573,7 +573,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2023/03/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/03/15"
   },
   {
     "name": "Screw Pin Master: Sort Puzzle",
@@ -605,7 +605,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/15"
   },
   {
     "name": "Marble Shoot Puzzle: Deluxe",
@@ -621,7 +621,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/08/01",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/07/25"
   },
   {
     "name": "Tile Match Story: Pin Master",
@@ -637,7 +637,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/12/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/16"
   },
   {
     "name": "Jigsort Family:Jigsaw Puzzles",
@@ -653,7 +653,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/03",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/26"
   },
   {
     "name": "Screw Up Family: Story Puzzle",
@@ -797,7 +797,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/02/28",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/12"
   },
   {
     "name": "Jigsaw Puzzle Pro：Rescue",
@@ -813,7 +813,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/16",
     "tags": "Puzzle, Jigsaw, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/08/17"
   },
   {
     "name": "Screw Jam Master : Nuts Puzzle",
@@ -829,7 +829,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/02",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/31"
   },
   {
     "name": "Match Puzzle 3D",
@@ -845,7 +845,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2022/12/28",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/05/25"
   },
   {
     "name": "Hero Return",
@@ -861,7 +861,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/03/27",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/02/15"
   },
   {
     "name": "Tap Away: 3D Block Puzzle",
@@ -877,7 +877,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/02",
     "tags": "Puzzle, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/05/24"
   },
   {
     "name": "Bling Sort: Gem Art Puzzle",
@@ -893,6 +893,6 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/05/07",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/29"
   }
 ]);

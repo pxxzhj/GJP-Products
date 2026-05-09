@@ -685,7 +685,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/04/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/30"
   },
   {
     "name": "Ball Sort - Color Sort Puzzle!",
@@ -877,7 +877,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2025/12/11",
     "tags": "Card, Solitaire",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/14"
   },
   {
     "name": "Spider Solitaire",
@@ -893,7 +893,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/02",
     "tags": "Card",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/12/22"
   },
   {
     "name": "Nut Sort Blast!",
@@ -909,7 +909,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/02",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/06"
   },
   {
     "name": "Sudoku, Classic Sudoku Puzzle",
@@ -925,7 +925,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/02",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/25"
   },
   {
     "name": "Ball Sort Puzzle: Color Master",
@@ -941,7 +941,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/04/10",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/07/08"
   },
   {
     "name": "Word Search",
@@ -957,7 +957,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/04/09",
     "tags": "Word, Search",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/06/27"
   },
   {
     "name": "Word Connect - Train Brain",
@@ -973,7 +973,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2025/12/03",
     "tags": "Word, Search, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/12/10"
   },
   {
     "name": "Bus Go! Car Traffic Jam",
@@ -989,7 +989,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/04/09",
     "tags": "Puzzle, Logic, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/21"
   },
   {
     "name": "Princess Rescue: Color Puzzle",
@@ -1005,7 +1005,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/04/24",
     "tags": "Puzzle, Logic",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/26"
   },
   {
     "name": "Solitaire, Klondike Card Games",
@@ -1021,7 +1021,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/01/20",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/07/26"
   },
   {
     "name": "Word Cross - Crossword Puzzle",
@@ -1037,7 +1037,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2025/12/01",
     "tags": "Simulation, Lifestyle, Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/08/11"
   },
   {
     "name": "Solitaire Collection",
@@ -1053,7 +1053,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2025/12/04",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/19"
   },
   {
     "name": "Wool Blast: Yarn Color Rescue",
@@ -1069,7 +1069,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/03/12",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/25"
   },
   {
     "name": "Differences, Find Difference",
@@ -1085,7 +1085,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/05",
     "tags": "Puzzle, Find the difference, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/01/10"
   },
   {
     "name": "Sudoku - Classic Sudoku Puzzle",
@@ -1101,7 +1101,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/01/20",
     "tags": "Puzzle, Logic, Sudoku, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/01/14"
   },
   {
     "name": "Spider Solitaire, Large Cards",
@@ -1117,7 +1117,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/12",
     "tags": "Board",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/12"
   },
   {
     "name": "Word Guess",
@@ -1133,7 +1133,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/13",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/04/03"
   },
   {
     "name": "Solitaire Jigsaw Puzzle",
@@ -1149,7 +1149,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/09",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/08/01"
   },
   {
     "name": "Water Sort Puzzle - Color Sort",
@@ -1165,7 +1165,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/01/12",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/12"
   },
   {
     "name": "Spider Solitaire",
@@ -1181,7 +1181,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/11",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/02/01"
   },
   {
     "name": "Solitaire",
@@ -1197,7 +1197,7 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2026/02/12",
     "tags": "Card, Solitaire",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/06/04"
   },
   {
     "name": "Pyramid Solitaire",
@@ -1213,6 +1213,6 @@ window._loadCompany("北京奇妙王国", [
     "last_update": "2025/10/31",
     "tags": "Card, Solitaire",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/06/16"
   }
 ]);

@@ -13005,7 +13005,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/03/13",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/01"
   },
   {
     "name": "3D Bubble Match - Shooter Game",
@@ -13069,7 +13069,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/29",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/29"
   },
   {
     "name": "Chess Forge: Chess Online",
@@ -13085,7 +13085,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/30"
   },
   {
     "name": "Musyc",
@@ -13741,7 +13741,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/03/24",
     "tags": "Action, Shooter, Bulletstorm, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/09"
   },
   {
     "name": "Car Out",
@@ -13757,7 +13757,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/23",
     "tags": "Puzzle, Sliding, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/01"
   },
   {
     "name": "Conquer the Tower 2: War Games",
@@ -13773,7 +13773,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/05/08",
     "tags": "Strategy, Tower defense, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/01/24"
   },
   {
     "name": "Conquer the Tower: Takeover",
@@ -13789,7 +13789,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/24",
     "tags": "Strategy, Tower defense, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/09"
   },
   {
     "name": "My Coloring Book",
@@ -13805,7 +13805,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/03/04",
     "tags": "Puzzle, Coloring, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/10"
   },
   {
     "name": "Makeup Show: Makeover Salon",
@@ -13821,7 +13821,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/01",
     "tags": "Simulation, Lifestyle, Dress-up, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/09/06"
   },
   {
     "name": "Doll Dress Up - Makeup Games",
@@ -13837,7 +13837,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/08/10",
     "tags": "Simulation, Lifestyle, Dress-up, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/12/09"
   },
   {
     "name": "Fill Up Fridge:Organizing Game",
@@ -13853,7 +13853,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/05/08",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/31"
   },
   {
     "name": "Tangle Go 3D: Untie The Knot",
@@ -13869,7 +13869,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/04",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/01"
   },
   {
     "name": "Pool Billiards 3D: Pool Games",
@@ -13885,7 +13885,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/02/12",
     "tags": "Sports, Billiards, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/07/12"
   },
   {
     "name": "Closet Sort: 3D Goods Sorting",
@@ -13901,7 +13901,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/01",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/07/08"
   },
   {
     "name": "Conquer the Kingdom: Tower War",
@@ -13917,7 +13917,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/19",
     "tags": "Strategy, Tower defense, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/30"
   },
   {
     "name": "Painting Book - Anime Color",
@@ -13933,7 +13933,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/10/17",
     "tags": "Puzzle, Coloring, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/02/05"
   },
   {
     "name": "Fill the Closet: Organize Game",
@@ -13949,7 +13949,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/02/06",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/08/09"
   },
   {
     "name": "Ballsorter: Ball Sort Puzzle",
@@ -13965,7 +13965,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/04",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/09"
   },
   {
     "name": "Princess Makeup: Makeup Games",
@@ -13981,7 +13981,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/04",
     "tags": "Simulation, Lifestyle, Makeup, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/06/16"
   },
   {
     "name": "SortPuz 3D: Water Color Sort",
@@ -13997,7 +13997,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/11/20",
     "tags": "Puzzle, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/07/29"
   },
   {
     "name": "Makeup Match: Nail Salon",
@@ -14013,7 +14013,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/03",
     "tags": "Simulation, Lifestyle, Makeup",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/05/30"
   },
   {
     "name": "Draw Bridge Games: Car Bridge",
@@ -14029,7 +14029,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/11/05",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/01/25"
   },
   {
     "name": "Makeup Salon:DIY Makeup Artist",
@@ -14045,7 +14045,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/04",
     "tags": "Simulation, Lifestyle, Dress-up, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/01/26"
   },
   {
     "name": "Mecha Color: Coloring Games",
@@ -14061,7 +14061,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/07/15",
     "tags": "Educational, Drawing, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/31"
   },
   {
     "name": "Coloring Book-lake colouring",
@@ -14077,7 +14077,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/09/12",
     "tags": "Board",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/10/21"
   },
   {
     "name": "Cute Drawing : Anime Color Fan",
@@ -14093,7 +14093,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/09/16",
     "tags": "Educational, Drawing, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/09/26"
   },
   {
     "name": "Anime Coloring Book Painting",
@@ -14109,7 +14109,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/12",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/04/15"
   },
   {
     "name": "Doll Color: Princess Coloring",
@@ -14125,7 +14125,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/02/09",
     "tags": "Educational, Drawing, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/09/05"
   },
   {
     "name": "Anime Color by Number",
@@ -14141,7 +14141,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/10/17",
     "tags": "Board",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/09/22"
   },
   {
     "name": "Glitter Beauty Color For Kids",
@@ -14157,7 +14157,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/10/27",
     "tags": "Educational",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/03/05"
   },
   {
     "name": "Marble Away: Drop Puzzle",
@@ -14173,7 +14173,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/23",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/11"
   },
   {
     "name": "Hexa Food Sort - Sorting Games",
@@ -14189,7 +14189,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/02",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/22"
   },
   {
     "name": "Word Screw Go - Screw Sort",
@@ -14205,7 +14205,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/25",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/25"
   },
   {
     "name": "Knit Sorting: Wool Sort Games",
@@ -14221,7 +14221,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/31",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/16"
   },
   {
     "name": "Screw Pixel: Screw Color Sort",
@@ -14237,7 +14237,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/25",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/25"
   },
   {
     "name": "Color Traffic: Car Parking Jam",
@@ -14253,7 +14253,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/03/18",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/14"
   },
   {
     "name": "Pure Nonogram: Puzzle Games",
@@ -14269,7 +14269,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/22",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/22"
   },
   {
     "name": "Makeover Artist-Fashion Games",
@@ -14285,7 +14285,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/04",
     "tags": "Simulation, Lifestyle, Dress-up, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/11/19"
   },
   {
     "name": "Ammo Nation - Gun Shop Tycoon",
@@ -14301,7 +14301,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/03",
     "tags": "Simulation, Management, Tycoon",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/04/30"
   },
   {
     "name": "Difference Master: Find Games",
@@ -14317,7 +14317,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/02/12",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/15"
   },
   {
     "name": "Goods Sort 3D: Good Sort Game",
@@ -14333,7 +14333,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/01/22",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/02"
   },
   {
     "name": "Wool Art: 3D Wool Sort Games",
@@ -14349,7 +14349,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/01",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/30"
   },
   {
     "name": "Home Packing: Organizing games",
@@ -14365,7 +14365,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/01",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/12/29"
   },
   {
     "name": "Particle Sort: 3D ASMR Blast",
@@ -14381,7 +14381,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/01",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/06"
   },
   {
     "name": "Bloom Match Story: Flower Sort",
@@ -14397,7 +14397,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/11/21",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/03/03"
   },
   {
     "name": "Goods Sort 2: Goods Sorting",
@@ -14413,7 +14413,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/02/12",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/14"
   },
   {
     "name": "Cake Color Sort - Food Games",
@@ -14429,7 +14429,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/11/20",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/20"
   },
   {
     "name": "Screw Parking: 3D Screw Escape",
@@ -14445,7 +14445,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/01",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/20"
   },
   {
     "name": "Makeup Studio: Beauty Makeover",
@@ -14461,7 +14461,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2025/12/05",
     "tags": "Simulation, Lifestyle, Makeup, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/12/30"
   },
   {
     "name": "Wool Traffic: Fun Bus Game",
@@ -14477,7 +14477,7 @@ window._loadCompany("武汉多比特", [
     "last_update": "2026/04/30",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/30"
   },
   {
     "name": "Card Puzzle 3D: Sorting Games",

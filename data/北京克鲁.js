@@ -1645,7 +1645,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2024/06/26",
     "tags": "Productivity",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/04/27"
   },
   {
     "name": "Background Remover - Cutout",
@@ -1661,7 +1661,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/10/26",
     "tags": "Art & Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/30"
   },
   {
     "name": "AI Photo Enhancer,AI Enhancer",
@@ -1677,7 +1677,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/03/31",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/04/12"
   },
   {
     "name": "Arrow Puzzle - Arrow Madness",
@@ -1693,7 +1693,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/05/08",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/12"
   },
   {
     "name": "Tap It Away®: 3D Blocks Puzzle",
@@ -1709,7 +1709,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/21",
     "tags": "Puzzle, Logic, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/04/03"
   },
   {
     "name": "Block Color Mania, Puzzle Game",
@@ -1725,7 +1725,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/03/27",
     "tags": "Puzzle, Logic",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/24"
   },
   {
     "name": "Hexa Run®: Hexa Puzzle Game",
@@ -1741,7 +1741,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/02/04",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/17"
   },
   {
     "name": "Mahjong Solitaire Classic Game",
@@ -1757,7 +1757,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/29",
     "tags": "Puzzle, Pair matching, Mahjong solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/07/24"
   },
   {
     "name": "Nut Sort Puzzle - Color Sort",
@@ -1773,7 +1773,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/29",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/18"
   },
   {
     "name": "Water Hue - Water Sort Puzzle",
@@ -1805,7 +1805,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/20",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/17"
   },
   {
     "name": "Math Cross - Crossword Puzzle",
@@ -1821,7 +1821,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/10/27",
     "tags": "Word, Crossword",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/07"
   },
   {
     "name": "Skewer Sort: Grill Match Games",
@@ -1853,7 +1853,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/29",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/16"
   },
   {
     "name": "Cryptogram - Word Puzzle Games",
@@ -1869,7 +1869,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/01/19",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/04/11"
   },
   {
     "name": "Dragon Away - Rescue Cat",
@@ -1901,7 +1901,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/02/10",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/12"
   },
   {
     "name": "Mahjong Match Connect Puzzle",
@@ -1949,7 +1949,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/10/31",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/24"
   },
   {
     "name": "Podcast Player",
@@ -1965,7 +1965,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/12/04",
     "tags": "News & Magazines",
     "removed": false,
-    "release_date": ""
+    "release_date": "2016/01/04"
   },
   {
     "name": "Podcast Player - Castbox",
@@ -1981,7 +1981,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/01/20",
     "tags": "Music & Audio",
     "removed": false,
-    "release_date": ""
+    "release_date": "2017/04/15"
   },
   {
     "name": "CastFox - AI Podcast Agent",
@@ -1997,7 +1997,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/12/05",
     "tags": "Music & Audio",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/06"
   },
   {
     "name": "Deep Think - AI Seek Chatbot",
@@ -2013,7 +2013,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/24",
     "tags": "Productivity",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/22"
   },
   {
     "name": "AI Photo Enhancer - Evoke",
@@ -2029,7 +2029,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/30",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/06/30"
   },
   {
     "name": "CalNinja - AI Calorie Counter",
@@ -2045,7 +2045,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/01/07",
     "tags": "Health & Fitness",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/04/01"
   },
   {
     "name": "AI Video Generator - Toki",
@@ -2061,7 +2061,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/30",
     "tags": "Art & Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/23"
   },
   {
     "name": "CastChat - Match & Voice Chat",
@@ -2077,7 +2077,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/17",
     "tags": "Communication",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/11/04"
   },
   {
     "name": "AI Image Generator ImagineFlow",
@@ -2093,7 +2093,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/12/11",
     "tags": "Art & Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/21"
   },
   {
     "name": "AI Emojis: Face Emoji Keyboard",
@@ -2109,7 +2109,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/12/02",
     "tags": "Personalization",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/28"
   },
   {
     "name": "Walkie Talkie, Push to Talk",
@@ -2125,7 +2125,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/10/15",
     "tags": "Communication",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/04/03"
   },
   {
     "name": "AI Photo Retake - FaceAura",
@@ -2141,7 +2141,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/09/17",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/12/11"
   },
   {
     "name": "Hidden Object Games: Seek It",
@@ -2157,7 +2157,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/05/07",
     "tags": "Puzzle, Hidden object",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/15"
   },
   {
     "name": "Number Match - Number Game",
@@ -2173,7 +2173,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/09",
     "tags": "Puzzle, Logic",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/13"
   },
   {
     "name": "Sudoku - Classic Sudoku Puzzle",
@@ -2189,7 +2189,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2025/12/29",
     "tags": "Puzzle, Logic, Sudoku",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/05"
   },
   {
     "name": "Nuts Spinner - Nut Sort Puzzle",
@@ -2205,6 +2205,6 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/14",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/19"
   }
 ]);

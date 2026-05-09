@@ -2605,7 +2605,7 @@ window._loadCompany("上海正朗", [
     "last_update": "2026/04/21",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/05/18"
   },
   {
     "name": "BlocKing Puzzle",
@@ -2621,7 +2621,7 @@ window._loadCompany("上海正朗", [
     "last_update": "2025/11/27",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/03/20"
   },
   {
     "name": "Bubble Shooter",
@@ -2637,7 +2637,7 @@ window._loadCompany("上海正朗", [
     "last_update": "2026/04/06",
     "tags": "Puzzle, Bubble shooter, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2019/12/20"
   },
   {
     "name": "Block Puzzle",
@@ -2653,7 +2653,7 @@ window._loadCompany("上海正朗", [
     "last_update": "2025/10/09",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/26"
   },
   {
     "name": "Block Puzzle Legend",
@@ -2669,7 +2669,7 @@ window._loadCompany("上海正朗", [
     "last_update": "2026/04/27",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/05/04"
   },
   {
     "name": "Wood Block Puzzle 3D",
@@ -2685,7 +2685,7 @@ window._loadCompany("上海正朗", [
     "last_update": "2026/02/09",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/09/15"
   },
   {
     "name": "Woodscapes - Block Puzzle",
@@ -2701,6 +2701,6 @@ window._loadCompany("上海正朗", [
     "last_update": "2025/11/28",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/16"
   }
 ]);

@@ -1469,7 +1469,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/11/05",
     "tags": "Productivity",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/31"
   },
   {
     "name": "Messenger SMS: Messages Home",
@@ -1485,7 +1485,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2024/02/29",
     "tags": "Tools",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/09/13"
   },
   {
     "name": "Messenger: Text Messages, SMS",
@@ -1501,7 +1501,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/12/10",
     "tags": "Communication",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/10/30"
   },
   {
     "name": "QR Code Scanner App, QR Scan",
@@ -1517,7 +1517,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/29",
     "tags": "Tools",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/10/26"
   },
   {
     "name": "Email: Fast, Manage All Mails",
@@ -1533,7 +1533,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/09",
     "tags": "Productivity",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/12/15"
   },
   {
     "name": "Notes, Notepad & Memo Calendar",
@@ -1549,7 +1549,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/09/11",
     "tags": "Productivity",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/01"
   },
   {
     "name": "PDF Reader Pro- All PDF Viewer",
@@ -1565,7 +1565,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/09/10",
     "tags": "Productivity",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/12/26"
   },
   {
     "name": "Hexa 3D Game: Dream Hex® Sort",
@@ -1581,7 +1581,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/28",
     "tags": "Puzzle, Sort",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/03"
   },
   {
     "name": "Jigsort®: Solitaire",
@@ -1597,7 +1597,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/28",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/28"
   },
   {
     "name": "Screw Master®: Nuts Jam Puzzle",
@@ -1613,7 +1613,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/02",
     "tags": "Puzzle, Logic, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/08"
   },
   {
     "name": "Lamb Escape: Jam Animal Farm",
@@ -1629,7 +1629,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/01",
     "tags": "Racing",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/03/20"
   },
   {
     "name": "Take Away - Tap 3D Blocks Out",
@@ -1645,7 +1645,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/02",
     "tags": "Puzzle, Logic, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/12/09"
   },
   {
     "name": "Block Puzzle Crush: Jewel Game",
@@ -1661,7 +1661,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/27",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/02/16"
   },
   {
     "name": "Nonogram Puzzle: Color Pixels",
@@ -1677,7 +1677,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/23",
     "tags": "Puzzle, Logic, Nonogram, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/02/14"
   },
   {
     "name": "Ball Sort - Color Puzzle Game",
@@ -1693,7 +1693,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/12/18",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/09/27"
   },
   {
     "name": "Block Puzzle: Blast Jewel Game",
@@ -1709,7 +1709,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/20",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/09/09"
   },
   {
     "name": "Nonogram Color: Paint by Logic",
@@ -1725,7 +1725,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/07",
     "tags": "Puzzle, Logic, Nonogram, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/12/16"
   },
   {
     "name": "Offline Crossmath: Fun IQ Test",
@@ -1741,7 +1741,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/02/09",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/11/17"
   },
   {
     "name": "Water Sort Puzzle - Color Soda",
@@ -1757,7 +1757,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/01",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/13"
   },
   {
     "name": "Bolt Master",
@@ -1789,7 +1789,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/12/17",
     "tags": "Puzzle, Logic, Sudoku",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/03/04"
   },
   {
     "name": "Solitaire HD - Card Games",
@@ -1805,7 +1805,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/12/05",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/04/03"
   },
   {
     "name": "Wood Block Puzzle: Sudoku Game",
@@ -1821,7 +1821,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/05/08",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/09/18"
   },
   {
     "name": "Jigsaw Puzzles -HD Puzzle Game",
@@ -1837,7 +1837,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/10/21",
     "tags": "Puzzle, Jigsaw, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/06/08"
   },
   {
     "name": "EPO™",
@@ -1853,7 +1853,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/30",
     "tags": "Puzzle, Sort, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/27"
   },
   {
     "name": "Solitaire 3D - Card Games",
@@ -1869,7 +1869,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/02/24",
     "tags": "Card, Solitaire, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/01/24"
   },
   {
     "name": "Messenger - Texting App",
@@ -1885,7 +1885,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/02/09",
     "tags": "Communication",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/05/03"
   },
   {
     "name": "3D Bolt Master®: Screw Master®",
@@ -1901,7 +1901,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/21",
     "tags": "Puzzle, Logic",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/01/24"
   },
   {
     "name": "Find N Seek: Spy Hidden Object",
@@ -1917,7 +1917,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/03/11",
     "tags": "Puzzle, Hidden object, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/10/20"
   },
   {
     "name": "Tidy Master®:Hidden Objects",
@@ -1933,7 +1933,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/22",
     "tags": "Puzzle, Hidden object, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/25"
   },
   {
     "name": "Goods Triple Match: Sorting 3D",
@@ -1949,7 +1949,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/03/30",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/02/28"
   },
   {
     "name": "Bus Jam: Car Parking Games",
@@ -1965,7 +1965,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/03/13",
     "tags": "Puzzle, Logic, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/19"
   },
   {
     "name": "Match Hunter: Triple Clear",
@@ -1981,7 +1981,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/27",
     "tags": "Puzzle, Match 3",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/01/12"
   },
   {
     "name": "Find Differences: Spot Fun",
@@ -1997,7 +1997,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/09",
     "tags": "Puzzle, Find the difference, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/01/21"
   },
   {
     "name": "Tile Kingdom Master: Match Fun",
@@ -2013,7 +2013,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/23",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/10/16"
   },
   {
     "name": "Tile Match: Joy Master Game",
@@ -2029,7 +2029,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/21",
     "tags": "Puzzle, Pair matching, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/08/16"
   },
   {
     "name": "Block Puzzle Legend:Jewel Game",
@@ -2045,7 +2045,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/20",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/12/14"
   },
   {
     "name": "Find Master: Hidden Objects",
@@ -2061,7 +2061,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/09",
     "tags": "Puzzle, Hidden object, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/07/04"
   },
   {
     "name": "Blockrealm: Wood Block Puzzle",
@@ -2077,7 +2077,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/22",
     "tags": "Puzzle, Block, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2020/07/17"
   },
   {
     "name": "Car Parking Jam 3D: Drive Out",
@@ -2093,7 +2093,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/11/25",
     "tags": "Puzzle, Sliding, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/04/29"
   },
   {
     "name": "Find Differences: Find it Out!",
@@ -2125,7 +2125,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/28",
     "tags": "Puzzle, Sliding, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/03/31"
   },
   {
     "name": "Woodle Screw™ Pin Nuts & Bolts",
@@ -2141,7 +2141,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/17",
     "tags": "Puzzle, Logic, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/23"
   },
   {
     "name": "Mahjong Hybrid: Match & Relax",
@@ -2157,7 +2157,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/01",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/06"
   },
   {
     "name": "3D Goods Store: Sorting Games",
@@ -2173,7 +2173,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/05/08",
     "tags": "Puzzle, Match 3, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/19"
   },
   {
     "name": "Difference: Spot & Find Master",
@@ -2189,7 +2189,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/17",
     "tags": "Puzzle, Find the difference",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/03/24"
   },
   {
     "name": "Hidden Folks: Scavenger Hunt",
@@ -2205,7 +2205,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/03/30",
     "tags": "Puzzle, Hidden object, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/12/15"
   },
   {
     "name": "Grill Master: Foodie Sort Game",
@@ -2253,7 +2253,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/11/24",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/10"
   },
   {
     "name": "Mahjong Game: 3D Tile Puzzle",
@@ -2269,7 +2269,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/02/10",
     "tags": "Board",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/20"
   },
   {
     "name": "Sand Block Color Escape Puzzle",
@@ -2285,7 +2285,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/11/19",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/13"
   },
   {
     "name": "Cat Rescue : Pin Jam Puzzle",
@@ -2301,7 +2301,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/19",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/02/10"
   },
   {
     "name": "Find It - Hidden Object Game",
@@ -2317,7 +2317,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/09",
     "tags": "Puzzle, Hidden object, Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/12/14"
   },
   {
     "name": "3D Color Nuts: Match Bolt Sort",
@@ -2349,7 +2349,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/27",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/10/18"
   },
   {
     "name": "Authenticator - Authkey 2FA",
@@ -2365,7 +2365,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/09/02",
     "tags": "Tools",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/07/31"
   },
   {
     "name": "PDF Reader: Convert, Read PDF",
@@ -2381,7 +2381,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/09/17",
     "tags": "Productivity",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/14"
   },
   {
     "name": "QR Code Scanner & Scan Barcode",
@@ -2397,7 +2397,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/03/24",
     "tags": "Tools",
     "removed": false,
-    "release_date": ""
+    "release_date": "2018/06/04"
   },
   {
     "name": "AI Home Design: Interior DecAI",
@@ -2413,7 +2413,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/02/06",
     "tags": "Art & Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/22"
   },
   {
     "name": "Logo Maker - AI Art Design",
@@ -2429,7 +2429,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/16",
     "tags": "Art & Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/05/20"
   },
   {
     "name": "AI Video Generator - ArtReel",
@@ -2445,7 +2445,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/29",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/12/26"
   },
   {
     "name": "ArtReel - AI Plant Identifier",
@@ -2461,7 +2461,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/03/28",
     "tags": "Education",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/12/28"
   },
   {
     "name": "AI Photo Editor - BgMaster™",
@@ -2477,7 +2477,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/21",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/11"
   },
   {
     "name": "AI Photo Video Maker, Enhancer",
@@ -2493,7 +2493,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/18",
     "tags": "Photography",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/04/17"
   },
   {
     "name": "Coin Identifier - Coin Finder",
@@ -2509,7 +2509,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/03/20",
     "tags": "Tools",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/12/05"
   },
   {
     "name": "ArtReel: AI Tattoo Design",
@@ -2525,7 +2525,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/05/08",
     "tags": "Art & Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/23"
   },
   {
     "name": "AI Art Generator，Photo Enhance",
@@ -2541,7 +2541,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/03/11",
     "tags": "Art & Design",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/04/25"
   },
   {
     "name": "Weather Forecast & Live Radar",
@@ -2557,7 +2557,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/20",
     "tags": "Weather",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/09/23"
   },
   {
     "name": "Weather Forecast Radar Channel",
@@ -2573,7 +2573,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2025/09/03",
     "tags": "Weather",
     "removed": false,
-    "release_date": ""
+    "release_date": "2023/10/31"
   },
   {
     "name": "Blood Sugar Care & BP Monitor",
@@ -2589,6 +2589,6 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/03/30",
     "tags": "Health & Fitness",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/05"
   }
 ]);

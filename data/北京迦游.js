@@ -493,6 +493,6 @@ window._loadCompany("北京迦游", [
     "last_update": "2025/10/06",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/07/22"
   }
 ]);
