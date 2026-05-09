@@ -1,0 +1,129 @@
+[14:02:29] Loaded 2562 existing apps
+[14:02:29] Importing 110 candidate developers
+[14:02:31] [1/110] 武汉多比特 / FingerLab: found 19, added 0
+[14:03:21] [2/110] 武汉多比特 / GameLord 3D: found 20, added 20
+[14:03:24] [3/110] 武汉多比特 / Halos Labs Technology Co.,Ltd: found 7, added 0
+[14:03:42] [4/110] 武汉多比特 / JoyCraze: found 7, added 7
+[14:03:45] [5/110] 武汉多比特 / JUN HUANG: found 1, added 0
+[14:04:36] [6/110] 武汉多比特 / Mind Crush: found 20, added 20
+[14:04:39] [7/110] 武汉多比特 / TapMagic: found 1, added 0
+[14:04:42] [8/110] 武汉多比特 / Unickie Technology Co., Ltd.: found 6, added 0
+[14:04:45] [9/110] 武汉多比特 / Wolflyer: found 4, added 0
+[14:04:48] [10/110] 武汉多比特 / YAO SHIBIN: found 2, added 0
+[14:04:58] [11/110] 北京小牛互联 / aMessage studio: found 4, added 4
+[14:05:07] [12/110] 北京小牛互联 / BizApp Innovators: found 3, added 3
+[14:05:10] [13/110] 北京小牛互联 / Cleaner Labs: found 1, added 0
+[14:05:57] [14/110] 北京小牛互联 / EasyFun Puzzle Game Studio: found 19, added 19
+[14:06:01] [15/110] 北京小牛互联 / Emoji SMS Messenger: found 1, added 1
+[14:06:38] [16/110] 北京小牛互联 / Joymaster Puzzle Game Studio: found 15, added 15
+[14:06:41] [17/110] 北京小牛互联 / Kun Wang: found 2, added 0
+[14:07:16] [18/110] 北京小牛互联 / LifePulse Puzzle Game Studio: found 14, added 14
+[14:07:19] [19/110] 北京小牛互联 / LONGSEA LINK LIMITED: found 8, added 0
+[14:07:22] [20/110] 北京小牛互联 / Longwind Studio: found 29, added 0
+[14:07:32] [21/110] 北京小牛互联 / QR Scanner Team: found 3, added 3
+[14:07:55] [22/110] 北京小牛互联 / Smart AI DEV: found 9, added 9
+[14:07:58] [23/110] 北京小牛互联 / Smart Tool Studio: found 12, added 0
+[14:08:07] [24/110] 北京小牛互联 / Weather 365 Days: found 3, added 3
+[14:08:10] [25/110] 北京小牛互联 / 静 杜: found 6, added 0
+[14:08:21] [26/110] 上海正朗 / Block Puzzle Jewel Games: found 4, added 4
+[14:08:29] [27/110] 上海正朗 / Jewel Games Legend: found 3, added 3
+[14:08:41] [28/110] 上海迪果 / Classic Puzzle Games Maker: found 4, added 4
+[14:08:50] [29/110] 上海迪果 / Degoo ltd: found 3, added 3
+[14:09:08] [30/110] 上海迪果 / Game Maker Ltd.: found 7, added 7
+[14:09:11] [31/110] 上海迪果 / 慧钧 蒋: found 3, added 0
+[14:09:14] [32/110] 上海迪果 / 乐 刘: found 1, added 0
+[14:09:22] [33/110] 北京克鲁 / AI Photo Enhancer Studio: found 3, added 3
+[14:09:30] [34/110] 北京克鲁 / Ashita Games: found 4, added 2
+[14:10:07] [35/110] 北京克鲁 / Brainteaser Puzzle Game Studio: found 15, added 15
+[14:10:16] [36/110] 北京克鲁 / Castbox.FM - Radio & Podcast & AudioBooks: found 3, added 3
+[14:10:19] [37/110] 北京克鲁 / Cuddle Live: found 2, added 0
+[14:10:42] [38/110] 北京克鲁 / Guru AI Lab: found 9, added 9
+[14:10:45] [39/110] 北京克鲁 / Guru Future Holding Limited: found 9, added 0
+[14:10:48] [40/110] 北京克鲁 / Guru Network Limited: found 1, added 0
+[14:10:51] [41/110] 北京克鲁 / NimbleMind: found 4, added 0
+[14:11:06] [42/110] 北京克鲁 / NimbleMind Network Inc.: found 4, added 4
+[14:11:09] [43/110] 北京克鲁 / Smart Works Limited: found 1, added 0
+[14:11:12] [44/110] 北京克鲁 / Sophos AI: found 4, added 0
+[14:11:24] [45/110] 北京乐信圣文 / Cedar Games Studio: found 6, added 4
+[14:11:28] [46/110] 北京迦游 / Color Block: found 1, added 1
+[14:11:31] [47/110] 北京迦游 / Suzhou ZD Network Technology Co., Ltd.: found 1, added 0
+[14:11:34] [48/110] 北京迦游 / Wonderful Studio: found 3, added 0
+[14:11:45] [49/110] 北京奇妙王国 / FREELAX: found 4, added 4
+[14:12:31] [50/110] 北京奇妙王国 / Solitaire Card Studio: found 18, added 18
+[14:12:35] [51/110] 北京奇妙王国 / WONDERFUL ENTERTAINMENT CO., LTD.: found 11, added 0
+[14:12:57] [52/110] 英国tripledot / Echidna Games: found 11, added 8
+[14:13:02] [53/110] 英国tripledot / Live Play Mobile Inc: found 3, added 1
+[14:13:16] [54/110] 奇讯新游 / Bubblescapes: found 5, added 5
+[14:13:19] [55/110] 奇讯新游 / CUBE(HONG KONG) TECHNOLOGY CO., LIMITED: found 9, added 0
+[14:13:33] [56/110] 奇讯新游 / easygame7: found 5, added 5
+[14:13:42] [57/110] 奇讯新游 / Enjoysports: found 3, added 3
+[14:13:45] [58/110] 奇讯新游 / F.O.G.LIMITED: found 8, added 0
+[14:13:48] [59/110] 奇讯新游 / First Magic Co.,Ltd: found 4, added 0
+[14:14:01] [60/110] 奇讯新游 / Fungoodgames: found 5, added 5
+[14:14:45] [61/110] 奇讯新游 / gameone: found 18, added 18
+[14:14:56] [62/110] 奇讯新游 / Gamoper: found 4, added 4
+[14:15:31] [63/110] 奇讯新游 / Jewel Loft: found 13, added 13
+[14:15:34] [64/110] 奇讯新游 / Kiwi Go Limited: found 3, added 0
+[14:16:25] [65/110] 奇讯新游 / MAGIC SEVEN CO., LIMITED: found 20, added 20
+[14:16:28] [66/110] 奇讯新游 / MagicSeven Co., Ltd: found 5, added 0
+[14:16:46] [67/110] 奇讯新游 / ONE HIT CO., LIMITED: found 7, added 7
+[14:16:59] [68/110] 奇讯新游 / Peak Plus: found 5, added 5
+[14:17:02] [69/110] 奇讯新游 / PUZZLE LOFT CO.,LIMITED: found 3, added 0
+[14:17:50] [70/110] 奇讯新游 / PuzzleLoft: found 19, added 19
+[14:17:53] [71/110] 奇讯新游 / RedFish Game Studio: found 11, added 0
+[14:18:02] [72/110] 奇讯新游 / RedFish Games: found 3, added 3
+[14:18:05] [73/110] 奇讯新游 / Shiquan SHI: found 7, added 0
+[14:18:09] [74/110] 奇讯新游 / SugarFun: found 1, added 1
+[14:18:59] [75/110] 奇讯新游 / Tap Happy: found 20, added 20
+[14:19:02] [76/110] 奇讯新游 / Teewee Games: found 5, added 0
+[14:19:16] [77/110] 奇讯新游 / TEEWEE LIMITED: found 5, added 5
+[14:19:20] [78/110] 奇讯新游 / Xi'an Qi Guo Network Technology Co., Ltd.: found 39, added 0
+[14:19:23] [79/110] 奇讯新游 / Xiaokun Feng21888558573: found 4, added 0
+[14:19:46] [80/110] 奇讯新游 / Yo App: found 9, added 9
+[14:19:52] [81/110] 奇讯新游 / 波 杨: found 14, added 0
+[14:19:55] [82/110] 奇讯新游 / 高科 侯: found 8, added 0
+[14:19:59] [83/110] 奇讯新游 / 浩 章: found 17, added 0
+[14:20:02] [84/110] 奇讯新游 / 书涛 刘: found 5, added 0
+[14:20:06] [85/110] 奇讯新游 / 肖见 陈: found 16, added 0
+[14:20:11] [86/110] 奇讯新游 / 小坤 冯: found 34, added 0
+[14:21:00] [87/110] 深圳乐言科技 / Brainit Games: found 20, added 20
+[14:21:11] [88/110] 深圳乐言科技 / Lighthouse, Inc.: found 4, added 4
+[14:21:36] [89/110] 深圳乐言科技 / Magic Word Games: found 10, added 10
+[14:22:26] [90/110] 深圳乐言科技 / People Lovin Games: found 20, added 20
+[14:22:39] [91/110] 深圳乐言科技 / Shoreline Park, Inc.: found 5, added 5
+[14:22:45] [92/110] 深圳乐言科技 / Solitaire Card Games , Inc.: found 2, added 2
+[14:22:49] [93/110] 深圳乐言科技 / Solitaire Card Games Ltd: found 1, added 1
+[14:22:58] [94/110] 深圳乐言科技 / Spider Solitaire Card Games: found 3, added 3
+[14:23:01] [95/110] 深圳乐言科技 / 惠英 印: found 4, added 0
+[14:23:06] [96/110] 深圳乐言科技 / 立明 张: found 9, added 0
+[14:23:09] [97/110] 深圳乐言科技 / 丽莲 梁: found 17, added 0
+[14:23:12] [98/110] 深圳乐言科技 / 柳 王: found 8, added 0
+[14:23:16] [99/110] 深圳乐言科技 / 毅 朱: found 10, added 0
+[14:23:19] [100/110] 深圳乐言科技 / 云涌 段: found 8, added 0
+[14:23:22] [101/110] 深圳乐言科技 / 昭 陈: found 3, added 0
+[14:23:30] [102/110] 上海襄翼 / Dream Tiles Piano Game Studio: found 3, added 3
+[14:23:47] [103/110] 上海襄翼 / JC Puzzle Games Studio: found 6, added 6
+[14:23:49] [104/110] 杭州胜加 / Zack Shi: found 1, added 0
+[14:23:56] [105/110] 北京红海无限 / gaolipei: found 2, added 2
+[14:24:00] [106/110] 北京红海无限 / SweetGame: found 1, added 1
+[14:24:20] [107/110] 北京珑索科技 / Dragon Star: found 7, added 7
+[14:24:25] [108/110] 北京珑索科技 / 力 陈: found 3, added 0
+[14:24:29] [109/110] 北京珑索科技 / 文奇 陈: found 3, added 0
+[14:24:32] [110/110] 北京珑索科技 / 燕 肖: found 2, added 0
+[14:24:33] ============================================================
+[14:24:33] Added total: 437 ({'GP': 437, 'iOS': 0})
+[14:24:33]   奇讯新游: +142
+[14:24:33]   北京小牛互联: +71
+[14:24:33]   深圳乐言科技: +65
+[14:24:33]   武汉多比特: +47
+[14:24:33]   北京克鲁: +36
+[14:24:33]   北京奇妙王国: +22
+[14:24:33]   上海迪果: +14
+[14:24:33]   上海襄翼: +9
+[14:24:33]   英国tripledot: +9
+[14:24:33]   上海正朗: +7
+[14:24:33]   北京珑索科技: +7
+[14:24:33]   北京乐信圣文: +4
+[14:24:33]   北京红海无限: +3
+[14:24:33]   北京迦游: +1
+[14:24:33] Database total: 2999

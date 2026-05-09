@@ -142,5 +142,21 @@ window._loadCompany("杭州胜加", [
     "tags": "Tabletop, Mahjong Solitaire",
     "removed": true,
     "release_date": "2025/03/07"
+  },
+  {
+    "name": "Tile Comfort: Triple Match",
+    "company_cn": "杭州胜加",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2d/57/85/2d578515-4435-9553-ea2d-7d71b7c23c25/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6761370680",
+    "store_link": "https://apps.apple.com/app/id6761370680",
+    "dev_link": "https://apps.apple.com/developer/id1889170680",
+    "developer": "Zack Shi",
+    "downloads": "",
+    "rating_count": 3797,
+    "last_update": "2026/04/29",
+    "tags": "Games, Casual, Puzzle",
+    "removed": false,
+    "release_date": "2026/04/06"
   }
 ]);

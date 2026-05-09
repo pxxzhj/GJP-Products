@@ -1,0 +1,76 @@
+existing_start=2155
+final_total=2562
+added_total=407
+failed=[]
+
+by_company:
+奇讯新游	192
+深圳乐言科技	59
+北京小牛互联	58
+武汉多比特	40
+北京克鲁	23
+北京奇妙王国	11
+北京珑索科技	8
+英国tripledot	5
+上海迪果	4
+北京迦游	4
+北京乐信圣文	2
+杭州胜加	1
+
+by_dev:
+上海迪果	乐 刘	1
+上海迪果	慧钧 蒋	3
+北京乐信圣文	Cedar Games Studio	2
+北京克鲁	Ashita Games	2
+北京克鲁	Cuddle Live	2
+北京克鲁	Guru Future Holding Limited	9
+北京克鲁	Guru Network Limited	1
+北京克鲁	NimbleMind	4
+北京克鲁	Smart Works Limited	1
+北京克鲁	Sophos AI	4
+北京奇妙王国	WONDERFUL ENTERTAINMENT CO., LTD.	11
+北京小牛互联	Cleaner Labs	1
+北京小牛互联	Kun Wang	2
+北京小牛互联	LONGSEA LINK LIMITED	8
+北京小牛互联	Longwind Studio	29
+北京小牛互联	Smart Tool Studio	12
+北京小牛互联	静 杜	6
+北京珑索科技	力 陈	3
+北京珑索科技	文奇 陈	3
+北京珑索科技	燕 肖	2
+北京迦游	Suzhou ZD Network Technology Co., Ltd.	1
+北京迦游	Wonderful Studio	3
+奇讯新游	CUBE(HONG KONG) TECHNOLOGY CO., LIMITED	9
+奇讯新游	F.O.G.LIMITED	8
+奇讯新游	First Magic Co.,Ltd	4
+奇讯新游	Kiwi Go Limited	3
+奇讯新游	MagicSeven Co., Ltd	5
+奇讯新游	PUZZLE LOFT CO.,LIMITED	3
+奇讯新游	RedFish Game Studio	11
+奇讯新游	Shiquan SHI	7
+奇讯新游	Teewee Games	5
+奇讯新游	Xi'an Qi Guo Network Technology Co., Ltd.	39
+奇讯新游	Xiaokun Feng21888558573	4
+奇讯新游	书涛 刘	5
+奇讯新游	小坤 冯	34
+奇讯新游	波 杨	14
+奇讯新游	浩 章	17
+奇讯新游	肖见 陈	16
+奇讯新游	高科 侯	8
+杭州胜加	Zack Shi	1
+武汉多比特	FingerLab	19
+武汉多比特	Halos Labs Technology Co.,Ltd	7
+武汉多比特	JUN HUANG	1
+武汉多比特	TapMagic	1
+武汉多比特	Unickie Technology Co., Ltd.	6
+武汉多比特	Wolflyer	4
+武汉多比特	YAO SHIBIN	2
+深圳乐言科技	丽莲 梁	17
+深圳乐言科技	云涌 段	8
+深圳乐言科技	惠英 印	4
+深圳乐言科技	昭 陈	3
+深圳乐言科技	柳 王	8
+深圳乐言科技	毅 朱	10
+深圳乐言科技	立明 张	9
+英国tripledot	Echidna Games	3
+英国tripledot	Live Play Mobile Inc	2
