@@ -1773,7 +1773,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2024/11/05",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/11/06"
   },
   {
     "name": "Sudoku Puzzles: Fun Math Game",
@@ -2109,7 +2109,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/01/28",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/05/26"
   },
   {
     "name": "Parking City Tycoon",
@@ -2221,7 +2221,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/16",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/19"
   },
   {
     "name": "Soliword: Solitaire Link Word",
@@ -2237,7 +2237,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/20",
     "tags": "Word",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/07"
   },
   {
     "name": "Slide Block: Color Jam Puzzle",
@@ -2333,7 +2333,7 @@ window._loadCompany("北京小牛互联", [
     "last_update": "2026/04/27",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/12/29"
   },
   {
     "name": "Take Away 3D Cubes",

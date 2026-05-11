@@ -232,7 +232,7 @@ def fetch_ios_developer_apps(artist_id, company):
             'last_update': monitor.normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
             'tags': ', '.join(r.get('genres', [])),
             'removed': False,
-            'release_date': monitor.normalize_past_or_today_date(str(r.get('releaseDate', ''))[:10]),
+            'release_date': monitor.normalize_release_or_expected_date(str(r.get('releaseDate', ''))[:10]),
         })
     return apps
 

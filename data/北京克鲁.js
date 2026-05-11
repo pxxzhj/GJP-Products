@@ -1789,7 +1789,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/28",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/21"
   },
   {
     "name": "Number Match Game - Ten & Pair",
@@ -1837,7 +1837,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/17",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/05"
   },
   {
     "name": "Brain Riddle: Tricky Box",
@@ -1885,7 +1885,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/01/19",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/07/30"
   },
   {
     "name": "Number Pair - Match Games",
@@ -1917,7 +1917,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/04/20",
     "tags": "Board",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/01"
   },
   {
     "name": "Jigswap - Jigsaw Solitaire",
@@ -1933,7 +1933,7 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/01/30",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/12"
   },
   {
     "name": "Nuts Master, Wood Bolts Puzzle",

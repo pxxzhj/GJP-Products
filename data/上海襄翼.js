@@ -669,7 +669,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/04/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/30"
   },
   {
     "name": "Piano Game: Classic Music Song",
@@ -749,7 +749,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/04/23",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/12/24"
   },
   {
     "name": "Block Puzzle: Colors Blast",
@@ -765,7 +765,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/04/16",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/11"
   },
   {
     "name": "Piano Dash: Music Adventure",
@@ -781,7 +781,7 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/01/27",
     "tags": "Music",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/31"
   },
   {
     "name": "Block Puzzle Daily Blast",
@@ -813,6 +813,6 @@ window._loadCompany("上海襄翼", [
     "last_update": "2026/05/07",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/05/09"
   }
 ]);

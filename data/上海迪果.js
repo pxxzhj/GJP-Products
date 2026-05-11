@@ -1645,6 +1645,6 @@ window._loadCompany("上海迪果", [
     "last_update": "2025/11/06",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/06/08"
   }
 ]);

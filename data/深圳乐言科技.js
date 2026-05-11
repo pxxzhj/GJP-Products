@@ -3885,7 +3885,7 @@ window._loadCompany("深圳乐言科技", [
     "last_update": "2026/01/22",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/29"
   },
   {
     "name": "Word Bubble Puzzle - Word Game",

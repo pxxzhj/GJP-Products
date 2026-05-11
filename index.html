@@ -558,13 +558,14 @@ function getFiltered() {
 function sortApps(list) {
   var key = currentSort.key, dir = currentSort.dir;
   var sorted = list.slice();
+  function dateKey(v) { return (v || '').slice(0, 10); }
   sorted.sort(function(a,b) {
     var va, vb;
     if (key==='name') { va=(a.name||'').toLowerCase(); vb=(b.name||'').toLowerCase(); return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
     if (key==='dev') { va=(a.developer||'').toLowerCase(); vb=(b.developer||'').toLowerCase(); return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
     if (key==='dl') { va=parseDl(a.platform==='GP'?a.downloads:a.rating_count); vb=parseDl(b.platform==='GP'?b.downloads:b.rating_count); }
-    else if (key==='update') { va=a.last_update||''; vb=b.last_update||''; return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
-    else if (key==='release') { va=a.release_date||''; vb=b.release_date||''; return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
+    else if (key==='update') { va=dateKey(a.last_update); vb=dateKey(b.last_update); return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
+    else if (key==='release') { va=dateKey(a.release_date); vb=dateKey(b.release_date); return dir==='asc'?va.localeCompare(vb):vb.localeCompare(va); }
     else { va=0; vb=0; }
     return dir==='asc'?va-vb:vb-va;
   });

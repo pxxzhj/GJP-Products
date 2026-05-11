@@ -45,7 +45,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/09/08"
   },
   {
     "name": "Block Away: Slide Color Master",
@@ -61,7 +61,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/27",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/08/25"
   },
   {
     "name": "Escape Arrow: Tap Puzzle",
@@ -93,7 +93,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/03/06",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/09"
   },
   {
     "name": "Find Hidden Objects: Tidy up",
@@ -157,7 +157,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/04/18",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/23"
   },
   {
     "name": "Arrow Go! Tap to Escape",
@@ -205,7 +205,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/11/11",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/03/02"
   },
   {
     "name": "Match Story",
@@ -269,7 +269,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/04/08",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/05"
   },
   {
     "name": "Traffic Jam Master: Car Escape",
@@ -285,7 +285,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/01/06",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/08/31"
   },
   {
     "name": "Gem Puzzle Dom",
@@ -317,7 +317,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/04/22",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/16"
   },
   {
     "name": "Tile Story",
@@ -509,7 +509,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/05/30",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/17"
   },
   {
     "name": "Wood 88:Block Puzzle Game",
@@ -589,7 +589,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2025/10/26",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/10/23"
   },
   {
     "name": "Goods 3D Sort Story",
@@ -925,7 +925,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2026/04/24",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/02"
   },
   {
     "name": "goods.master3d.match.puzzle",

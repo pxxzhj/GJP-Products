@@ -56,6 +56,16 @@ def normalize_past_or_today_date(d, today=None):
         return ''
     return normalized
 
+def normalize_release_or_expected_date(d, today=None):
+    normalized = normalize_date(d)
+    if not normalized:
+        return ''
+    if today is None:
+        today = date.today().strftime('%Y/%m/%d')
+    if re.match(r'^\d{4}/\d{2}/\d{2}$', normalized) and normalized > today:
+        return f'{normalized}[预]'
+    return normalized
+
 def format_downloads(n):
     if n <= 0:
         return ''
@@ -158,7 +168,7 @@ def check_ios_developers(all_apps):
                     'last_update': normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
                     'tags': ', '.join(r.get('genres', [])),
                     'removed': False,
-                    'release_date': normalize_past_or_today_date(str(r.get('releaseDate', ''))[:10]),
+                    'release_date': normalize_release_or_expected_date(str(r.get('releaseDate', ''))[:10]),
                 }
                 new_ios_apps.append(app)
                 log(f"  NEW iOS: {app['name']} ({aid}) -> {info['company']}")
@@ -265,6 +275,8 @@ def fetch_appmagic_release_date(pkg, driver=None, wait=30):
                 continue
 
             release_date = normalize_date(extract_gp_detail_value(driver, 'Release Date'))
+            if not release_date:
+                release_date = normalize_date(extract_gp_detail_value(driver, 'First Detected'))
             if release_date:
                 return release_date
             time.sleep(1)

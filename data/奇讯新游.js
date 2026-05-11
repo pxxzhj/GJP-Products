@@ -3837,7 +3837,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/23",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/25"
   },
   {
     "name": "Marble Legend",
@@ -3917,7 +3917,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/01/06",
     "tags": "Simulation",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/10/26"
   },
   {
     "name": "Home Mansion: Design & Match",
@@ -3965,7 +3965,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/03/02",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/08"
   },
   {
     "name": "Merge Help: Home Design Puzzle",
@@ -4029,7 +4029,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/03/26",
     "tags": "Role Playing",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/26"
   },
   {
     "name": "Solitaire Travel: Words",
@@ -4205,7 +4205,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/07/11",
     "tags": "Simulation",
     "removed": false,
-    "release_date": ""
+    "release_date": "2024/04/23"
   },
   {
     "name": "Cube Blast: Match 3 Puzzle",
@@ -4285,7 +4285,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/16",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/18"
   },
   {
     "name": "Arcade Bowling Go 2",
@@ -4541,7 +4541,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/24",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/02/06"
   },
   {
     "name": "Sort Out® - Goods Match Master",
@@ -4589,7 +4589,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/29",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/06"
   },
   {
     "name": "Sand Block Jam",
@@ -4605,7 +4605,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/11/14",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/09/13"
   },
   {
     "name": "Cooking City: Restaurant Games",
@@ -4781,7 +4781,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/02/18",
     "tags": "Arcade",
     "removed": false,
-    "release_date": ""
+    "release_date": "2022/12/01"
   },
   {
     "name": "Idle Fishlandia - Tycoon Game",
@@ -4893,7 +4893,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/24",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/22"
   },
   {
     "name": "Idle Bao's Prison: idle tycoon",
@@ -4925,7 +4925,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2025/07/31",
     "tags": "Simulation",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/21"
   },
   {
     "name": "Match Fever - Match 3 Puzzles",
@@ -5117,7 +5117,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/04/30",
     "tags": "Casual",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/04/22"
   },
   {
     "name": "Dream Master-Match Buster",
@@ -5885,7 +5885,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/07",
     "tags": "Adventure",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/05/01"
   },
   {
     "name": "Candy Sweet Legend - Match 3",
@@ -5981,7 +5981,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/02/02",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/11/29"
   },
   {
     "name": "Farmland Tales: Idle Life",
@@ -6029,7 +6029,7 @@ window._loadCompany("奇讯新游", [
     "last_update": "2026/05/08",
     "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/04"
   },
   {
     "name": "Idle Office Empire",
@@ -6589,6 +6589,6 @@ window._loadCompany("奇讯新游", [
     "last_update": "",
     "tags": "Games, Entertainment, Racing, Simulation",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/05/27[预]"
   }
 ]);
