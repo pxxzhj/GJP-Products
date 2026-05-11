@@ -909,7 +909,7 @@ window._loadCompany("北京珑索科技", [
     "last_update": "2023/09/28",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2021/11/10"
   },
   {
     "name": "Bus Escape Master: Parking Jam",
@@ -941,6 +941,6 @@ window._loadCompany("北京珑索科技", [
     "last_update": "",
     "tags": "",
     "removed": true,
-    "release_date": ""
+    "release_date": "2024/03/18"
   }
 ]);

@@ -6586,9 +6586,9 @@ window._loadCompany("奇讯新游", [
     "developer": "RedFish Game Studio",
     "downloads": "",
     "rating_count": 0,
-    "last_update": "2026/05/27",
+    "last_update": "",
     "tags": "Games, Entertainment, Racing, Simulation",
     "removed": false,
-    "release_date": "2026/05/27"
+    "release_date": ""
   }
 ]);

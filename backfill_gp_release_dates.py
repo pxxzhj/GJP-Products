@@ -6,9 +6,6 @@ import re
 import time
 from datetime import datetime
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-
 import monitor
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -36,25 +33,17 @@ def load_apps():
 
 
 def make_driver():
-    proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('HTTP_PROXY')
-    opts = Options()
-    opts.add_argument('--headless=new')
-    opts.add_argument('--no-sandbox')
-    opts.add_argument('--disable-dev-shm-usage')
-    opts.add_argument('--lang=en-US')
-    opts.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-    if proxy:
-        opts.add_argument(f'--proxy-server={proxy}')
-    driver = webdriver.Chrome(options=opts)
-    driver.set_page_load_timeout(35)
-    return driver
+    return monitor.make_selenium_driver(timeout=35)
 
 
 def fetch_release_date(driver, pkg):
     driver.get(f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us')
     time.sleep(1.5)
     monitor.open_gp_about_panel(driver)
-    return monitor.normalize_date(monitor.extract_gp_detail_value(driver, 'Released on'))
+    release_date = monitor.normalize_date(monitor.extract_gp_detail_value(driver, 'Released on'))
+    if not release_date:
+        release_date = monitor.fetch_appmagic_release_date(pkg, driver)
+    return release_date
 
 
 def main():

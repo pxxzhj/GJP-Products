@@ -71,22 +71,7 @@ def fetch_gp_detail_html(url):
 
 
 def make_gp_release_driver():
-    from selenium import webdriver
-    from selenium.webdriver.chrome.options import Options
-
-    proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('HTTP_PROXY')
-    opts = Options()
-    opts.add_argument('--headless=new')
-    opts.add_argument('--no-sandbox')
-    opts.add_argument('--disable-dev-shm-usage')
-    opts.add_argument('--lang=en-US')
-    opts.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-    if proxy:
-        opts.add_argument(f'--proxy-server={proxy}')
-
-    driver = webdriver.Chrome(options=opts)
-    driver.set_page_load_timeout(35)
-    return driver
+    return monitor.make_selenium_driver(timeout=35)
 
 
 def fetch_gp_release_date(pkg):
@@ -98,7 +83,10 @@ def fetch_gp_release_date(pkg):
         GP_RELEASE_DRIVER.get(f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us')
         time.sleep(2)
         monitor.open_gp_about_panel(GP_RELEASE_DRIVER)
-        return monitor.normalize_date(monitor.extract_gp_detail_value(GP_RELEASE_DRIVER, 'Released on'))
+        release_date = monitor.normalize_date(monitor.extract_gp_detail_value(GP_RELEASE_DRIVER, 'Released on'))
+        if not release_date:
+            release_date = monitor.fetch_appmagic_release_date(pkg, GP_RELEASE_DRIVER)
+        return release_date
     except Exception:
         try:
             GP_RELEASE_DRIVER.quit()
@@ -241,10 +229,10 @@ def fetch_ios_developer_apps(artist_id, company):
             'developer': r.get('artistName', ''),
             'downloads': '',
             'rating_count': r.get('userRatingCount', 0),
-            'last_update': monitor.normalize_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
+            'last_update': monitor.normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
             'tags': ', '.join(r.get('genres', [])),
             'removed': False,
-            'release_date': monitor.normalize_date(str(r.get('releaseDate', ''))[:10]),
+            'release_date': monitor.normalize_past_or_today_date(str(r.get('releaseDate', ''))[:10]),
         })
     return apps
 

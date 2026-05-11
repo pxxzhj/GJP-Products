@@ -1117,7 +1117,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/11",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2025/06/08"
   },
   {
     "name": "Bubble Shooter:Jurassic World",
@@ -1709,7 +1709,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/17",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/03/17"
   },
   {
     "name": "com.hexa.vitual.game",
@@ -1917,7 +1917,7 @@ window._loadCompany("北京红海无限", [
     "last_update": "2026/04/25",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/01/29"
   },
   {
     "name": "Chirpy Sort: Bird Color Puzzle",

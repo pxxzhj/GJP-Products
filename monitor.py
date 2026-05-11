@@ -9,8 +9,9 @@ import os
 import re
 import time
 import subprocess
+import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import datetime, date
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = '/tmp/all_apps_v6.json'
@@ -44,6 +45,16 @@ def normalize_date(d):
         month = MONTH_MAP.get(m.group(1), '01')
         return f"{m.group(3)}/{month}/{m.group(2).zfill(2)}"
     return d
+
+def normalize_past_or_today_date(d, today=None):
+    normalized = normalize_date(d)
+    if not normalized:
+        return ''
+    if today is None:
+        today = date.today().strftime('%Y/%m/%d')
+    if re.match(r'^\d{4}/\d{2}/\d{2}$', normalized) and normalized > today:
+        return ''
+    return normalized
 
 def format_downloads(n):
     if n <= 0:
@@ -144,10 +155,10 @@ def check_ios_developers(all_apps):
                     'developer': r.get('artistName', info['developer']),
                     'downloads': '',
                     'rating_count': r.get('userRatingCount', 0),
-                    'last_update': normalize_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
+                    'last_update': normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
                     'tags': ', '.join(r.get('genres', [])),
                     'removed': False,
-                    'release_date': normalize_date(str(r.get('releaseDate', ''))[:10]),
+                    'release_date': normalize_past_or_today_date(str(r.get('releaseDate', ''))[:10]),
                 }
                 new_ios_apps.append(app)
                 log(f"  NEW iOS: {app['name']} ({aid}) -> {info['company']}")
@@ -212,6 +223,59 @@ def extract_gp_detail_value(driver, label):
                     return value
     return ''
 
+def make_selenium_options():
+    from selenium.webdriver.chrome.options import Options
+
+    proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('HTTP_PROXY')
+    opts = Options()
+    opts.add_argument('--headless=new')
+    opts.add_argument('--no-sandbox')
+    opts.add_argument('--disable-dev-shm-usage')
+    opts.add_argument('--lang=en-US')
+    opts.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+    if proxy:
+        opts.add_argument(f'--proxy-server={proxy}')
+    return opts
+
+def make_selenium_driver(timeout=35):
+    from selenium import webdriver
+
+    driver = webdriver.Chrome(options=make_selenium_options())
+    driver.set_page_load_timeout(timeout)
+    return driver
+
+def fetch_appmagic_release_date(pkg, driver=None, wait=30):
+    """Fetch Google Play release date from AppMagic when Play Store omits it."""
+    owns_driver = driver is None
+    if driver is None:
+        driver = make_selenium_driver(timeout=45)
+
+    try:
+        quoted_pkg = urllib.parse.quote(pkg, safe='')
+        driver.get(f'https://appmagic.rocks/google-play/x/{quoted_pkg}/?hl=en')
+        deadline = time.time() + wait
+        while time.time() < deadline:
+            try:
+                from selenium.webdriver.common.by import By
+                text = driver.find_element(By.TAG_NAME, 'body').text
+            except Exception:
+                text = ''
+            if pkg not in text:
+                time.sleep(1)
+                continue
+
+            release_date = normalize_date(extract_gp_detail_value(driver, 'Release Date'))
+            if release_date:
+                return release_date
+            time.sleep(1)
+    except Exception:
+        return ''
+    finally:
+        if owns_driver:
+            driver.quit()
+
+    return ''
+
 def open_gp_about_panel(driver):
     """Open the Google Play about panel where Released on is often shown."""
     try:
@@ -228,22 +292,12 @@ def open_gp_about_panel(driver):
     return False
 
 def check_gp_developers(all_apps):
-    from selenium import webdriver
     from selenium.webdriver.common.by import By
-    from selenium.webdriver.chrome.options import Options
 
     devs = extract_gp_developers(all_apps)
     log(f"GP: checking {len(devs)} developers...")
 
-    opts = Options()
-    opts.add_argument('--headless=new')
-    opts.add_argument('--no-sandbox')
-    opts.add_argument('--disable-dev-shm-usage')
-    opts.add_argument('--lang=en-US')
-    opts.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
-
-    driver = webdriver.Chrome(options=opts)
-    driver.set_page_load_timeout(30)
+    driver = make_selenium_driver(timeout=30)
 
     new_gp_pkgs = {}  # pkg -> {company, dev_url}
     checked = 0
@@ -342,8 +396,6 @@ def check_gp_developers(all_apps):
             if not last_update:
                 last_update = normalize_date(extract_gp_detail_value(driver, 'Updated on'))
             release_date = normalize_date(extract_gp_detail_value(driver, 'Released on'))
-            if not release_date:
-                log(f"  GP release date not shown: {pkg}")
 
             removed = False
             try:
@@ -351,6 +403,13 @@ def check_gp_developers(all_apps):
                     removed = True
             except:
                 pass
+
+            if not release_date:
+                release_date = fetch_appmagic_release_date(pkg, driver)
+                if release_date:
+                    log(f"  AppMagic release date: {pkg} -> {release_date}")
+                else:
+                    log(f"  GP/AppMagic release date not shown: {pkg}")
 
             app = {
                 'name': name,
@@ -413,7 +472,7 @@ def check_ios_updates(all_apps):
             r = lookup.get(a['pkg_or_id'])
             if not r:
                 continue
-            new_update = normalize_date(str(r.get('currentVersionReleaseDate', ''))[:10])
+            new_update = normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10])
             old_update = a.get('last_update', '')
             if new_update and new_update != old_update and new_update > old_update:
                 updates.append({
