@@ -94,6 +94,11 @@ def parse_downloads(dl_str):
     elif suffix == 'B': return int(num * 1000000000)
     return int(num)
 
+def fetch_text_url(url, timeout=20):
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode('utf-8', 'ignore')
+
 def itunes_lookup(endpoint, retries=3):
     for attempt in range(retries):
         try:
@@ -288,6 +293,54 @@ def fetch_appmagic_release_date(pkg, driver=None, wait=30):
 
     return ''
 
+def fetch_apkcombo_release_date(pkg, name=''):
+    """Fetch a complete date from APKCombo when available."""
+    slugs = []
+    if name:
+        slug = re.sub(r'[^a-z0-9]+', '-', name.lower()).strip('-')
+        if slug:
+            slugs.append(slug)
+    slugs.append(pkg)
+
+    for slug in dict.fromkeys(slugs):
+        url = f'https://apkcombo.com/{urllib.parse.quote(slug)}/{urllib.parse.quote(pkg)}/'
+        try:
+            body = fetch_text_url(url, timeout=20)
+        except Exception:
+            continue
+
+        for pattern in (
+            r'"datePublished"\s*:\s*"([^"]+)"',
+            r'"dateModified"\s*:\s*"([^"]+)"',
+            r'(?:Release(?:d)?|Published|First Released|Uploaded)(?:\s*Date)?\s*</[^>]+>\s*<[^>]+>\s*([^<]+)',
+        ):
+            m = re.search(pattern, body, re.I | re.S)
+            if not m:
+                continue
+            value = clean_detail_text(m.group(1))
+            release_date = normalize_date(value[:10] if re.match(r'^\d{4}-\d{2}-\d{2}', value) else value)
+            if re.match(r'^\d{4}/\d{2}/\d{2}$', release_date):
+                return release_date
+    return ''
+
+def fetch_gp_release_date_with_fallbacks(pkg, driver, last_update='', name=''):
+    release_date = normalize_date(extract_gp_detail_value(driver, 'Released on'))
+    if release_date:
+        return release_date, 'Google Play Released on'
+
+    release_date = fetch_appmagic_release_date(pkg, driver)
+    if release_date:
+        return release_date, 'AppMagic'
+
+    release_date = fetch_apkcombo_release_date(pkg, name)
+    if release_date:
+        return release_date, 'APKCombo'
+
+    if last_update:
+        return last_update, 'Google Play Updated on fallback'
+
+    return '', ''
+
 def open_gp_about_panel(driver):
     """Open the Google Play about panel where Released on is often shown."""
     try:
@@ -407,7 +460,7 @@ def check_gp_developers(all_apps):
             open_gp_about_panel(driver)
             if not last_update:
                 last_update = normalize_date(extract_gp_detail_value(driver, 'Updated on'))
-            release_date = normalize_date(extract_gp_detail_value(driver, 'Released on'))
+            release_date, release_source = fetch_gp_release_date_with_fallbacks(pkg, driver, last_update, name)
 
             removed = False
             try:
@@ -416,12 +469,10 @@ def check_gp_developers(all_apps):
             except:
                 pass
 
-            if not release_date:
-                release_date = fetch_appmagic_release_date(pkg, driver)
-                if release_date:
-                    log(f"  AppMagic release date: {pkg} -> {release_date}")
-                else:
-                    log(f"  GP/AppMagic release date not shown: {pkg}")
+            if release_date and release_source != 'Google Play Released on':
+                log(f"  {release_source} release date: {pkg} -> {release_date}")
+            elif not release_date:
+                log(f"  release date not shown: {pkg}")
 
             app = {
                 'name': name,

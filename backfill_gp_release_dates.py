@@ -40,9 +40,8 @@ def fetch_release_date(driver, pkg):
     driver.get(f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us')
     time.sleep(1.5)
     monitor.open_gp_about_panel(driver)
-    release_date = monitor.normalize_date(monitor.extract_gp_detail_value(driver, 'Released on'))
-    if not release_date:
-        release_date = monitor.fetch_appmagic_release_date(pkg, driver)
+    last_update = monitor.normalize_date(monitor.extract_gp_detail_value(driver, 'Updated on'))
+    release_date, _ = monitor.fetch_gp_release_date_with_fallbacks(pkg, driver, last_update)
     return release_date
 
 

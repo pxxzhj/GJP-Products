@@ -2221,6 +2221,6 @@ window._loadCompany("北京克鲁", [
     "last_update": "2026/05/12",
     "tags": "",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/05/12"
   }
 ]);
