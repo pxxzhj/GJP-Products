@@ -205,9 +205,7 @@ th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
 <div class="footer">游戏公司产品库 — 数据来源: AppMagic + Google Play + App Store</div>
 
 <script>
-const COMPANY_NAMES = ["武汉多比特","北京小牛互联","上海正朗","上海迪果","北京克鲁","北京乐信圣文","北京迦游","playvalve","北京奇妙王国","英国tripledot","奇讯新游","深圳乐言科技","上海襄翼","杭州胜加","北京红海无限","北京棕榈创想","北京珑索科技"];
 const COMPANY_CLASS = {};
-COMPANY_NAMES.forEach((n,i) => COMPANY_CLASS[n] = 'c'+(i+1));
 
 const companiesData = [
       {
@@ -581,6 +579,16 @@ const companiesData = [
             "latest_update": "2026/05/13"
       },
       {
+            "name": "深圳风眼科技",
+            "developer_count": 4,
+            "gp_count": 48,
+            "ios_count": 32,
+            "total_count": 80,
+            "gp_downloads": 477446000,
+            "ios_ratings": 411561,
+            "latest_update": "2026/05/13"
+      },
+      {
             "name": "福州天盟数码-IGG",
             "developer_count": 5,
             "gp_count": 198,
@@ -601,6 +609,7 @@ const companiesData = [
             "latest_update": "2026/05/13"
       }
 ];
+companiesData.forEach((c,i) => COMPANY_CLASS[c.name] = 'c' + ((i % 17) + 1));
 
 const appCache = {};
 let currentApps = [];
