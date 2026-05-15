@@ -1145,7 +1145,7 @@ window._loadCompany("广州河马游戏", [
     "dev_link": "https://apps.apple.com/developer/id1707433077",
     "developer": "国鑫 海",
     "downloads": "",
-    "rating_count": 58,
+    "rating_count": 60,
     "last_update": "2026/02/11",
     "tags": "Games, Word, Entertainment, Puzzle",
     "removed": false,
@@ -2489,7 +2489,7 @@ window._loadCompany("广州河马游戏", [
     "dev_link": "https://apps.apple.com/developer/id1561752329",
     "developer": "HONGKONG WEITU TECH LIMITED",
     "downloads": "",
-    "rating_count": 44,
+    "rating_count": 46,
     "last_update": "2026/05/09",
     "tags": "Games, Casual, Lifestyle, Puzzle",
     "removed": false,
@@ -3022,5 +3022,21 @@ window._loadCompany("广州河马游戏", [
     "tags": "",
     "removed": false,
     "release_date": "2026/04/09"
+  },
+  {
+    "name": "腦洞偵探-解謎闖關小遊戲",
+    "company_cn": "广州河马游戏",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple125/v4/eb/23/ac/eb23acf9-6188-4002-57c0-c47d8821e655/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "1571292903",
+    "store_link": "https://apps.apple.com/app/id1571292903",
+    "dev_link": "https://apps.apple.com/developer/id1395851580",
+    "developer": "魂动天下",
+    "downloads": "",
+    "rating_count": 44,
+    "last_update": "2021/07/22",
+    "tags": "Games, Puzzle, Family, Entertainment",
+    "removed": false,
+    "release_date": "2021/07/14"
   }
 ]);
