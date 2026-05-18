@@ -4606,5 +4606,21 @@ window._loadCompany("合肥常春藤", [
     "tags": "",
     "removed": false,
     "release_date": "2026/05/15"
+  },
+  {
+    "name": "Yarn Sort: Color Puzzle 3D",
+    "company_cn": "合肥常春藤",
+    "icon": "https://play-lh.googleusercontent.com/Q4ePQcDTxBbND-WPq0YkboF2n4Ih936Uxt-5nwT2aII6vEiCrSIZS16dQhbg1l3i7ELGbuGELK43VW4PrtP5=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.wool.yarn.puzzle.game3d.knit.jam.unravel",
+    "store_link": "https://play.google.com/store/apps/details?id=com.wool.yarn.puzzle.game3d.knit.jam.unravel&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5261125429025325530",
+    "developer": "Ivy",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/05/15",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/03/13"
   }
 ]);
