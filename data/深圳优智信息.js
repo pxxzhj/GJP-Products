@@ -57,7 +57,7 @@ window._loadCompany("深圳优智信息", [
     "dev_link": "https://apps.apple.com/developer/id1514053338",
     "developer": "吕 罗",
     "downloads": "",
-    "rating_count": 94,
+    "rating_count": 95,
     "last_update": "2026/03/06",
     "tags": "Games, Casual, Racing",
     "removed": false,
@@ -105,7 +105,7 @@ window._loadCompany("深圳优智信息", [
     "dev_link": "https://apps.apple.com/developer/id1514053338",
     "developer": "吕 罗",
     "downloads": "",
-    "rating_count": 47,
+    "rating_count": 49,
     "last_update": "2026/03/06",
     "tags": "Games, Racing, Casual",
     "removed": false,
@@ -1566,5 +1566,21 @@ window._loadCompany("深圳优智信息", [
     "tags": "",
     "removed": false,
     "release_date": "2026/04/23"
+  },
+  {
+    "name": "Fun Number Match Game",
+    "company_cn": "深圳优智信息",
+    "icon": "https://play-lh.googleusercontent.com/TmHJJbhiQ9LkAJ2GYziYjhSIwgMUg894FnGCV-tvsD9OOsSLpyltgU0IkFOa5eY30_wBB5x5TZNxI74xexdwTg=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.ew.fun.number",
+    "store_link": "https://play.google.com/store/apps/details?id=com.ew.fun.number&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=EWG+STUDIO",
+    "developer": "EWG STUDIO",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/05/24",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/05/24"
   }
 ]);
