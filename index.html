@@ -140,28 +140,28 @@ th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
   </div>
   <div class="toolbar">
     <div class="tab-bar">
-      <button class="tab-btn active" data-tab="company">公司总览</button>
-      <button class="tab-btn" data-tab="products">产品列表</button>
+      <button class="tab-btn" data-tab="company">公司总览</button>
+      <button class="tab-btn active" data-tab="products">产品列表</button>
     </div>
     <div class="search-box">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
       <input type="text" id="searchInput" placeholder="搜索产品名称、包名、ID、公司、开发者...">
     </div>
-    <div class="filters" id="filterBar" style="display:none">
+    <div class="filters" id="filterBar">
       <button class="fbtn" data-filter="all">全部</button>
       <button class="fbtn active" data-filter="live">在线</button>
       <button class="fbtn" data-filter="removed">已下架</button>
       <button class="fbtn" data-filter="gp">GP</button>
       <button class="fbtn" data-filter="ios">iOS</button>
     </div>
-    <div class="view-toggle" id="viewToggle" style="display:none">
+    <div class="view-toggle" id="viewToggle">
       <button class="vbtn" data-view="grid" title="卡片视图">&#9638;</button>
       <button class="vbtn active" data-view="list" title="列表视图">&#9776;</button>
     </div>
   </div>
 </div>
 <div class="container">
-  <div id="companyTab">
+  <div id="companyTab" style="display:none">
     <div class="result-info" id="companyInfo"></div>
     <div class="company-overview" id="companyOverview">
       <table>
@@ -180,7 +180,7 @@ th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
       </table>
     </div>
   </div>
-  <div id="productsTab" style="display:none">
+  <div id="productsTab">
     <div id="backRow"></div>
     <div class="result-info" id="resultInfo"></div>
     <div class="app-grid" id="gridView"></div>
@@ -194,15 +194,15 @@ th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
           <th class="sortable" data-sort="dev">开发者</th>
           <th>包名/ID</th>
           <th class="sortable" data-sort="dl">下载量/评分数</th>
-          <th class="sortable sort-desc" data-sort="update">更新日期</th>
-          <th class="sortable" data-sort="release">上架日期</th>
+          <th class="sortable" data-sort="update">更新日期</th>
+          <th class="sortable sort-desc" data-sort="release">上架日期</th>
         </tr></thead>
         <tbody id="listBody"></tbody>
       </table>
     </div>
   </div>
 </div>
-<div class="footer">游戏公司产品库 — 数据来源: AppMagic + Google Play + App Store</div>
+<div class="footer">游戏公司产品库</div>
 
 <script>
 const COMPANY_CLASS = {};
@@ -345,8 +345,18 @@ const companiesData = [
             "ios_count": 24,
             "total_count": 47,
             "gp_downloads": 49425003,
-            "ios_ratings": 20420,
+            "ios_ratings": 20186,
             "latest_update": "2026/05/13"
+      },
+      {
+            "name": "北京天天玩家",
+            "developer_count": 8,
+            "gp_count": 28,
+            "ios_count": 21,
+            "total_count": 49,
+            "gp_downloads": 53950002,
+            "ios_ratings": 87126,
+            "latest_update": "2026/05/25"
       },
       {
             "name": "北京天龙互娱",
@@ -385,7 +395,7 @@ const companiesData = [
             "ios_count": 15,
             "total_count": 42,
             "gp_downloads": 39385003,
-            "ios_ratings": 151076,
+            "ios_ratings": 150880,
             "latest_update": "2026/05/11"
       },
       {
@@ -655,7 +665,7 @@ const companiesData = [
             "ios_count": 109,
             "total_count": 289,
             "gp_downloads": 280159331,
-            "ios_ratings": 174396,
+            "ios_ratings": 172686,
             "latest_update": "2026/05/13"
       },
       {
@@ -713,9 +723,9 @@ companiesData.forEach((c,i) => COMPANY_CLASS[c.name] = 'c' + ((i % 17) + 1));
 
 const appCache = {};
 let currentApps = [];
-let currentTab = 'company';
+let currentTab = 'products';
 let currentView = 'list';
-let currentSort = {key:'update', dir:'desc'};
+let currentSort = {key:'release', dir:'desc'};
 let currentFilter = 'live';
 let activeCompany = null;
 let coSort = {key:'total', dir:'desc'};
@@ -1051,7 +1061,7 @@ document.querySelectorAll('.company-overview th.sortable').forEach(function(th) 
 
 // Init
 initStats();
-renderCompanyTable();
+showAllProducts();
 </script>
 </body>
 </html>
