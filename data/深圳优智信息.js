@@ -105,7 +105,7 @@ window._loadCompany("深圳优智信息", [
     "dev_link": "https://apps.apple.com/developer/id1514053338",
     "developer": "吕 罗",
     "downloads": "",
-    "rating_count": 49,
+    "rating_count": 50,
     "last_update": "2026/03/06",
     "tags": "Games, Racing, Casual",
     "removed": false,
@@ -1582,5 +1582,21 @@ window._loadCompany("深圳优智信息", [
     "tags": "",
     "removed": false,
     "release_date": "2026/05/24"
+  },
+  {
+    "name": "Word Card Match",
+    "company_cn": "深圳优智信息",
+    "icon": "https://play-lh.googleusercontent.com/znjTj3ROl9rpnjXsKelTyC9hyPXNpCHTGlt_CQs9lIYlhr56gCNFCOpZOzHmixGWbLO3K3k770wDtW1QrDAfQQ=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.hotplay.word.card",
+    "store_link": "https://play.google.com/store/apps/details?id=com.hotplay.word.card&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=6723260132178990530",
+    "developer": "HOTPLAY STUDIO",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/05/28",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/05/28"
   }
 ]);
