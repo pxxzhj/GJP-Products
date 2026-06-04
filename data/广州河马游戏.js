@@ -73,7 +73,7 @@ window._loadCompany("广州河马游戏", [
     "dev_link": "https://apps.apple.com/developer/id1707433077",
     "developer": "国鑫 海",
     "downloads": "",
-    "rating_count": 2,
+    "rating_count": 3,
     "last_update": "2023/12/16",
     "tags": "Games, Casual, Action, Entertainment",
     "removed": false,
@@ -137,7 +137,7 @@ window._loadCompany("广州河马游戏", [
     "dev_link": "https://apps.apple.com/developer/id1395851580",
     "developer": "魂动天下",
     "downloads": "",
-    "rating_count": 18667,
+    "rating_count": 18682,
     "last_update": "2026/05/13",
     "tags": "Games, Simulation, Strategy, Entertainment",
     "removed": false,
@@ -1194,7 +1194,7 @@ window._loadCompany("广州河马游戏", [
     "developer": "HONGKONG WEITU TECH LIMITED",
     "downloads": "",
     "rating_count": 11,
-    "last_update": "2026/04/27",
+    "last_update": "2026/06/03",
     "tags": "Games, Casual, Puzzle",
     "removed": false,
     "release_date": "2025/09/18"
@@ -2489,7 +2489,7 @@ window._loadCompany("广州河马游戏", [
     "dev_link": "https://apps.apple.com/developer/id1561752329",
     "developer": "HONGKONG WEITU TECH LIMITED",
     "downloads": "",
-    "rating_count": 42,
+    "rating_count": 45,
     "last_update": "2026/05/09",
     "tags": "Games, Casual, Lifestyle, Puzzle",
     "removed": false,
@@ -3038,5 +3038,21 @@ window._loadCompany("广州河马游戏", [
     "tags": "Games, Puzzle, Family, Entertainment",
     "removed": false,
     "release_date": "2021/07/14"
+  },
+  {
+    "name": "Falling Word",
+    "company_cn": "广州河马游戏",
+    "icon": "https://play-lh.googleusercontent.com/rw9KNxeqgBLPFDzLxmKoigEyX8W_VROYkQ6jN0JLlx4BMZwYfR-qFHn3-5XtCYnRjaPP9GFln3EBf07oHIDbvIg=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "falling.word.match.sort.association.game.gp",
+    "store_link": "https://play.google.com/store/apps/details?id=falling.word.match.sort.association.game.gp&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5906346538712222747",
+    "developer": "Hippo Lab",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/06/02",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/06/03"
   }
 ]);
