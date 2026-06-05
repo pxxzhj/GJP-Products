@@ -9694,5 +9694,21 @@ window._loadCompany("海外-越南-onesoft", [
     "tags": "",
     "removed": false,
     "release_date": "2026/05/31"
+  },
+  {
+    "name": "Block Match Blast",
+    "company_cn": "海外-越南-onesoft",
+    "icon": "https://play-lh.googleusercontent.com/XwWYGULTUD07BUDlWh2TMWfPDtMYHP1gQGUt1wy6bT2Ae97bFeQT0LVOr5G61zaeNXVg_6lCYqEv_wGC05xGivc=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.fc.p.ptit.block.match.blast.puzzle",
+    "store_link": "https://play.google.com/store/apps/details?id=com.fc.p.ptit.block.match.blast.puzzle&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5010210823072680001&hl=en&gl=us",
+    "developer": "FALCON GAME STUDIO",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/06/04",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/06/03"
   }
 ]);

@@ -2862,5 +2862,21 @@ window._loadCompany("北京乐信圣文", [
     "tags": "Games, Casual, Puzzle",
     "removed": false,
     "release_date": "2026/05/19"
+  },
+  {
+    "name": "Vita Mahjong Wood",
+    "company_cn": "北京乐信圣文",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ef/57/84/ef578493-ece1-512b-671d-ab7788a7b9e8/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6760831393",
+    "store_link": "https://apps.apple.com/app/id6760831393",
+    "dev_link": "https://apps.apple.com/developer/id1673880893",
+    "developer": "Vita Studio",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/06/04",
+    "tags": "Games, Card, Entertainment, Board",
+    "removed": false,
+    "release_date": "2026/06/04"
   }
 ]);
