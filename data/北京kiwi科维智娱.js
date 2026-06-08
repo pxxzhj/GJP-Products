@@ -9,8 +9,8 @@ window._loadCompany("北京kiwi科维智娱", [
     "dev_link": "https://apps.apple.com/developer/id1704802085",
     "developer": "JoyGame Studio Limited",
     "downloads": "",
-    "rating_count": 44105,
-    "last_update": "2026/05/28",
+    "rating_count": 44413,
+    "last_update": "2026/06/05",
     "tags": "Games, Board, Puzzle",
     "removed": false,
     "release_date": "2024/09/09"
@@ -41,7 +41,7 @@ window._loadCompany("北京kiwi科维智娱", [
     "dev_link": "https://apps.apple.com/developer/id1704802085",
     "developer": "JoyGame Studio Limited",
     "downloads": "",
-    "rating_count": 3660,
+    "rating_count": 3661,
     "last_update": "2026/04/22",
     "tags": "Games, Puzzle, Board",
     "removed": false,
@@ -138,7 +138,7 @@ window._loadCompany("北京kiwi科维智娱", [
     "developer": "JoyGame Studio Limited",
     "downloads": "",
     "rating_count": 9,
-    "last_update": "2026/05/29",
+    "last_update": "2026/06/05",
     "tags": "Games, Puzzle, Board",
     "removed": false,
     "release_date": "2026/03/10"
