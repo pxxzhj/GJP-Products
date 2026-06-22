@@ -368,28 +368,43 @@ def check_gp_developers(all_apps):
     checked = 0
     errors = 0
 
+    def fetch_developer_packages(dev_url):
+        driver.get(dev_url)
+        time.sleep(3)
+
+        last_height = driver.execute_script("return document.body.scrollHeight")
+        for _ in range(10):
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            time.sleep(1.5)
+            new_height = driver.execute_script("return document.body.scrollHeight")
+            if new_height == last_height:
+                break
+            last_height = new_height
+
+        links = driver.find_elements(By.CSS_SELECTOR, 'a[href*="/store/apps/details?id="]')
+        found_pkgs = set()
+        for link in links:
+            href = link.get_attribute('href') or ''
+            m = re.search(r'id=([a-zA-Z0-9_.]+)', href)
+            if m:
+                found_pkgs.add(m.group(1))
+        return found_pkgs
+
     for dev_url, info in devs.items():
         checked += 1
         try:
-            driver.get(dev_url)
-            time.sleep(3)
-
-            last_height = driver.execute_script("return document.body.scrollHeight")
-            for _ in range(10):
-                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                time.sleep(1.5)
-                new_height = driver.execute_script("return document.body.scrollHeight")
-                if new_height == last_height:
-                    break
-                last_height = new_height
-
-            links = driver.find_elements(By.CSS_SELECTOR, 'a[href*="/store/apps/details?id="]')
-            found_pkgs = set()
-            for link in links:
-                href = link.get_attribute('href') or ''
-                m = re.search(r'id=([a-zA-Z0-9_.]+)', href)
-                if m:
-                    found_pkgs.add(m.group(1))
+            try:
+                found_pkgs = fetch_developer_packages(dev_url)
+            except Exception as e:
+                if 'invalid session' not in str(e).lower():
+                    raise
+                log(f"  GP driver session lost; restarting and retrying [{checked}/{len(devs)}]")
+                try:
+                    driver.quit()
+                except Exception:
+                    pass
+                driver = make_selenium_driver(timeout=30)
+                found_pkgs = fetch_developer_packages(dev_url)
 
             missing = found_pkgs - info['known_pkgs']
             for pkg in missing:
