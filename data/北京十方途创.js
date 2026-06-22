@@ -1310,5 +1310,37 @@ window._loadCompany("北京十方途创", [
     "tags": "",
     "removed": false,
     "release_date": "2026/04/24"
+  },
+  {
+    "name": "Perfect Park!",
+    "company_cn": "北京十方途创",
+    "icon": "https://play-lh.googleusercontent.com/D65lMfCNEvySl3fdobTRgxr4VwupbJl927Yu6mI2Obmu8bgIOxoLBeb0PUE1RkEPfz66sXP5UYQTqEahQEiW=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.wawagame.app.perfectpark",
+    "store_link": "https://play.google.com/store/apps/details?id=com.wawagame.app.perfectpark&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=Belas+Studio",
+    "developer": "Belas Studio",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/04/30",
+    "tags": "Games",
+    "removed": false,
+    "release_date": "2020/03/06"
+  },
+  {
+    "name": "Spot Differences Find & Search",
+    "company_cn": "北京十方途创",
+    "icon": "https://play-lh.googleusercontent.com/Tos8_rLbw6UveIpeWNXjAGbN_b3AC5l0ITGfzJ_XHk0isDWJb3sMG8HqvYvd0k5_sq5QGh2VvbeDq1k9ip8x-g=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.cmgame.app.spotdiffer",
+    "store_link": "https://play.google.com/store/apps/details?id=com.cmgame.app.spotdiffer&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=April+21+Studio",
+    "developer": "April 21 Studio",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/05/21",
+    "tags": "Games",
+    "removed": false,
+    "release_date": "2024/07/29"
   }
 ]);
