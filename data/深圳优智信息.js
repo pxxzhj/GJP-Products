@@ -1630,5 +1630,37 @@ window._loadCompany("深圳优智信息", [
     "tags": "",
     "removed": false,
     "release_date": "2026/06/12"
+  },
+  {
+    "name": "Arrows Yarn Drawing",
+    "company_cn": "深圳优智信息",
+    "icon": "https://play-lh.googleusercontent.com/qpiKOb86ppR5c3Kp5d1CA8cOU7f7uKlWGpa6eiIPY3p3WugGrlxjWTqRLEhL-3NG07i6V4KQmFThTc8mihwG=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.yg.arrowsyarn",
+    "store_link": "https://play.google.com/store/apps/details?id=com.yg.arrowsyarn&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=7981176816074007556",
+    "developer": "SUPERIOR STUDIO",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/06/26",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/06/26"
+  },
+  {
+    "name": "Fun Mahjong Crush",
+    "company_cn": "深圳优智信息",
+    "icon": "https://play-lh.googleusercontent.com/Nv8vyDdOy3nGPL2N4wgb_lrYecx8MR_hEGC42vRcdOjIOF4pgV-1soDbf72K4-wDsZP2LLOgbWbtTbRQzX2OXLU=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.ew.mahjongcrush",
+    "store_link": "https://play.google.com/store/apps/details?id=com.ew.mahjongcrush&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=EWG+STUDIO",
+    "developer": "EWG STUDIO",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/06/26",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/06/26"
   }
 ]);
