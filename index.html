@@ -34,6 +34,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
 .vbtn.active{background:rgba(255,255,255,.15);color:#fff}
 .container{max-width:1600px;margin:0 auto;padding:16px}
 .result-info{font-size:13px;color:#64748b;margin-bottom:12px}
+.pager{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:12px;color:#64748b;font-size:12px;flex-wrap:wrap}
+.pager button{padding:5px 10px;border:1px solid #dbe3ef;border-radius:6px;background:#fff;color:#334155;cursor:pointer;font-size:12px}
+.pager button:hover:not(:disabled){border-color:#3b82f6;color:#3b82f6}
+.pager button:disabled{opacity:.45;cursor:not-allowed}
+.pager .page-label{min-width:96px;text-align:center}
 .app-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
 .app-card{background:#fff;border-radius:10px;padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:all .2s;position:relative;border-left:3px solid transparent}
 .app-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.12);transform:translateY(-1px)}
@@ -199,6 +204,13 @@ th.sort-desc::after{content:" ↓";font-size:10px;color:#3b82f6}
         </tr></thead>
         <tbody id="listBody"></tbody>
       </table>
+    </div>
+    <div class="pager" id="pager" style="display:none">
+      <button id="firstPageBtn" type="button">首页</button>
+      <button id="prevPageBtn" type="button">上一页</button>
+      <span class="page-label" id="pageLabel"></span>
+      <button id="nextPageBtn" type="button">下一页</button>
+      <button id="lastPageBtn" type="button">末页</button>
     </div>
   </div>
 </div>
@@ -792,18 +804,28 @@ const companiesData = [
 companiesData.forEach((c,i) => COMPANY_CLASS[c.name] = 'c' + ((i % 17) + 1));
 
 const appCache = {};
+let productIndex = null;
+const PAGE_SIZE = 200;
 let currentApps = [];
 let currentTab = 'products';
 let currentView = 'list';
 let currentSort = {key:'release', dir:'desc'};
 let currentFilter = 'live';
+let currentPage = 1;
 let activeCompany = null;
 let coSort = {key:'total', dir:'desc'};
 var _pendingLoads = {};
+var _pendingProductIndex = null;
+var searchTimer = null;
 
 window._loadCompany = function(name, data) {
   appCache[name] = data;
   if (_pendingLoads[name]) { _pendingLoads[name](); delete _pendingLoads[name]; }
+};
+
+window._loadProductIndex = function(data) {
+  productIndex = data || [];
+  if (_pendingProductIndex) { _pendingProductIndex(); _pendingProductIndex = null; }
 };
 
 function fmtNum(n) {
@@ -841,6 +863,31 @@ function loadCompanyScript(name) {
 function loadAllScripts() {
   var promises = companiesData.map(function(c) { return loadCompanyScript(c.name); });
   return Promise.all(promises);
+}
+
+function loadProductIndex() {
+  return new Promise(function(resolve) {
+    if (productIndex) { resolve(productIndex); return; }
+    _pendingProductIndex = function() { resolve(productIndex || []); };
+    var s = document.createElement('script');
+    s.src = 'product_index.js';
+    s.onerror = function() {
+      _pendingProductIndex = null;
+      loadAllScripts().then(function() {
+        var all = [];
+        companiesData.forEach(function(c) { all = all.concat(appCache[c.name] || []); });
+        productIndex = all;
+        resolve(productIndex);
+      });
+    };
+    document.body.appendChild(s);
+  });
+}
+
+function clearProductViews() {
+  document.getElementById('listBody').innerHTML = '';
+  document.getElementById('gridView').innerHTML = '';
+  document.getElementById('pager').style.display = 'none';
 }
 
 function initStats() {
@@ -901,15 +948,16 @@ function renderCompanyTable() {
 
 function showCompanyProducts(companyName) {
   activeCompany = companyName;
+  currentPage = 1;
   document.getElementById('searchInput').value = '';
   switchTab('products');
   document.getElementById('resultInfo').textContent = '加载中...';
-  document.getElementById('listBody').innerHTML = '';
-  document.getElementById('gridView').innerHTML = '';
+  clearProductViews();
 
   loadCompanyScript(companyName).then(function() {
     currentApps = appCache[companyName] || [];
     currentFilter = 'live';
+    currentPage = 1;
     document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='live'); });
     renderProducts();
     document.getElementById('backRow').innerHTML = '<button class="back-btn" onclick="switchTab(\'company\')">← 返回公司总览</button> <span style="font-size:13px;color:#64748b;font-weight:600">'+companyName+'</span>';
@@ -918,17 +966,16 @@ function showCompanyProducts(companyName) {
 
 function showAllProducts() {
   activeCompany = null;
+  currentPage = 1;
   document.getElementById('searchInput').value = '';
   switchTab('products');
   document.getElementById('resultInfo').textContent = '加载中...';
-  document.getElementById('listBody').innerHTML = '';
-  document.getElementById('gridView').innerHTML = '';
+  clearProductViews();
 
-  loadAllScripts().then(function() {
-    var all = [];
-    companiesData.forEach(function(c) { all = all.concat(appCache[c.name] || []); });
-    currentApps = all;
+  loadProductIndex().then(function(apps) {
+    currentApps = apps || [];
     currentFilter = 'live';
+    currentPage = 1;
     document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter==='live'); });
     renderProducts();
     document.getElementById('backRow').innerHTML = '<button class="back-btn" onclick="switchTab(\'company\')">← 返回公司总览</button> <span style="font-size:13px;color:#64748b;font-weight:600">全部产品</span>';
@@ -984,8 +1031,17 @@ function sortApps(list) {
 function renderProducts() {
   var filtered = getFiltered();
   var sorted = sortApps(filtered);
+  var total = sorted.length;
+  var totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  if (currentPage > totalPages) currentPage = totalPages;
+  if (currentPage < 1) currentPage = 1;
+  var start = total ? (currentPage - 1) * PAGE_SIZE : 0;
+  var end = Math.min(start + PAGE_SIZE, total);
+  var pageItems = sorted.slice(start, end);
 
-  document.getElementById('resultInfo').textContent = '显示 ' + sorted.length + ' 条' + (activeCompany ? ' — '+activeCompany : '');
+  document.getElementById('resultInfo').textContent = total
+    ? '显示 ' + (start + 1) + '-' + end + ' / ' + total + ' 条' + (activeCompany ? ' — '+activeCompany : '')
+    : '显示 0 条' + (activeCompany ? ' — '+activeCompany : '');
 
   document.querySelectorAll('#listView th.sortable').forEach(function(th) {
     th.classList.remove('sort-asc','sort-desc');
@@ -995,12 +1051,41 @@ function renderProducts() {
   if (currentView === 'list') {
     document.getElementById('listView').style.display = '';
     document.getElementById('gridView').style.display = 'none';
-    renderList(sorted);
+    renderList(pageItems);
   } else {
     document.getElementById('listView').style.display = 'none';
     document.getElementById('gridView').style.display = 'grid';
-    renderGrid(sorted);
+    renderGrid(pageItems);
   }
+  renderPager(totalPages, total);
+}
+
+function renderPager(totalPages, total) {
+  var pager = document.getElementById('pager');
+  pager.style.display = total > PAGE_SIZE ? 'flex' : 'none';
+  document.getElementById('pageLabel').textContent = currentPage + ' / ' + totalPages;
+  document.getElementById('firstPageBtn').disabled = currentPage <= 1;
+  document.getElementById('prevPageBtn').disabled = currentPage <= 1;
+  document.getElementById('nextPageBtn').disabled = currentPage >= totalPages;
+  document.getElementById('lastPageBtn').disabled = currentPage >= totalPages;
+}
+
+function goToPage(page) {
+  currentPage = page;
+  renderProducts();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function debounceSearchRender() {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(function() {
+    currentPage = 1;
+    if (currentTab === 'company') {
+      renderCompanyTable();
+    } else {
+      renderProducts();
+    }
+  }, 200);
 }
 
 function renderList(apps) {
@@ -1081,17 +1166,12 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
   });
 });
 
-document.getElementById('searchInput').addEventListener('input', function() {
-  if (currentTab === 'company') {
-    renderCompanyTable();
-  } else {
-    renderProducts();
-  }
-});
+document.getElementById('searchInput').addEventListener('input', debounceSearchRender);
 
 document.querySelectorAll('.filters .fbtn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     currentFilter = btn.dataset.filter;
+    currentPage = 1;
     document.querySelectorAll('.filters .fbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.filter===currentFilter); });
     renderProducts();
   });
@@ -1100,6 +1180,7 @@ document.querySelectorAll('.filters .fbtn').forEach(function(btn) {
 document.querySelectorAll('.view-toggle .vbtn').forEach(function(btn) {
   btn.addEventListener('click', function() {
     currentView = btn.dataset.view;
+    currentPage = 1;
     document.querySelectorAll('.view-toggle .vbtn').forEach(function(b) { b.classList.toggle('active', b.dataset.view===currentView); });
     renderProducts();
   });
@@ -1113,8 +1194,17 @@ document.querySelectorAll('#listView th.sortable').forEach(function(th) {
     } else {
       currentSort = {key:key, dir:'desc'};
     }
+    currentPage = 1;
     renderProducts();
   });
+});
+
+document.getElementById('firstPageBtn').addEventListener('click', function() { goToPage(1); });
+document.getElementById('prevPageBtn').addEventListener('click', function() { goToPage(currentPage - 1); });
+document.getElementById('nextPageBtn').addEventListener('click', function() { goToPage(currentPage + 1); });
+document.getElementById('lastPageBtn').addEventListener('click', function() {
+  var totalPages = Math.max(1, Math.ceil(getFiltered().length / PAGE_SIZE));
+  goToPage(totalPages);
 });
 
 document.querySelectorAll('.company-overview th.sortable').forEach(function(th) {

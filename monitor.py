@@ -574,6 +574,28 @@ def check_ios_updates(all_apps):
 
 # ── Step 4: regenerate files ─────────────────────────────────────────────────
 
+def write_product_index(all_apps):
+    fields = [
+        'name', 'company_cn', 'platform', 'developer', 'dev_link',
+        'store_link', 'pkg_or_id', 'downloads', 'rating_count',
+        'last_update', 'release_date', 'icon', 'removed',
+    ]
+    index_apps = []
+    for app in all_apps:
+        item = {}
+        for field in fields:
+            if field in app and app.get(field) not in ('', None):
+                item[field] = app.get(field)
+        index_apps.append(item)
+
+    js_content = 'window._loadProductIndex('
+    js_content += json.dumps(index_apps, ensure_ascii=False, separators=(',', ':'))
+    js_content += ');'
+    index_path = os.path.join(BASE_DIR, 'product_index.js')
+    with open(index_path, 'w', encoding='utf-8') as f:
+        f.write(js_content)
+    log(f"Updated product_index.js: {len(index_apps)} apps")
+
 def regenerate_files(all_apps, affected_companies):
     if not affected_companies:
         return
@@ -641,12 +663,13 @@ def regenerate_files(all_apps, affected_companies):
     with open(index_path, 'w', encoding='utf-8') as f:
         f.write(html)
     log("Updated index.html companiesData")
+    write_product_index(all_apps)
 
 # ── Step 5: git commit + push ────────────────────────────────────────────────
 
 def git_commit_push(new_count, update_count):
     os.chdir(BASE_DIR)
-    subprocess.run(['git', 'add', 'data/', 'index.html'], check=True)
+    subprocess.run(['git', 'add', 'data/', 'index.html', 'product_index.js'], check=True)
 
     diff = subprocess.run(['git', 'diff', '--cached', '--stat'], capture_output=True, text=True)
     if not diff.stdout.strip():
