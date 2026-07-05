@@ -3,3 +3,4 @@ backfill_gp_release_dates_report_*.txt
 __pycache__/
 *.pyc
 .DS_Store
+.gp_metrics_state.json

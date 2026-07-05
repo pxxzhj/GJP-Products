@@ -15,6 +15,8 @@ from datetime import datetime, date
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = '/tmp/all_apps_v6.json'
+GP_METRICS_STATE_PATH = os.path.join(BASE_DIR, '.gp_metrics_state.json')
+GP_METRICS_BATCH_SIZE = int(os.environ.get('GP_METRICS_BATCH_SIZE', '800'))
 REPORT_LINES = []
 
 # ── helpers ──────────────────────────────────────────────────────────────────
@@ -92,6 +94,23 @@ def parse_downloads(dl_str):
     if suffix == 'K': return int(num * 1000)
     elif suffix == 'M': return int(num * 1000000)
     elif suffix == 'B': return int(num * 1000000000)
+    return int(num)
+
+def parse_count_text(value):
+    if value is None:
+        return 0
+    text = str(value).replace(',', '').replace('+', '').strip()
+    m = re.search(r'([\d.]+)\s*([KMBkmb])?', text)
+    if not m:
+        return 0
+    num = float(m.group(1))
+    suffix = (m.group(2) or '').upper()
+    if suffix == 'K':
+        num *= 1000
+    elif suffix == 'M':
+        num *= 1000000
+    elif suffix == 'B':
+        num *= 1000000000
     return int(num)
 
 def fetch_text_url(url, timeout=20):
@@ -355,6 +374,140 @@ def open_gp_about_panel(driver):
     except Exception:
         pass
     return False
+
+def extract_gp_metrics(driver):
+    """Extract Google Play downloads and rating/review count from an app page."""
+    downloads = ''
+    rating_count = 0
+
+    try:
+        body = driver.page_source
+    except Exception:
+        body = ''
+
+    if body:
+        m = re.search(r'([\d,.]+[KMB]?\+?)\s*Downloads', body)
+        if m:
+            downloads = m.group(1).strip()
+
+        review_patterns = (
+            r'([\d,.]+[KMB]?)\s+reviews',
+            r'([\d,.]+[KMB]?)\s+ratings',
+            r'"([^"]*?[\d,.]+[KMB]?\s+reviews[^"]*?)"',
+            r'"([^"]*?[\d,.]+[KMB]?\s+ratings[^"]*?)"',
+        )
+        for pattern in review_patterns:
+            m = re.search(pattern, body, re.I)
+            if m:
+                rating_count = parse_count_text(m.group(1))
+                if rating_count:
+                    break
+
+    if not downloads or not rating_count:
+        try:
+            from selenium.webdriver.common.by import By
+            text = driver.find_element(By.TAG_NAME, 'body').text
+        except Exception:
+            text = ''
+
+        if text:
+            if not downloads:
+                m = re.search(r'([\d,.]+[KMB]?\+?)\s*\n?\s*Downloads', text, re.I)
+                if m:
+                    downloads = m.group(1).strip()
+            if not rating_count:
+                m = re.search(r'([\d,.]+[KMB]?)\s*(?:reviews|ratings)', text, re.I)
+                if m:
+                    rating_count = parse_count_text(m.group(1))
+
+    return downloads, rating_count
+
+def load_gp_metrics_state():
+    try:
+        with open(GP_METRICS_STATE_PATH, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        return int(data.get('next_index', 0))
+    except Exception:
+        return 0
+
+def save_gp_metrics_state(next_index):
+    data = {
+        'next_index': int(next_index),
+        'updated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+    }
+    with open(GP_METRICS_STATE_PATH, 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+
+def check_gp_metrics_updates(all_apps):
+    if GP_METRICS_BATCH_SIZE <= 0:
+        log("GP metrics update skipped: GP_METRICS_BATCH_SIZE <= 0")
+        return []
+
+    gp_apps = [a for a in all_apps if a.get('platform') == 'GP' and not a.get('removed')]
+    if not gp_apps:
+        return []
+
+    total = len(gp_apps)
+    batch_size = min(GP_METRICS_BATCH_SIZE, total)
+    start = load_gp_metrics_state() % total
+    selected = [gp_apps[(start + i) % total] for i in range(batch_size)]
+    next_index = (start + batch_size) % total
+
+    log(f"GP metrics: checking {batch_size}/{total} apps (start={start})...")
+    updates = []
+    errors = 0
+    driver = make_selenium_driver(timeout=25)
+
+    for i, app in enumerate(selected, 1):
+        pkg = app.get('pkg_or_id', '')
+        url = app.get('store_link') or f"https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us"
+        try:
+            driver.get(url)
+            time.sleep(1.5)
+            downloads, rating_count = extract_gp_metrics(driver)
+            changed = {}
+
+            old_downloads = app.get('downloads', '')
+            if downloads and parse_downloads(downloads) > parse_downloads(old_downloads):
+                app['downloads'] = downloads
+                changed['downloads'] = (old_downloads, downloads)
+
+            old_rating_count = app.get('rating_count', 0)
+            if not isinstance(old_rating_count, (int, float)):
+                old_rating_count = parse_count_text(old_rating_count)
+            if rating_count and rating_count > int(old_rating_count or 0):
+                app['rating_count'] = rating_count
+                changed['rating_count'] = (old_rating_count, rating_count)
+
+            if changed:
+                updates.append({
+                    'pkg_or_id': pkg,
+                    'name': app.get('name', pkg),
+                    'company': app.get('company_cn', ''),
+                    'changes': changed,
+                })
+
+            if i % 50 == 0 or i == batch_size:
+                log(f"  GP metrics progress: {i}/{batch_size} (updated: {len(updates)}, errors: {errors})")
+
+        except Exception as e:
+            errors += 1
+            log(f"  GP metrics ERROR [{i}/{batch_size}] {pkg}: {str(e)[:80]}")
+            try:
+                driver.quit()
+            except Exception:
+                pass
+            driver = make_selenium_driver(timeout=25)
+            time.sleep(1)
+
+    try:
+        driver.quit()
+    except Exception:
+        pass
+
+    save_gp_metrics_state(next_index)
+    log(f"GP metrics done: {len(updates)} apps updated, {errors} errors, next_index={next_index}")
+    return updates
 
 def check_gp_developers(all_apps):
     from selenium.webdriver.common.by import By
@@ -720,6 +873,11 @@ def main():
     for u in updates:
         affected.add(u['company'])
 
+    # Step 3b: GP metrics check
+    metric_updates = check_gp_metrics_updates(all_apps)
+    for u in metric_updates:
+        affected.add(u['company'])
+
     # Save database
     with open(DB_PATH, 'w') as f:
         json.dump(all_apps, f, ensure_ascii=False, indent=2)
@@ -729,8 +887,8 @@ def main():
         regenerate_files(all_apps, affected)
 
     # Step 5: Git
-    if added > 0 or updates:
-        git_commit_push(added, len(updates))
+    if added > 0 or updates or metric_updates:
+        git_commit_push(added, len(updates) + len(metric_updates))
 
     # Report
     log("")
@@ -752,6 +910,21 @@ def main():
     if updates:
         for u in updates:
             log(f"    {u['company']}: {u['name']} ({u['old_update']} -> {u['new_update']})")
+
+    log(f"指标更新: {len(metric_updates)}")
+    if metric_updates:
+        for u in metric_updates[:80]:
+            parts = []
+            changes = u.get('changes', {})
+            if 'downloads' in changes:
+                old, new = changes['downloads']
+                parts.append(f"downloads {old or '-'} -> {new}")
+            if 'rating_count' in changes:
+                old, new = changes['rating_count']
+                parts.append(f"rating_count {old or 0} -> {new}")
+            log(f"    {u['company']}: {u['name']} ({'; '.join(parts)})")
+        if len(metric_updates) > 80:
+            log(f"    ... {len(metric_updates) - 80} more metric updates")
 
     log(f"数据库总计: {len(all_apps)} apps")
     log(f"受影响公司: {', '.join(affected) if affected else '无'}")
