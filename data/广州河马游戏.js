@@ -137,7 +137,7 @@ window._loadCompany("广州河马游戏", [
     "dev_link": "https://apps.apple.com/developer/id1395851580",
     "developer": "魂动天下",
     "downloads": "",
-    "rating_count": 18759,
+    "rating_count": 18765,
     "last_update": "2026/05/13",
     "tags": "Games, Simulation, Strategy, Entertainment",
     "removed": false,
@@ -3054,5 +3054,21 @@ window._loadCompany("广州河马游戏", [
     "tags": "",
     "removed": false,
     "release_date": "2026/06/03"
+  },
+  {
+    "name": "Icon Associations Puzzle",
+    "company_cn": "广州河马游戏",
+    "icon": "https://play-lh.googleusercontent.com/KxpZVRFeWJvabK8L_7xZAwf8BILUvwlpJjLQEEWXyc0bXHOxunWbnsmRSkTOBDSZOaGHhKVlBHPnoM2qbZjquA=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "emoji.icon.association.puzzle.sorting.game",
+    "store_link": "https://play.google.com/store/apps/details?id=emoji.icon.association.puzzle.sorting.game&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5906346538712222747",
+    "developer": "Hippo Lab",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/03",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/03"
   }
 ]);
