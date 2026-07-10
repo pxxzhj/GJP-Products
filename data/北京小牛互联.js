@@ -2702,5 +2702,21 @@ window._loadCompany("北京小牛互联", [
     "tags": "",
     "removed": false,
     "release_date": "2026/07/05"
+  },
+  {
+    "name": "Solitaire：Brain Math Game",
+    "company_cn": "北京小牛互联",
+    "icon": "https://play-lh.googleusercontent.com/qYOH-1KWcirdMdetI1VsI7LO14hJqtMzylTrkOUsUje0z6OcoKFucYORjPlBTxLtHumyhGkgHQhjY2p0SpUwig=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "solitaire.math.number.puzzle.game.brain.logic",
+    "store_link": "https://play.google.com/store/apps/details?id=solitaire.math.number.puzzle.game.brain.logic&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=Joymaster+Puzzle+Game+Studio&hl=en&gl=us",
+    "developer": "Joymaster Puzzle Game Studio",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/09",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/09"
   }
 ]);
