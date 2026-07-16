@@ -9,7 +9,7 @@ window._loadCompany("北京kiwi科维智娱", [
     "dev_link": "https://apps.apple.com/developer/id1704802085",
     "developer": "JoyGame Studio Limited",
     "downloads": "",
-    "rating_count": 45627,
+    "rating_count": 45693,
     "last_update": "2026/07/14",
     "tags": "Games, Board, Puzzle",
     "removed": false,
@@ -41,7 +41,7 @@ window._loadCompany("北京kiwi科维智娱", [
     "dev_link": "https://apps.apple.com/developer/id1704802085",
     "developer": "JoyGame Studio Limited",
     "downloads": "",
-    "rating_count": 3663,
+    "rating_count": 3664,
     "last_update": "2026/07/01",
     "tags": "Games, Puzzle, Board",
     "removed": false,
@@ -174,5 +174,21 @@ window._loadCompany("北京kiwi科维智娱", [
     "tags": "",
     "removed": false,
     "release_date": "2026/07/12"
+  },
+  {
+    "name": "Smash Carnival!",
+    "company_cn": "北京kiwi科维智娱",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f4/eb/1e/f4eb1ec3-1f63-e290-c452-bf4aaeede9d0/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6786515594",
+    "store_link": "https://apps.apple.com/app/id6786515594",
+    "dev_link": "https://apps.apple.com/developer/id1704802085",
+    "developer": "JoyGame Studio Limited",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/16",
+    "tags": "Games, Board, Puzzle",
+    "removed": false,
+    "release_date": "2026/07/15"
   }
 ]);
