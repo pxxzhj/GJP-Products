@@ -6766,5 +6766,21 @@ window._loadCompany("奇讯新游", [
     "tags": "",
     "removed": false,
     "release_date": "2026/07/13"
+  },
+  {
+    "name": "Backpack Stars",
+    "company_cn": "奇讯新游",
+    "icon": "https://play-lh.googleusercontent.com/yxRq60vMA2TWipV0urV3aoOEhHrRHbfAuIXf2sIA-Gy3NXEHU0U3hVucpr2k8nJk1D4AiRn6p8U56stl_ILK=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.brawl.merge.fight.battle",
+    "store_link": "https://play.google.com/store/apps/details?id=com.brawl.merge.fight.battle&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=8901308944618141118",
+    "developer": "NOODLE GAMES LIMITED",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/17",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/17"
   }
 ]);

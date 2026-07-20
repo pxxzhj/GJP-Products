@@ -73,7 +73,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1587319074",
     "developer": "Shanghai Freemind Software Co., Ltd.",
     "downloads": "",
-    "rating_count": 1571,
+    "rating_count": 1574,
     "last_update": "2026/07/17",
     "tags": "Puzzle, Match-3: Other, Match-3",
     "removed": false,
@@ -910,5 +910,21 @@ window._loadCompany("上海襄翼", [
     "tags": "Games, Entertainment, Casual, Puzzle",
     "removed": false,
     "release_date": "2026/07/16"
+  },
+  {
+    "name": "Tile Quest - Triple Match Game",
+    "company_cn": "上海襄翼",
+    "icon": "https://play-lh.googleusercontent.com/pAcCMa9Pvct-AS5w2_72IE2o5_BdYMjcUFuHIA6nK576rxVk4ZEDw6RbD1_VIKmG1Uhb78J9LPAcUHAs9fGC=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.tilequest.match.puzzle.travel.game",
+    "store_link": "https://play.google.com/store/apps/details?id=com.tilequest.match.puzzle.travel.game&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5514859155799869118",
+    "developer": "Wood Puzzle Sudoku Games",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/17",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/17"
   }
 ]);
