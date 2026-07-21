@@ -1150,5 +1150,21 @@ window._loadCompany("海外-印度-PlaySimple", [
     "tags": "Games, Word",
     "removed": false,
     "release_date": "2025/10/15"
+  },
+  {
+    "name": "Word Bubble Association",
+    "company_cn": "海外-印度-PlaySimple",
+    "icon": "https://play-lh.googleusercontent.com/uP6Dc2MuLy-doprc6YluflcMfxDgYFYuMNx_4NcNOSdNwfpccjZS42pbE_8P_W6rMh3VonuaStL24bYVwRRWAA=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "in.playsimple.wordbubble.association",
+    "store_link": "https://play.google.com/store/apps/details?id=in.playsimple.wordbubble.association&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5614380929317640208&hl=en&gl=us",
+    "developer": "PlaySimple Games",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/21",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/20"
   }
 ]);

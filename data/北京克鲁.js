@@ -2345,7 +2345,7 @@ window._loadCompany("北京克鲁", [
     "dev_link": "https://apps.apple.com/developer/id1757815609",
     "developer": "NimbleMind",
     "downloads": "",
-    "rating_count": 25,
+    "rating_count": 29,
     "last_update": "2026/07/17",
     "tags": "Games, Entertainment, Puzzle, Casual",
     "removed": false,
@@ -2398,5 +2398,21 @@ window._loadCompany("北京克鲁", [
     "tags": "",
     "removed": false,
     "release_date": "2026/07/11"
+  },
+  {
+    "name": "Color Sort Puzzle: Loopy Doopy",
+    "company_cn": "北京克鲁",
+    "icon": "https://play-lh.googleusercontent.com/dXWVrDZyzwAL1W3nE6j5DYUZylrVMERmuGjrxgKT7pz4FAh8HQp_dmnztddQe0577K-7rF7Wg_axz4DN9UVCCQ=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.gurupuzzle.loopy.doopy.sort",
+    "store_link": "https://play.google.com/store/apps/details?id=com.gurupuzzle.loopy.doopy.sort&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=6696884048369103258",
+    "developer": "Guru Puzzle Game",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/20",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/20"
   }
 ]);
