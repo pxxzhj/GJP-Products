@@ -9,7 +9,7 @@ window._loadCompany("深圳益欣网络", [
     "dev_link": "https://play.google.com/store/apps/developer?id=FireKula",
     "developer": "FireKula",
     "downloads": "20M+",
-    "rating_count": 12700,
+    "rating_count": 12900,
     "last_update": "2026/04/28",
     "tags": "S, Sci-fi, Arcade Racing, Stylized, 3D, Mecha/Robots, Games, Casual, Arcade Racing: Other, Racing",
     "removed": false,

@@ -4634,7 +4634,7 @@ window._loadCompany("合肥常春藤", [
     "developer": "IVYMOBILE INTERNATIONAL ENTERPRISE LIMITED",
     "downloads": "",
     "rating_count": 5,
-    "last_update": "2026/07/21",
+    "last_update": "2026/07/22",
     "tags": "Games, Puzzle, Casual",
     "removed": false,
     "release_date": "2026/07/03"
