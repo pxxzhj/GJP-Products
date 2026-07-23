@@ -504,7 +504,7 @@ window._loadCompany("上海元笛软件", [
     "store_link": "https://play.google.com/store/apps/details?gl=US&hl=en-US&id=band.tiles.dancing.joyjourney.rhythm.piano.musicgame",
     "dev_link": "https://play.google.com/store/apps/dev?id=5888091719203368573",
     "developer": "Joy Journey Girls",
-    "downloads": "1M+",
+    "downloads": "5M+",
     "rating_count": 0,
     "last_update": "2026/03/25",
     "tags": "Music, Arcade, Games, Rhythm, Hypercasual",

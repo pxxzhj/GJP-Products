@@ -25,7 +25,7 @@ window._loadCompany("上海小传科技-传音", [
     "dev_link": "https://play.google.com/store/apps/developer?id=PALM+STUDIO",
     "developer": "PALM STUDIO",
     "downloads": "1M+",
-    "rating_count": 19,
+    "rating_count": 20,
     "last_update": "2025/12/01",
     "tags": "Runner, Games, Hypercasual, Platformer, Action",
     "removed": false,
