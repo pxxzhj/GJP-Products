@@ -345,7 +345,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1518003372",
     "developer": "Piano Music Studio",
     "downloads": "",
-    "rating_count": 7701,
+    "rating_count": 7700,
     "last_update": "2026/03/23",
     "tags": "Block Puzzle, Block Sudoku, Puzzle",
     "removed": false,
@@ -361,7 +361,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1587319074",
     "developer": "Shanghai Freemind Software Co., Ltd.",
     "downloads": "",
-    "rating_count": 1879,
+    "rating_count": 1881,
     "last_update": "2026/03/20",
     "tags": "Block Sudoku, Puzzle, Block Puzzle",
     "removed": false,
@@ -601,7 +601,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1587319074",
     "developer": "Shanghai Freemind Software Co., Ltd.",
     "downloads": "",
-    "rating_count": 4955,
+    "rating_count": 4954,
     "last_update": "2024/05/28",
     "tags": "Tabletop, Solitaire, Solitaire: Other, Card Games",
     "removed": false,
@@ -926,5 +926,21 @@ window._loadCompany("上海襄翼", [
     "tags": "",
     "removed": false,
     "release_date": "2026/07/17"
+  },
+  {
+    "name": "Bubble Shooter: Rescue Family",
+    "company_cn": "上海襄翼",
+    "icon": "https://play-lh.googleusercontent.com/C_JzSuXakmX-uCPqz776Her_9TfPc2NOBSXGvr04wts_6z8F1DzB2HrWlroWTY2OdLkFNB130bLwZ6sWqDUfBQ=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.bubbleshooter.rescue.story.family.pop.puzzle",
+    "store_link": "https://play.google.com/store/apps/details?id=com.bubbleshooter.rescue.story.family.pop.puzzle&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5514859155799869118",
+    "developer": "Wood Puzzle Sudoku Games",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/24",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/25"
   }
 ]);
