@@ -734,5 +734,21 @@ window._loadCompany("playvalve", [
     "tags": "Guess The Word, Puzzle, Word Puzzle",
     "removed": true,
     "release_date": "2022/03/21"
+  },
+  {
+    "name": "Kitchen Ninja — Knife Thrower",
+    "company_cn": "playvalve",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/6d/1c/56/6d1c56cc-8885-fc16-32a1-dfc6912d6651/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6767216988",
+    "store_link": "https://apps.apple.com/app/id6767216988",
+    "dev_link": "https://apps.apple.com/developer/id1549726222",
+    "developer": "Bluetile Games S.L.",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/07/29",
+    "tags": "Games, Casual",
+    "removed": false,
+    "release_date": "2026/07/29"
   }
 ]);
