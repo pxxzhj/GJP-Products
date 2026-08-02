@@ -105,7 +105,7 @@ window._loadCompany("深圳优智信息", [
     "dev_link": "https://apps.apple.com/developer/id1514053338",
     "developer": "吕 罗",
     "downloads": "",
-    "rating_count": 53,
+    "rating_count": 54,
     "last_update": "2026/03/06",
     "tags": "Games, Racing, Casual",
     "removed": false,
@@ -201,7 +201,7 @@ window._loadCompany("深圳优智信息", [
     "dev_link": "https://apps.apple.com/developer/id1514053338",
     "developer": "吕 罗",
     "downloads": "",
-    "rating_count": 46,
+    "rating_count": 47,
     "last_update": "2026/03/06",
     "tags": "Games, Racing, Adventure",
     "removed": false,
@@ -1662,5 +1662,21 @@ window._loadCompany("深圳优智信息", [
     "tags": "",
     "removed": false,
     "release_date": "2026/06/26"
+  },
+  {
+    "name": "您的连接已中断",
+    "company_cn": "深圳优智信息",
+    "icon": "",
+    "platform": "GP",
+    "pkg_or_id": "com.hotplay.funcat",
+    "store_link": "https://play.google.com/store/apps/details?id=com.hotplay.funcat&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=6723260132178990530",
+    "developer": "",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/07/28"
   }
 ]);
