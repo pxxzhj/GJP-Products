@@ -358,7 +358,7 @@ window._loadCompany("北京棕榈创想", [
     "platform": "iOS",
     "pkg_or_id": "6745003362",
     "store_link": "https://apps.apple.com/us/app/word-oasis-calm-puzzle-game/id6745003362?uo=4",
-    "dev_link": "https://apps.apple.com/developer/id6745003362",
+    "dev_link": "https://apps.apple.com/developer/id1810394672",
     "developer": "Oasis Games LTD",
     "downloads": "",
     "rating_count": 135873,
@@ -366,6 +366,22 @@ window._loadCompany("北京棕榈创想", [
     "tags": "Games, Puzzle, Word",
     "removed": false,
     "release_date": "2025/06/05"
+  },
+  {
+    "name": "Word Oasis: Cross Puzzle Game",
+    "company_cn": "北京棕榈创想",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/72/a2/c8/72a2c8a5-50a4-1823-4794-c3168ade8b33/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6763512052",
+    "store_link": "https://apps.apple.com/us/app/word-oasis-cross-puzzle-game/id6763512052?uo=4",
+    "dev_link": "https://apps.apple.com/developer/id1810394672",
+    "developer": "Oasis Games LTD",
+    "downloads": "",
+    "rating_count": 3907,
+    "last_update": "2026/07/09",
+    "tags": "Games, Puzzle, Word",
+    "removed": false,
+    "release_date": "2026/05/11"
   },
   {
     "name": "Hospital Mania - Zoo Story",
@@ -478,5 +494,21 @@ window._loadCompany("北京棕榈创想", [
     "tags": "",
     "removed": false,
     "release_date": "2026/04/30"
+  },
+  {
+    "name": "Word Oasis: Calm Puzzle Game",
+    "company_cn": "北京棕榈创想",
+    "icon": "https://play-lh.googleusercontent.com/n1nm77YPJw1qphed1IlLwFN9hvqHDLaBRbOy5habdmpnQ4SnA93Y5PXsTXedbneqRuSjrsdEfatmgL4BTuN0=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.wordconnect.wordoasis.word",
+    "store_link": "https://play.google.com/store/apps/details?id=com.wordconnect.wordoasis.word&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=4861855675467892080&hl=en&gl=us",
+    "developer": "Oasis Games, Ltd.",
+    "downloads": "5K+",
+    "rating_count": 787,
+    "last_update": "2026/07/28",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/06/24"
   }
 ]);
