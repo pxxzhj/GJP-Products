@@ -841,7 +841,7 @@ window._loadCompany("深圳萤火乐游", [
     "dev_link": "https://apps.apple.com/developer/id1783779179",
     "developer": "Arrowise Studio",
     "downloads": "",
-    "rating_count": 162,
+    "rating_count": 171,
     "last_update": "2026/08/03",
     "tags": "Games, Puzzle, Casual",
     "removed": false,
@@ -910,5 +910,21 @@ window._loadCompany("深圳萤火乐游", [
     "tags": "Games, Puzzle, Casual",
     "removed": false,
     "release_date": "2026/08/10"
+  },
+  {
+    "name": "Quack Sort: Loop Puzzle",
+    "company_cn": "深圳萤火乐游",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8c/f4/fe/8cf4fecf-a6f7-2651-c8ab-1db358c831a3/AppIcon-0-0-1x_U007epad-0-11-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6791110153",
+    "store_link": "https://apps.apple.com/app/id6791110153",
+    "dev_link": "https://apps.apple.com/developer/id1742170855",
+    "developer": "LE TECH CO.,LIMITED",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/08/18",
+    "tags": "Games, Casual, Puzzle",
+    "removed": false,
+    "release_date": "2026/08/18"
   }
 ]);
