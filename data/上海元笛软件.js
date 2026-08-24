@@ -41,7 +41,7 @@ window._loadCompany("上海元笛软件", [
     "dev_link": "https://play.google.com/store/apps/dev?id=5888091719203368573",
     "developer": "Joy Journey Girls",
     "downloads": "5.0M+",
-    "rating_count": 13600,
+    "rating_count": 13700,
     "last_update": "2025/12/08",
     "tags": "Rhythm, Hypercasual, Games, Arcade, 3D, Abstract, Music",
     "removed": false,
