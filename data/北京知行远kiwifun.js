@@ -1146,7 +1146,7 @@ window._loadCompany("北京知行远kiwifun", [
     "developer": "Kiwi Fun HK Limited",
     "downloads": "",
     "rating_count": 0,
-    "last_update": "2026/08/25",
+    "last_update": "2026/08/26",
     "tags": "Games, Puzzle, Casual",
     "removed": false,
     "release_date": "2026/08/21"
