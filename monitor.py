@@ -11,6 +11,7 @@ import time
 import subprocess
 import urllib.parse
 import urllib.request
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, date
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -18,6 +19,13 @@ DB_PATH = '/tmp/all_apps_v6.json'
 GP_METRICS_STATE_PATH = os.path.join(BASE_DIR, '.gp_metrics_state.json')
 GP_METRICS_BATCH_SIZE = int(os.environ.get('GP_METRICS_BATCH_SIZE', '800'))
 REPORT_LINES = []
+GP_DEVELOPER_SCAN_STATS = {}
+
+GP_REQUEST_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) '
+                  'AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
 
 # ── helpers ──────────────────────────────────────────────────────────────────
 
@@ -68,6 +76,34 @@ def normalize_release_or_expected_date(d, today=None):
         return f'{normalized}[预]'
     return normalized
 
+def ios_store_item_is_available(item, today=None):
+    """Return whether Apple exposes evidence that the item has launched."""
+    normalized = normalize_date(str(item.get('releaseDate', ''))[:10])
+    if not normalized:
+        return False
+    if today is None:
+        today = date.today().strftime('%Y/%m/%d')
+    if normalized > today:
+        return False
+    if item.get('price') is not None or bool(item.get('formattedPrice')):
+        return True
+
+    # Apple Arcade titles have no standalone price. A later version date is
+    # strong evidence that the expected release has become an actual release.
+    version_date = normalize_past_or_today_date(
+        str(item.get('currentVersionReleaseDate', ''))[:10], today
+    )
+    return bool(version_date and version_date > normalized)
+
+def normalize_ios_release_date(item, today=None):
+    """Keep unavailable App Store items marked as expected, even after a stale date."""
+    normalized = normalize_date(str(item.get('releaseDate', ''))[:10])
+    if not normalized:
+        return ''
+    if ios_store_item_is_available(item, today):
+        return normalized
+    return f'{normalized}[预]'
+
 def format_downloads(n):
     if n <= 0:
         return ''
@@ -117,6 +153,24 @@ def fetch_text_url(url, timeout=20):
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         return resp.read().decode('utf-8', 'ignore')
+
+
+def fetch_gp_text(url, timeout=30):
+    req = urllib.request.Request(url, headers=GP_REQUEST_HEADERS)
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read().decode('utf-8', 'ignore')
+
+
+def extract_gp_downloads_from_html(body):
+    for pattern in (
+        r'<div class="ClM7O">\s*([^<]+?)\s*</div>\s*<div class="g1rdde">Downloads</div>',
+        r'([\d,.]+[KMB]?\+?)\s*</div>\s*<div[^>]*>Downloads</div>',
+        r'([\d,.]+[KMB]?\+?)\s*Downloads',
+    ):
+        match = re.search(pattern, body, re.I | re.S)
+        if match:
+            return clean_detail_text(match.group(1))
+    return ''
 
 def itunes_lookup(endpoint, retries=3):
     for attempt in range(retries):
@@ -192,7 +246,7 @@ def check_ios_developers(all_apps):
                     'last_update': normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
                     'tags': ', '.join(r.get('genres', [])),
                     'removed': False,
-                    'release_date': normalize_release_or_expected_date(str(r.get('releaseDate', ''))[:10]),
+                    'release_date': normalize_ios_release_date(r),
                 }
                 new_ios_apps.append(app)
                 log(f"  NEW iOS: {app['name']} ({aid}) -> {info['company']}")
@@ -208,6 +262,44 @@ def check_ios_developers(all_apps):
 
 # ── Step 2: GP developer check ──────────────────────────────────────────────
 
+def normalize_gp_developer_url(dev_link, developer=''):
+    """Canonicalize name-based Play developer URLs without changing numeric IDs."""
+    if not dev_link or 'play.google.com' not in dev_link:
+        return dev_link
+
+    parsed = urllib.parse.urlsplit(dev_link)
+    if parsed.path.rstrip('/').endswith('/developer') and developer:
+        query = urllib.parse.parse_qs(parsed.query)
+        query['id'] = [developer]
+        query.setdefault('hl', ['en'])
+        query.setdefault('gl', ['us'])
+        encoded = urllib.parse.urlencode(query, doseq=True)
+        return urllib.parse.urlunsplit((
+            parsed.scheme or 'https',
+            parsed.netloc or 'play.google.com',
+            parsed.path,
+            encoded,
+            '',
+        ))
+    return dev_link
+
+
+def extract_gp_developer_identity(body):
+    """Read the current developer name and store link from a Play app page."""
+    match = re.search(
+        r'<div class="Vbfug[^\"]*"><a href="([^"]+)"><span>(.*?)</span>',
+        body,
+        re.S,
+    )
+    if not match:
+        return '', ''
+
+    href = html.unescape(match.group(1))
+    developer = clean_detail_text(match.group(2))
+    dev_url = urllib.parse.urljoin('https://play.google.com', href)
+    return developer, normalize_gp_developer_url(dev_url, developer)
+
+
 def extract_gp_developers(all_apps):
     """Extract unique GP developer URLs from the database."""
     devs = {}
@@ -217,14 +309,23 @@ def extract_gp_developers(all_apps):
         dev_link = a.get('dev_link', '')
         if not dev_link or 'play.google.com' not in dev_link:
             continue
+        normalized_link = normalize_gp_developer_url(dev_link, a.get('developer', ''))
+        if normalized_link != dev_link:
+            a['dev_link'] = normalized_link
+        dev_link = normalized_link
         if dev_link not in devs:
             devs[dev_link] = {
                 'url': dev_link,
                 'company': a['company_cn'],
                 'developer': a.get('developer', ''),
                 'known_pkgs': set(),
+                'seed_pkgs': [],
+                'apps': [],
             }
         devs[dev_link]['known_pkgs'].add(a['pkg_or_id'])
+        devs[dev_link]['apps'].append(a)
+        if not a.get('removed'):
+            devs[dev_link]['seed_pkgs'].append(a['pkg_or_id'])
     return devs
 
 def clean_detail_text(value):
@@ -262,11 +363,15 @@ def make_selenium_options():
 
     proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('HTTP_PROXY')
     opts = Options()
+    opts.page_load_strategy = 'none'
     opts.add_argument('--headless=new')
     opts.add_argument('--no-sandbox')
     opts.add_argument('--disable-dev-shm-usage')
     opts.add_argument('--lang=en-US')
     opts.add_argument('--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36')
+    opts.add_experimental_option('prefs', {
+        'profile.managed_default_content_settings.images': 2,
+    })
     if proxy:
         opts.add_argument(f'--proxy-server={proxy}')
     return opts
@@ -512,14 +617,29 @@ def check_gp_metrics_updates(all_apps):
 def check_gp_developers(all_apps):
     from selenium.webdriver.common.by import By
 
+    global GP_DEVELOPER_SCAN_STATS
+    original_links = {
+        id(app): app.get('dev_link', '')
+        for app in all_apps
+        if app.get('platform') == 'GP'
+    }
     devs = extract_gp_developers(all_apps)
-    log(f"GP: checking {len(devs)} developers...")
-
-    driver = make_selenium_driver(timeout=30)
+    normalized_apps = [
+        app for app in all_apps
+        if app.get('platform') == 'GP'
+        and app.get('dev_link', '') != original_links.get(id(app), '')
+    ]
+    identity_changes = []
+    identity_splits = []
+    error_details = []
+    deep_scan = os.environ.get('GP_DEEP_DEVELOPER_SCAN') == '1'
+    mode = 'deep browser scan' if deep_scan else 'daily storefront scan'
+    log(f"GP: checking {len(devs)} developers ({mode})...")
 
     new_gp_pkgs = {}  # pkg -> {company, dev_url}
     checked = 0
     errors = 0
+    driver = None
 
     def fetch_developer_packages(dev_url):
         driver.get(dev_url)
@@ -543,48 +663,184 @@ def check_gp_developers(all_apps):
                 found_pkgs.add(m.group(1))
         return found_pkgs
 
-    for dev_url, info in devs.items():
-        checked += 1
-        try:
+    def record_packages(dev_url, info, found_pkgs):
+        missing = found_pkgs - info['known_pkgs']
+        for pkg in missing:
+            if pkg not in new_gp_pkgs:
+                new_gp_pkgs[pkg] = {'company': info['company'], 'dev_url': dev_url}
+                log(f"  NEW GP pkg: {pkg} -> {info['company']}")
+
+    def apply_recovered_identity(info, dev_url, developer):
+        old_url = info['url']
+        for app in info['apps']:
+            app['dev_link'] = dev_url
+            if developer:
+                app['developer'] = developer
+        identity_changes.append({
+            'company': info['company'],
+            'developer': developer or info['developer'],
+            'old_url': old_url,
+            'new_url': dev_url,
+        })
+        log(
+            f"  GP developer identity recovered: {info['company']} / "
+            f"{developer or info['developer']}"
+        )
+
+    if deep_scan:
+        driver = make_selenium_driver(timeout=30)
+        for dev_url, info in devs.items():
+            checked += 1
             try:
-                found_pkgs = fetch_developer_packages(dev_url)
-            except Exception as e:
-                if 'invalid session' not in str(e).lower():
-                    raise
-                log(f"  GP driver session lost; restarting and retrying [{checked}/{len(devs)}]")
                 try:
-                    driver.quit()
-                except Exception:
-                    pass
-                driver = make_selenium_driver(timeout=30)
-                found_pkgs = fetch_developer_packages(dev_url)
+                    found_pkgs = fetch_developer_packages(dev_url)
+                except Exception as e:
+                    if 'invalid session' not in str(e).lower():
+                        raise
+                    log(f"  GP driver session lost; restarting and retrying [{checked}/{len(devs)}]")
+                    try:
+                        driver.quit()
+                    except Exception:
+                        pass
+                    driver = make_selenium_driver(timeout=30)
+                    found_pkgs = fetch_developer_packages(dev_url)
 
-            missing = found_pkgs - info['known_pkgs']
-            for pkg in missing:
-                if pkg not in new_gp_pkgs:
-                    new_gp_pkgs[pkg] = {'company': info['company'], 'dev_url': dev_url}
-                    log(f"  NEW GP pkg: {pkg} -> {info['company']}")
+                record_packages(dev_url, info, found_pkgs)
+                if checked % 10 == 0:
+                    log(f"  GP progress: {checked}/{len(devs)} (new: {len(new_gp_pkgs)})")
+                time.sleep(3)
+            except Exception as e:
+                errors += 1
+                error_details.append({
+                    'company': info['company'],
+                    'developer': info['developer'],
+                    'url': dev_url,
+                    'error': str(e)[:200],
+                })
+                log(f"  GP ERROR [{checked}/{len(devs)}] {dev_url[:60]}: {str(e)[:80]}")
+                time.sleep(2)
+    else:
+        def fetch_storefront(dev_url):
+            req = urllib.request.Request(dev_url, headers=GP_REQUEST_HEADERS)
+            last_error = None
+            for attempt in range(2):
+                try:
+                    with urllib.request.urlopen(req, timeout=30) as response:
+                        body = response.read().decode('utf-8', errors='ignore')
+                    packages = set(re.findall(
+                        r'/store/apps/details\?id=([a-zA-Z0-9_.]+)', body
+                    ))
+                    if not packages:
+                        raise RuntimeError('developer page returned no apps')
+                    return packages
+                except Exception as e:
+                    last_error = e
+                    if attempt == 0:
+                        time.sleep(1)
+            raise last_error
 
-            if checked % 10 == 0:
-                log(f"  GP progress: {checked}/{len(devs)} (new: {len(new_gp_pkgs)})")
+        def recover_developer_identity(info):
+            identities = {}
+            seed_errors = []
+            for pkg in list(dict.fromkeys(info['seed_pkgs']))[:3]:
+                url = f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us'
+                try:
+                    req = urllib.request.Request(url, headers=GP_REQUEST_HEADERS)
+                    with urllib.request.urlopen(req, timeout=30) as response:
+                        body = response.read().decode('utf-8', errors='ignore')
+                    developer, dev_url = extract_gp_developer_identity(body)
+                    if not dev_url:
+                        raise RuntimeError('developer identity not found on app page')
+                    identity = identities.setdefault(dev_url, {
+                        'developer': developer,
+                        'pkgs': [],
+                    })
+                    identity['pkgs'].append(pkg)
+                except Exception as e:
+                    seed_errors.append(f'{pkg}: {str(e)[:80]}')
 
-            time.sleep(3)
+            if not identities:
+                detail = '; '.join(seed_errors[:3]) or 'no active seed apps'
+                raise RuntimeError(f'developer recovery failed ({detail})')
+            if len(identities) > 1:
+                split = {
+                    'company': info['company'],
+                    'developer': info['developer'],
+                    'identities': {
+                        url: value['pkgs'] for url, value in identities.items()
+                    },
+                }
+                identity_splits.append(split)
+                raise RuntimeError(
+                    f'developer identity split across {len(identities)} store pages'
+                )
 
-        except Exception as e:
-            errors += 1
-            log(f"  GP ERROR [{checked}/{len(devs)}] {dev_url[:60]}: {str(e)[:80]}")
-            time.sleep(2)
+            dev_url, identity = next(iter(identities.items()))
+            return dev_url, identity['developer']
+
+        def fetch_storefront_with_recovery(dev_url, info):
+            try:
+                return fetch_storefront(dev_url), dev_url, '', False
+            except Exception as original_error:
+                recovered_url, developer = recover_developer_identity(info)
+                if recovered_url == dev_url:
+                    raise original_error
+                packages = fetch_storefront(recovered_url)
+                return packages, recovered_url, developer, True
+
+        with ThreadPoolExecutor(max_workers=8) as pool:
+            futures = {
+                pool.submit(fetch_storefront_with_recovery, dev_url, info): (dev_url, info)
+                for dev_url, info in devs.items()
+            }
+            for future in as_completed(futures):
+                dev_url, info = futures[future]
+                checked += 1
+                try:
+                    found_pkgs, current_url, developer, recovered = future.result()
+                    if recovered:
+                        apply_recovered_identity(info, current_url, developer)
+                    record_packages(current_url, info, found_pkgs)
+                except Exception as e:
+                    errors += 1
+                    error_details.append({
+                        'company': info['company'],
+                        'developer': info['developer'],
+                        'url': dev_url,
+                        'error': str(e)[:200],
+                    })
+                    log(f"  GP ERROR [{checked}/{len(devs)}] {dev_url[:60]}: {str(e)[:80]}")
+                if checked % 25 == 0 or checked == len(devs):
+                    log(f"  GP progress: {checked}/{len(devs)} (new: {len(new_gp_pkgs)}, errors: {errors})")
+
+    affected_companies = {
+        app['company_cn'] for app in normalized_apps
+    } | {
+        item['company'] for item in identity_changes
+    }
+    GP_DEVELOPER_SCAN_STATS = {
+        'checked': checked,
+        'errors': errors,
+        'normalized_apps': len(normalized_apps),
+        'recovered_developers': identity_changes,
+        'identity_splits': identity_splits,
+        'error_details': error_details,
+        'affected_companies': sorted(affected_companies),
+    }
 
     # Deduplicate against existing DB
     existing_pkgs = set(a['pkg_or_id'] for a in all_apps if a['platform'] == 'GP')
     truly_new = {p: v for p, v in new_gp_pkgs.items() if p not in existing_pkgs}
 
     if not truly_new:
-        driver.quit()
+        if driver:
+            driver.quit()
         log(f"GP check done: 0 new apps (checked {checked}, errors {errors})")
         return []
 
     log(f"GP: fetching details for {len(truly_new)} new apps...")
+    if driver is None:
+        driver = make_selenium_driver(timeout=30)
     new_gp_apps = []
     for pkg, info in truly_new.items():
         url = f"https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us"
@@ -609,14 +865,18 @@ def check_gp_developers(all_apps):
                 except:
                     icon = ''
 
-            downloads = ''
+            downloads, rating_count = extract_gp_metrics(driver)
             try:
-                body = driver.page_source
-                m = re.search(r'([\d,.]+[KMB]?\+?)\s*Downloads', body)
-                if m:
-                    downloads = m.group(1).strip()
+                if not downloads:
+                    body = driver.page_source
+                    downloads = extract_gp_downloads_from_html(body)
             except:
                 pass
+            if not downloads:
+                try:
+                    downloads = extract_gp_downloads_from_html(fetch_gp_text(url))
+                except Exception:
+                    pass
 
             developer = ''
             try:
@@ -632,8 +892,11 @@ def check_gp_developers(all_apps):
 
             removed = False
             try:
-                if "We're sorry" in driver.page_source or "not found" in driver.title.lower():
+                if "not found" in driver.title.lower():
                     removed = True
+                elif name == pkg:
+                    body_text = driver.find_element(By.TAG_NAME, 'body').text.strip().lower()
+                    removed = body_text.startswith("we're sorry") or body_text.startswith('not found')
             except:
                 pass
 
@@ -641,6 +904,10 @@ def check_gp_developers(all_apps):
                 log(f"  {release_source} release date: {pkg} -> {release_date}")
             elif not release_date:
                 log(f"  release date not shown: {pkg}")
+
+            if removed:
+                log(f"  Skipped unavailable GP app: {pkg}")
+                continue
 
             app = {
                 'name': name,
@@ -652,7 +919,7 @@ def check_gp_developers(all_apps):
                 'dev_link': info['dev_url'],
                 'developer': developer,
                 'downloads': downloads,
-                'rating_count': 0,
+                'rating_count': rating_count,
                 'last_update': last_update,
                 'tags': '',
                 'removed': removed,
@@ -664,12 +931,7 @@ def check_gp_developers(all_apps):
 
         except Exception as e:
             log(f"  Fetch ERROR: {pkg} - {str(e)[:80]}")
-            new_gp_apps.append({
-                'name': pkg, 'company_cn': info['company'], 'icon': '', 'platform': 'GP',
-                'pkg_or_id': pkg, 'store_link': url, 'dev_link': info['dev_url'],
-                'developer': '', 'downloads': '', 'rating_count': 0,
-                'last_update': '', 'tags': '', 'removed': True, 'release_date': '',
-            })
+            log(f"  Skipped GP app without accessible details: {pkg}")
 
     driver.quit()
     log(f"GP check done: {len(new_gp_apps)} new apps (checked {checked}, errors {errors})")
@@ -703,17 +965,28 @@ def check_ios_updates(all_apps):
             r = lookup.get(a['pkg_or_id'])
             if not r:
                 continue
+            change = {
+                'pkg_or_id': a['pkg_or_id'],
+                'name': a['name'],
+                'company': a['company_cn'],
+            }
             new_update = normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10])
             old_update = a.get('last_update', '')
             if new_update and new_update != old_update and new_update > old_update:
-                updates.append({
-                    'pkg_or_id': a['pkg_or_id'],
-                    'name': a['name'],
-                    'company': a['company_cn'],
-                    'old_update': old_update,
-                    'new_update': new_update,
-                })
+                change['old_update'] = old_update
+                change['new_update'] = new_update
                 a['last_update'] = new_update
+
+            old_release = a.get('release_date', '')
+            if old_release.endswith('[预]'):
+                new_release = normalize_ios_release_date(r)
+                if new_release and new_release != old_release:
+                    change['old_release'] = old_release
+                    change['new_release'] = new_release
+                    a['release_date'] = new_release
+
+            if len(change) > 3:
+                updates.append(change)
 
             new_rc = r.get('userRatingCount', 0)
             if isinstance(new_rc, int) and new_rc > 0:
@@ -859,13 +1132,15 @@ def main():
 
     # Add new apps
     added = 0
-    affected = set()
+    added_apps = []
+    affected = set(GP_DEVELOPER_SCAN_STATS.get('affected_companies', []))
     for app in new_ios + new_gp:
         key = (app['platform'], app['pkg_or_id'])
         if key not in existing_keys:
             all_apps.append(app)
             existing_keys.add(key)
             added += 1
+            added_apps.append(app)
             affected.add(app['company_cn'])
 
     # Step 3: iOS update check
@@ -895,21 +1170,28 @@ def main():
     log("=" * 60)
     log("监控报告")
     log("=" * 60)
-    log(f"新产品: {added} ({len(new_ios)} iOS + {len(new_gp)} GP)")
+    added_ios = [a for a in added_apps if a['platform'] == 'iOS']
+    added_gp = [a for a in added_apps if a['platform'] == 'GP']
+    log(f"新产品: {added} ({len(added_ios)} iOS + {len(added_gp)} GP)")
 
-    if new_ios:
+    if added_ios:
         log("  iOS 新产品:")
-        for a in new_ios:
+        for a in added_ios:
             log(f"    {a['company_cn']}: {a['name']} (id={a['pkg_or_id']})")
-    if new_gp:
+    if added_gp:
         log("  GP 新产品:")
-        for a in new_gp:
+        for a in added_gp:
             log(f"    {a['company_cn']}: {a['name']} (pkg={a['pkg_or_id']})")
 
     log(f"产品更新: {len(updates)}")
     if updates:
         for u in updates:
-            log(f"    {u['company']}: {u['name']} ({u['old_update']} -> {u['new_update']})")
+            changes = []
+            if 'new_update' in u:
+                changes.append(f"更新日期 {u['old_update'] or '-'} -> {u['new_update']}")
+            if 'new_release' in u:
+                changes.append(f"上架日期 {u['old_release']} -> {u['new_release']}")
+            log(f"    {u['company']}: {u['name']} ({'; '.join(changes)})")
 
     log(f"指标更新: {len(metric_updates)}")
     if metric_updates:
