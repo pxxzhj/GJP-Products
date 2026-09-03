@@ -18,7 +18,11 @@ import requests
 
 import monitor
 from audit_web_fetcher import USER_AGENT, fetch_url, itunes_lookup_batch
-from audit_web_evidence import hostname, registered_domain
+from audit_web_evidence import (
+    filter_email_domain_tainted_pages,
+    hostname,
+    registered_domain,
+)
 from import_confirmed_developers import (
     clean_text,
     fetch_gp_detail_html,
@@ -449,7 +453,9 @@ def classify_detail(row, appmagic_item, refs, pub_info, existing_key, developer=
 def build_rows(run_dir, use_gp_network=True):
     second = read_csv(os.path.join(run_dir, 'second_review_priority_leads.csv'))
     targets = [r for r in second if r.get('second_bucket') in {'next_verify', 'manual_appmagic'}]
-    pages = read_jsonl(os.path.join(run_dir, 'page_evidence.jsonl'))
+    pages = filter_email_domain_tainted_pages(
+        read_jsonl(os.path.join(run_dir, 'page_evidence.jsonl'))
+    )
     stores = read_jsonl(os.path.join(run_dir, 'store_contact_pages.jsonl'))
     apps = load_apps()
     existing = {(a.get('platform'), a.get('pkg_or_id')): a for a in apps}

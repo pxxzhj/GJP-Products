@@ -177,6 +177,42 @@ def registered_domain(host):
     return '.'.join(parts[-2:])
 
 
+def evidence_context_domain(row, lead=False):
+    company_key = 'source_company' if lead else 'company'
+    app_key = 'source_app' if lead else 'app_name'
+    url = row.get('final_url') or row.get('source_url') or ''
+    return (
+        row.get(company_key, ''),
+        row.get(app_key, ''),
+        registered_domain(url),
+    )
+
+
+def email_domain_tainted_groups(page_rows):
+    """Return historical crawl contexts seeded from an email domain."""
+    email_seeded = {
+        evidence_context_domain(row)
+        for row in page_rows
+        if row.get('source_kind') == 'email_domain'
+    }
+    direct_store_seeded = {
+        evidence_context_domain(row)
+        for row in page_rows
+        if row.get('source_kind') in {'website', 'privacy', 'support'}
+    }
+    return email_seeded - direct_store_seeded
+
+
+def filter_email_domain_tainted_pages(page_rows):
+    """Remove email-domain roots and their inherited same-domain crawl."""
+    tainted = email_domain_tainted_groups(page_rows)
+    return [
+        row for row in page_rows
+        if row.get('source_kind') != 'email_domain'
+        and evidence_context_domain(row) not in tainted
+    ]
+
+
 def is_common_email_domain(domain):
     domain = hostname(domain)
     reg = registered_domain(domain)
@@ -578,6 +614,10 @@ class EvidenceAuditor:
         return rows
 
     def add_new_leads_from_refs(self, refs, source, context):
+        # Email-domain expansion is legacy evidence only. It must never create
+        # new products, developers, or AppMagic leads.
+        if source.get('source_kind') == 'email_domain':
+            return
         leads = []
         for pkg in refs.get('gp_packages', []):
             key = ('GP', pkg)
@@ -679,6 +719,14 @@ class EvidenceAuditor:
             return True
 
     def queue_domain_seed(self, domain, context, source_kind='email_domain'):
+        """Deprecated safety boundary: email-domain crawling stays disabled."""
+        self.stats['email_domain_seed_attempts_blocked'] += 1
+        return 0
+
+    def _queue_domain_seed_legacy_disabled(
+        self, domain, context, source_kind='email_domain'
+    ):
+        """Preserved legacy implementation; intentionally never called."""
         domain = hostname(domain)
         if not domain or is_common_email_domain(domain) or is_public_hosting_domain(domain):
             return 0
@@ -854,10 +902,9 @@ class EvidenceAuditor:
             root = registered_domain(final_url or url)
             self.domain_page_counts[root] += 1
 
-        if self.args.expand_email_domains:
-            for email in emails:
-                domain = email.rsplit('@', 1)[1]
-                self.queue_domain_seed(domain, context, 'email_domain')
+        # Keep the old flag for command-line compatibility, but do not turn
+        # email domains into crawl seeds. Email domains remain private evidence
+        # only and cannot affect discovery or ownership assignment.
 
         root = registered_domain(final_url or url)
         if not is_public_hosting_domain(root):
@@ -1173,7 +1220,10 @@ def parse_args():
     parser.add_argument('--max-pages-per-domain', type=int, default=12, help='Maximum crawled pages per registered domain.')
     parser.add_argument('--max-discovered-store-apps', type=int, default=500, help='Maximum newly discovered store apps to recursively inspect.')
     parser.add_argument('--max-discovered-rounds', type=int, default=2, help='Maximum recursive rounds for newly discovered store apps.')
-    parser.add_argument('--expand-email-domains', action='store_true', help='Experimental: use non-public email domains as crawl seeds. Disabled by default.')
+    parser.add_argument(
+        '--expand-email-domains', action='store_true',
+        help='Deprecated compatibility flag; ignored. Email domains are never crawl seeds.',
+    )
     parser.add_argument('--include-company', action='append', default=[], help='Only audit this exact company. Repeatable.')
     parser.add_argument('--exclude-company', action='append', default=[], help='Exclude this exact company. Repeatable.')
     parser.add_argument('--exclude-company-prefix', action='append', default=[], help='Exclude company names with this prefix. Repeatable.')

@@ -4670,5 +4670,21 @@ window._loadCompany("合肥常春藤", [
     "tags": "Games",
     "removed": false,
     "release_date": "2026/07/23"
+  },
+  {
+    "name": "Ivy Block",
+    "company_cn": "合肥常春藤",
+    "icon": "https://play-lh.googleusercontent.com/mAFfXPI3b_V-_1ogR8VDf7nWd2SdeopE3k0pWTf9Rdjghbibo6TWxwL85o_3_9vTJ4n6Jpqsi_M6YQVtsap3Ww=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.ivy.block",
+    "store_link": "https://play.google.com/store/apps/details?id=com.ivy.block&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5261125429025325530",
+    "developer": "Ivy",
+    "downloads": "500+",
+    "rating_count": 0,
+    "last_update": "2026/07/23",
+    "tags": "Puzzle",
+    "removed": false,
+    "release_date": "2026/06/20"
   }
 ]);

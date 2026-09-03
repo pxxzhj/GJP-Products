@@ -10,6 +10,8 @@ import json
 import os
 from collections import Counter, defaultdict
 
+from audit_web_evidence import filter_email_domain_tainted_pages
+
 
 REJECT_IDS = {
     ('GP', 'com.DAA.appchoices'): 'advertising choices compliance link, not a competitor product',
@@ -141,7 +143,9 @@ def build_markdown(rows):
 
 def run(run_dir):
     triage = read_csv(os.path.join(run_dir, 'triaged_new_leads.csv'))
-    pages = read_jsonl(os.path.join(run_dir, 'page_evidence.jsonl'))
+    pages = filter_email_domain_tainted_pages(
+        read_jsonl(os.path.join(run_dir, 'page_evidence.jsonl'))
+    )
     stores = read_jsonl(os.path.join(run_dir, 'store_contact_pages.jsonl'))
 
     page_by_url = {}

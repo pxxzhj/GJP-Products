@@ -19,7 +19,11 @@ from audit_web_detail_review import (
     fetch_publisher_apps,
     search_appmagic_by_ids,
 )
-from audit_web_evidence import PRIVATE_BASE, load_apps
+from audit_web_evidence import (
+    PRIVATE_BASE,
+    filter_email_domain_tainted_pages,
+    load_apps,
+)
 from audit_web_fetcher import itunes_lookup_batch
 from import_confirmed_developers import fetch_gp_detail_html
 import monitor
@@ -27,6 +31,10 @@ import monitor
 
 DEFAULT_EXCLUDED_COMPANIES = {'playvalve', '英国tripledot'}
 DEFAULT_EXCLUDED_PREFIXES = ('海外',)
+STRONG_CANDIDATE_STATUSES = {
+    'strong_official_and_appmagic',
+    'strong_appmagic_unique_publisher',
+}
 
 
 def is_excluded(company, excluded_companies, excluded_prefixes):
@@ -44,6 +52,21 @@ def normalize_name(value):
 def normalize_date(value):
     value = str(value or '')
     return value[:10].replace('-', '/') if len(value) >= 10 else ''
+
+
+def cache_entry_is_fresh(row, max_age_hours):
+    if max_age_hours <= 0:
+        return False
+    if not isinstance(row, dict):
+        return False
+    if row.get('error') or row.get('refresh_error'):
+        return False
+    fetched_at = row.get('fetched_at', '') if isinstance(row, dict) else ''
+    try:
+        age = datetime.now() - datetime.fromisoformat(fetched_at)
+    except (TypeError, ValueError):
+        return False
+    return age.total_seconds() < max_age_hours * 3600
 
 
 def json_load(path, default):
@@ -67,10 +90,15 @@ def write_csv(path, rows, fields):
 
 
 def summarize_mapping(item, platform, app_id):
+    fetched_at = datetime.now().isoformat(timespec='seconds')
     if not item:
-        return {'status': 'not_found'}
+        return {'status': 'not_found', 'fetched_at': fetched_at}
     if item.get('error'):
-        return {'status': 'error', 'error': item.get('error', '')}
+        return {
+            'status': 'error',
+            'error': item.get('error', ''),
+            'fetched_at': fetched_at,
+        }
     child = appmagic_child_for_target(item, platform, app_id)
     publisher = item.get('unitedPublisher') or child.get('unitedPublisher') or {}
     return {
@@ -85,15 +113,18 @@ def summarize_mapping(item, platform, app_id):
         'removed': bool(child.get('removed')),
         'website_url': child.get('website_url') or item.get('website_url') or '',
         'support_url': child.get('support_url') or item.get('support_url') or '',
+        'fetched_at': fetched_at,
     }
 
 
-def fetch_known_mappings(apps, cache_path, batch_size=800):
+def fetch_known_mappings(
+    apps, cache_path, batch_size=800, refresh_after_hours=20
+):
     cached = json_load(cache_path, {})
     targets = []
     for app in apps:
         key = app_key(app['platform'], app['pkg_or_id'])
-        if key not in cached:
+        if not cache_entry_is_fresh(cached.get(key, {}), refresh_after_hours):
             targets.append({'platform': app['platform'], 'id': app['pkg_or_id']})
 
     for offset in range(0, len(targets), batch_size):
@@ -101,7 +132,18 @@ def fetch_known_mappings(apps, cache_path, batch_size=800):
         result = search_appmagic_by_ids(batch)
         for target in batch:
             key = app_key(target['platform'], target['id'])
-            cached[key] = summarize_mapping(result.get(key), target['platform'], target['id'])
+            refreshed = summarize_mapping(
+                result.get(key), target['platform'], target['id']
+            )
+            previous = cached.get(key, {})
+            if refreshed.get('status') == 'error' and previous.get('status') == 'mapped':
+                cached[key] = {
+                    **previous,
+                    'refresh_error': refreshed.get('error', ''),
+                    'refresh_error_at': refreshed.get('fetched_at', ''),
+                }
+            else:
+                cached[key] = refreshed
         json_write(cache_path, cached)
         print(f'AppMagic known apps: {min(offset + batch_size, len(targets))}/{len(targets)}', flush=True)
     return cached
@@ -137,20 +179,36 @@ def simplify_publisher_apps(items):
     return rows
 
 
-def fetch_all_publishers(publisher_ids, cache_path, max_rows=5000):
+def fetch_all_publishers(
+    publisher_ids, cache_path, max_rows=5000, refresh_after_hours=20
+):
     cached = json_load(cache_path, {})
     missing = [
         pid for pid in sorted(publisher_ids)
-        if pid and (pid not in cached or cached[pid].get('error'))
+        if pid and not cache_entry_is_fresh(
+            cached.get(pid, {}), refresh_after_hours
+        )
     ]
     for offset, publisher_id in enumerate(missing, 1):
         result = fetch_publisher_apps({publisher_id}, max_rows=max_rows)
         info = result.get(publisher_id, {})
-        cached[publisher_id] = {
-            'error': info.get('error', ''),
-            'apps': simplify_publisher_apps(info.get('apps') or []),
-            'possibly_truncated': len(info.get('apps') or []) >= max_rows,
-        }
+        fetched_at = datetime.now().isoformat(timespec='seconds')
+        error = info.get('error', '')
+        previous = cached.get(publisher_id, {})
+        if error and previous.get('apps'):
+            cached[publisher_id] = {
+                **previous,
+                'error': error,
+                'refresh_error': error,
+                'refresh_error_at': fetched_at,
+            }
+        else:
+            cached[publisher_id] = {
+                'error': error,
+                'apps': simplify_publisher_apps(info.get('apps') or []),
+                'possibly_truncated': len(info.get('apps') or []) >= max_rows,
+                'fetched_at': fetched_at,
+            }
         json_write(cache_path, cached)
         state = 'ok' if not cached[publisher_id]['error'] else cached[publisher_id]['error'].split(':', 1)[0]
         print(
@@ -168,18 +226,20 @@ def load_web_refs(run_dir):
     path = os.path.join(run_dir, 'page_evidence.jsonl')
     if not os.path.exists(path):
         return refs
+    rows = []
     with open(path, encoding='utf-8') as f:
         for line in f:
             try:
-                row = json.loads(line)
+                rows.append(json.loads(line))
             except (ValueError, TypeError):
                 continue
-            company = row.get('company') or ''
-            source = row.get('final_url') or row.get('source_url') or ''
-            for package in row.get('gp_packages') or []:
-                refs[(company, app_key('GP', str(package)))].append(source)
-            for ios_id in row.get('ios_ids') or []:
-                refs[(company, app_key('iOS', str(ios_id)))].append(source)
+    for row in filter_email_domain_tainted_pages(rows):
+        company = row.get('company') or ''
+        source = row.get('final_url') or row.get('source_url') or ''
+        for package in row.get('gp_packages') or []:
+            refs[(company, app_key('GP', str(package)))].append(source)
+        for ios_id in row.get('ios_ids') or []:
+            refs[(company, app_key('iOS', str(ios_id)))].append(source)
     return refs
 
 
@@ -264,7 +324,11 @@ def verify_failed_gp_store_pages(summary_path, all_apps, excluded_companies,
 
 
 def verify_strong_candidates(candidates, workers=4):
-    strong = [row for row in candidates if row.get('review_status') == 'strong_official_and_appmagic']
+    strong = [
+        row for row in candidates
+        if row.get('review_status') in STRONG_CANDIDATE_STATUSES
+        and not row.get('appmagic_removed')
+    ]
     gp_rows = [row for row in strong if row.get('platform') == 'GP']
     ios_rows = [row for row in strong if row.get('platform') == 'iOS']
     results = []
@@ -340,6 +404,30 @@ def company_and_publisher_rows(apps, mappings):
     return rows, publisher_companies, company_publishers
 
 
+def validate_candidate_classification(rows):
+    invalid = []
+    for row in rows:
+        linked = [x for x in row.get('publisher_linked_companies', '').split(';') if x]
+        overlap = int(row.get('known_company_overlap') or 0)
+        if (
+            not row.get('existing_library_companies')
+            and len(linked) == 1
+            and overlap >= 1
+            and row.get('review_status') not in STRONG_CANDIDATE_STATUSES
+        ):
+            invalid.append(row)
+    if invalid:
+        sample = ', '.join(
+            f"{row.get('company')}:{row.get('platform')}:{row.get('id')}"
+            for row in invalid[:5]
+        )
+        raise RuntimeError(
+            'Unique AppMagic publisher candidates were incorrectly downgraded: '
+            + sample
+        )
+    return True
+
+
 def build_candidates(apps, publisher_apps, publisher_companies, company_publishers, web_refs):
     global_owner = defaultdict(set)
     company_keys = defaultdict(set)
@@ -370,10 +458,11 @@ def build_candidates(apps, publisher_apps, publisher_companies, company_publishe
                     status = 'appmagic_shared_publisher_manual'
                 elif refs:
                     status = 'strong_official_and_appmagic'
-                elif overlap_count >= 2:
-                    status = 'appmagic_multi_overlap_manual'
-                else:
-                    status = 'appmagic_single_overlap_manual'
+                elif overlap_count >= 1:
+                    # AppMagic united-publisher ownership is the primary source.
+                    # A known app ties this publisher to exactly one company,
+                    # so website evidence is supplementary, not a gate.
+                    status = 'strong_appmagic_unique_publisher'
                 rows.append({
                     'review_status': status,
                     'company': company,
@@ -393,6 +482,7 @@ def build_candidates(apps, publisher_apps, publisher_companies, company_publishe
                     'official_web_ref_count': len(refs),
                     'official_web_refs': ';'.join(refs[:5]),
                 })
+    validate_candidate_classification(rows)
     return rows
 
 
@@ -478,6 +568,7 @@ def build_report(summary, company_rows, candidates, failures):
         f'- AppMagic 已映射：{summary["mapped_apps"]}，未映射/错误：{summary["unmapped_apps"]}',
         f'- AppMagic publisher：{summary["publishers"]}',
         f'- 缺失候选：{summary["candidates"]}（只供审查，未入库）',
+        f'- AppMagic 唯一归属强证据：{summary.get("strong_appmagic_candidates", 0)}，其中 AppMagic 标记在架 {summary.get("strong_appmagic_active", 0)}，商店已核验在线 {summary.get("strong_store_live", 0)}',
         f'- 官网/支持/隐私页：抓取 {summary.get("web_pages", 0)}，失败 {summary.get("web_page_errors", 0)}，原始新线索 {summary.get("web_leads", 0)}',
         f'- 当前商店可访问审查项：证据完整 {summary.get("review_candidate_import", 0)}，仍需人工确认 {summary.get("review_manual", 0)}',
         f'- AppMagic+官网历史命中但当前已下架：{summary.get("historical_store_unavailable", 0)}',
@@ -513,15 +604,17 @@ def build_report(summary, company_rows, candidates, failures):
     lines.extend([
         '',
         '## 口径',
-        '- AppMagic 同一 united publisher 可能跨主体聚合，因此 AppMagic 单独命中不自动入库。',
-        '- 只有 AppMagic 与官网/支持页/隐私页同时反向命中的候选才标为 strong_official_and_appmagic。',
+        '- AppMagic united publisher 是公司归属的第一优先级证据。publisher 仅关联一家公司且存在已确认库内应用时，其库外应用进入强证据商店核验。',
+        '- AppMagic publisher 同时关联多家公司时仍必须人工确认；官网/支持页/隐私页作为补充证据，不能覆盖跨公司冲突。',
         '- 海外厂商本轮不做 publisher 深度追溯；17 个失败项中的海外 3 项仅保留为 deferred_overseas。',
         '- 本轮不会修改产品库、提交或推送。',
     ])
     return '\n'.join(lines) + '\n'
 
 
-def write_current_candidate_report(run_dir, detail_rows, current_developer_extras):
+def write_current_candidate_report(
+    run_dir, detail_rows, current_developer_extras, verified_appmagic_rows
+):
     rows = []
     for row in detail_rows:
         rows.append({
@@ -553,6 +646,43 @@ def write_current_candidate_report(run_dir, detail_rows, current_developer_extra
             'evidence_source': 'official_developer_page+store+AppMagic',
             'reason': '官网开发者页展开，当前商店可访问，AppMagic publisher 命中',
         })
+    for row in verified_appmagic_rows:
+        if row.get('store_status') != '200':
+            continue
+        platform = row.get('platform', '')
+        app_id = row.get('id', '')
+        rows.append({
+            'review_status': 'candidate_import',
+            'company': row.get('company', ''),
+            'platform': platform,
+            'id': app_id,
+            'name': row.get('name', ''),
+            'developer': (
+                row.get('current_developer')
+                or row.get('store_publisher_name', '')
+            ),
+            'release_date': row.get('release_date', ''),
+            'store_link': (
+                f'https://apps.apple.com/app/id{app_id}'
+                if platform == 'iOS'
+                else f'https://play.google.com/store/apps/details?id={app_id}&hl=en&gl=us'
+            ),
+            'evidence_source': 'AppMagic_united_publisher+current_store',
+            'reason': (
+                'AppMagic united publisher 唯一归属且有已确认库内应用命中；'
+                '当前商店页面可访问'
+            ),
+        })
+    deduped = {}
+    for row in rows:
+        key = app_key(row.get('platform'), row.get('id'))
+        current = deduped.get(key)
+        if current is None or (
+            current.get('review_status') != 'candidate_import'
+            and row.get('review_status') == 'candidate_import'
+        ):
+            deduped[key] = row
+    rows = list(deduped.values())
     rows.sort(key=lambda row: (row['review_status'], row['company'], row['platform'], row['id']))
     write_csv(os.path.join(run_dir, 'current_candidate_review.csv'), rows, [
         'review_status', 'company', 'platform', 'id', 'name', 'developer',
@@ -589,10 +719,14 @@ def main():
     parser.add_argument('--exclude-company', action='append', default=[])
     parser.add_argument('--exclude-company-prefix', action='append', default=[])
     parser.add_argument('--max-publisher-rows', type=int, default=5000)
+    parser.add_argument('--cache-ttl-hours', type=float, default=20, help='Refresh AppMagic app mappings and publisher inventories after this many hours; use 0 to force refresh.')
     parser.add_argument('--verify-failed-gp-store', action='store_true', help='Fetch active seed app pages for inaccessible GP developers.')
     parser.add_argument('--workers-gp-verify', type=int, default=4)
-    parser.add_argument('--verify-strong-candidates', action='store_true', help='Verify store availability and current identity for strong web/AppMagic candidates.')
+    parser.add_argument('--verify-strong-candidates', action='store_true', help='Verify current store availability for strong AppMagic united-publisher and official-web candidates.')
+    parser.add_argument('--fail-on-live-candidates', action='store_true', help='Exit non-zero when verified strong candidates are live but absent from the library; requires --verify-strong-candidates.')
     args = parser.parse_args()
+    if args.fail_on_live_candidates and not args.verify_strong_candidates:
+        parser.error('--fail-on-live-candidates requires --verify-strong-candidates')
 
     excluded_companies = DEFAULT_EXCLUDED_COMPANIES | set(args.exclude_company)
     excluded_prefixes = DEFAULT_EXCLUDED_PREFIXES + tuple(args.exclude_company_prefix)
@@ -608,12 +742,17 @@ def main():
     print(f'Run dir: {run_dir}', flush=True)
     print(f'Scope: {len(set(a["company_cn"] for a in apps))} companies, {len(apps)} apps', flush=True)
 
-    mappings = fetch_known_mappings(apps, os.path.join(run_dir, 'known_mapping_cache.json'))
+    mappings = fetch_known_mappings(
+        apps,
+        os.path.join(run_dir, 'known_mapping_cache.json'),
+        refresh_after_hours=args.cache_ttl_hours,
+    )
     company_rows, publisher_companies, company_publishers = company_and_publisher_rows(apps, mappings)
     publisher_apps = fetch_all_publishers(
         set(publisher_companies),
         os.path.join(run_dir, 'publisher_apps_cache.json'),
         max_rows=args.max_publisher_rows,
+        refresh_after_hours=args.cache_ttl_hours,
     )
     web_refs = load_web_refs(args.web_run_dir)
     candidates = build_candidates(apps, publisher_apps, publisher_companies, company_publishers, web_refs)
@@ -706,7 +845,7 @@ def main():
         or strong_by_key.get(app_key(row.get('platform'), row.get('id')), {}).get('store_status') == '200'
     ]
     current_review_rows = write_current_candidate_report(
-        run_dir, detail_rows, current_developer_extras
+        run_dir, detail_rows, current_developer_extras, strong_rows
     )
     summary = {
         'run_dir': run_dir,
@@ -717,11 +856,35 @@ def main():
         'ios_apps': sum(app['platform'] == 'iOS' for app in apps),
         'mapped_apps': mapped,
         'unmapped_apps': len(company_rows) - mapped,
+        'mapping_fetch_errors': sum(
+            bool(row.get('error') or row.get('refresh_error'))
+            for row in mappings.values()
+        ),
         'publishers': len(publisher_companies),
-        'publisher_fetch_errors': sum(bool(row.get('error')) for row in publisher_apps.values()),
+        'publisher_fetch_errors': sum(
+            bool(row.get('error') or row.get('refresh_error'))
+            for row in publisher_apps.values()
+        ),
         'publisher_fetch_truncated': sum(bool(row.get('possibly_truncated')) for row in publisher_apps.values()),
         'candidates': len(candidates),
         'candidate_statuses': dict(Counter(row['review_status'] for row in candidates)),
+        'strong_appmagic_candidates': sum(
+            row.get('review_status') in STRONG_CANDIDATE_STATUSES
+            for row in candidates
+        ),
+        'strong_appmagic_active': sum(
+            row.get('review_status') in STRONG_CANDIDATE_STATUSES
+            and not row.get('appmagic_removed')
+            for row in candidates
+        ),
+        'strong_store_live': sum(
+            row.get('review_status') in STRONG_CANDIDATE_STATUSES
+            and row.get('store_status') == '200'
+            for row in strong_rows
+        ),
+        'strong_store_errors': sum(
+            row.get('store_status') == 'error' for row in strong_rows
+        ),
         'web_pages': web_summary.get('site_pages_fetched', 0),
         'web_page_errors': web_summary.get('stats', {}).get('site_page_errors', 0),
         'web_leads': web_summary.get('new_leads_total', 0),
@@ -742,6 +905,27 @@ def main():
     with open(os.path.join(run_dir, 'domestic_reconciliation.md'), 'w', encoding='utf-8') as f:
         f.write(build_report(summary, company_rows, candidates, failures))
     print(json.dumps(summary, ensure_ascii=False, indent=2), flush=True)
+    if args.fail_on_live_candidates:
+        incomplete = {
+            key: summary[key]
+            for key in (
+                'mapping_fetch_errors',
+                'publisher_fetch_errors',
+                'publisher_fetch_truncated',
+                'strong_store_errors',
+            )
+            if summary[key]
+        }
+        if incomplete:
+            raise SystemExit(
+                'Completeness gate could not prove a complete result: '
+                + json.dumps(incomplete, ensure_ascii=False, sort_keys=True)
+            )
+        if summary['strong_store_live']:
+            raise SystemExit(
+                f"Completeness gate failed: {summary['strong_store_live']} verified "
+                'AppMagic united-publisher apps are missing from the library'
+            )
 
 
 if __name__ == '__main__':

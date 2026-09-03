@@ -1118,5 +1118,37 @@ window._loadCompany("北京珑索科技", [
     "tags": "Games",
     "removed": false,
     "release_date": "2026/08/07"
+  },
+  {
+    "name": "Jigsort: Jigsaw Sliding Puzzle",
+    "company_cn": "北京珑索科技",
+    "icon": "https://play-lh.googleusercontent.com/HB7Jal0ISRuKcP2kd6N807Lr7a6g-ybgpod4K1IGJdMxN41BsxZB9wfbClK4EpDF6zjsetrgfvDHTA6KOfBJcg=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.game.jigsort_android",
+    "store_link": "https://play.google.com/store/apps/details?id=com.game.jigsort_android&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=T.Societe&hl=en&gl=us",
+    "developer": "T.Societe",
+    "downloads": "500K+",
+    "rating_count": 2460,
+    "last_update": "2026/03/03",
+    "tags": "Casual",
+    "removed": false,
+    "release_date": "2023/08/17"
+  },
+  {
+    "name": "Fancy Balls：Bounce Ball Puzzle",
+    "company_cn": "北京珑索科技",
+    "icon": "https://play-lh.googleusercontent.com/vSYLzxNgVq8Y6Fq3vRI22XSr-Dx1lnScILAyM5qKi5B2RGZSIylHbQPZe1Vxrr3vHTiIJrmLifYp-nw9Sj1N=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.game.nbf_android",
+    "store_link": "https://play.google.com/store/apps/details?id=com.game.nbf_android&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=Dragon+Star&hl=en&gl=us",
+    "developer": "Dragon Star",
+    "downloads": "50K+",
+    "rating_count": 0,
+    "last_update": "2023/06/28",
+    "tags": "Casual",
+    "removed": false,
+    "release_date": "2023/05/13"
   }
 ]);

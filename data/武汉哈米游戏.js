@@ -1150,5 +1150,53 @@ window._loadCompany("武汉哈米游戏", [
     "tags": "Games, Puzzle, Casual",
     "removed": false,
     "release_date": "2026/07/24"
+  },
+  {
+    "name": "MagicVoice: AI Voice Changer",
+    "company_cn": "武汉哈米游戏",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/79/fc/c1/79fcc19a-a9f1-a107-5798-be35a12557ab/AppIcon-0-0-1x_U007emarketing-0-8-0-0-sRGB-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6475386949",
+    "store_link": "https://apps.apple.com/us/app/magicvoice-ai-voice-changer/id6475386949?uo=4",
+    "dev_link": "https://apps.apple.com/us/developer/voice-effects-inc/id1724127245?uo=4",
+    "developer": "Voice Effects Inc",
+    "downloads": "",
+    "rating_count": 427,
+    "last_update": "2025/03/05",
+    "tags": "Entertainment",
+    "removed": false,
+    "release_date": "2024/01/25"
+  },
+  {
+    "name": "SatisPuzzle: Perfect Tidy",
+    "company_cn": "武汉哈米游戏",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/31/bc/44/31bc445c-6c73-11b5-bc91-b7e2b0eec8cc/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6738767164",
+    "store_link": "https://apps.apple.com/us/app/satispuzzle-perfect-tidy/id6738767164?uo=4",
+    "dev_link": "https://apps.apple.com/us/developer/voice-effects-inc/id1724127245?uo=4",
+    "developer": "Voice Effects Inc",
+    "downloads": "",
+    "rating_count": 34366,
+    "last_update": "2026/04/03",
+    "tags": "Games, Simulation, Casual",
+    "removed": false,
+    "release_date": "2024/12/28"
+  },
+  {
+    "name": "My Perfect Kitchen: Zen Cook",
+    "company_cn": "武汉哈米游戏",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/1c/2c/c9/1c2cc9d3-994a-14b3-8c17-a31bea79c76e/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6767427808",
+    "store_link": "https://apps.apple.com/us/app/my-perfect-kitchen-zen-cook/id6767427808?uo=4",
+    "dev_link": "https://apps.apple.com/us/developer/voice-effects-inc/id1724127245?uo=4",
+    "developer": "Voice Effects Inc",
+    "downloads": "",
+    "rating_count": 3,
+    "last_update": "2026/08/26",
+    "tags": "Games, Casual, Simulation",
+    "removed": false,
+    "release_date": "2026/06/17"
   }
 ]);

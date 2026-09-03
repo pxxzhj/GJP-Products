@@ -926,5 +926,37 @@ window._loadCompany("北京天天玩家", [
     "tags": "Games, Casual",
     "removed": false,
     "release_date": "2026/08/27"
+  },
+  {
+    "name": "Croissant Empire",
+    "company_cn": "北京天天玩家",
+    "icon": "https://play-lh.googleusercontent.com/EcXGwYa4oJ_4hxv-5GZ3-mNRpVdTiNVLQ5F0zaqQ7f2cVfTGj78UBFUYr58eqEsz4FLh39yT0Xh4CVBrpHwdVw=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.faussurier.croissant_empire",
+    "store_link": "https://play.google.com/store/apps/details?id=com.faussurier.croissant_empire&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=Polar+Bear+Studio&hl=en&gl=us",
+    "developer": "Polar Bear Studio",
+    "downloads": "5+",
+    "rating_count": 0,
+    "last_update": "2026/08/08",
+    "tags": "Casual",
+    "removed": false,
+    "release_date": "2026/07/08"
+  },
+  {
+    "name": "Fridge Expiry Tracker",
+    "company_cn": "北京天天玩家",
+    "icon": "https://play-lh.googleusercontent.com/cDHIrYRYIWgKXgoWWkVpISSVZDMpW8YFXq9NKHJUcoxi1v-aw9iwQvv_rNCIAZ0yy-ZAM_roXyHBJffTslYncQ=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.frigoperemption.app",
+    "store_link": "https://play.google.com/store/apps/details?id=com.frigoperemption.app&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=Polar+Bear+Studio&hl=en&gl=us",
+    "developer": "Polar Bear Studio",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/08/11",
+    "tags": "Food & Drink",
+    "removed": false,
+    "release_date": "2026/08/11"
   }
 ]);

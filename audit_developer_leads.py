@@ -85,6 +85,8 @@ def main():
     leads = [
         row for row in triaged
         if row.get('bucket') == 'manual_review' and row.get('type', '').endswith('_developer')
+        and row.get('source_kind') != 'email_domain'
+        and 'email-domain expansion' not in row.get('reason', '')
     ]
     apps = load_apps()
     existing = defaultdict(list)

@@ -15,6 +15,9 @@ from collections import Counter, defaultdict
 
 from audit_web_fetcher import itunes_lookup_batch
 from audit_web_evidence import (
+    email_domain_tainted_groups,
+    evidence_context_domain,
+    filter_email_domain_tainted_pages,
     hostname,
     is_noise_url,
     is_public_hosting_domain,
@@ -138,6 +141,8 @@ def classify(row, store_row, existing_keys):
     s_kind = row.get('source_kind', '')
     s_domain = source_domain(row.get('source_url', ''))
 
+    if s_kind == 'email_domain' or row.get('_email_domain_tainted'):
+        return 'defer_noise', 'excluded email-domain expansion lineage'
     if (platform, app_id) in existing_keys:
         return 'defer_noise', 'already exists in library'
     if (platform, app_id) in PLATFORM_OFFICIAL_APP_IDS:
@@ -146,12 +151,6 @@ def classify(row, store_row, existing_keys):
         return 'defer_noise', 'malformed Google Play developer link'
     if is_noise_url(row.get('source_url', '')) or is_service_or_weak_domain(s_domain):
         return 'defer_noise', f'weak/service source domain: {s_domain}'
-    if s_kind == 'email_domain':
-        return 'manual_review', 'found by expanding an email domain only'
-    if s_kind == 'same_domain_link':
-        root_pages = row.get('_source_domain_pages') or []
-        if root_pages and all(page.get('source_kind') == 'email_domain' for page in root_pages):
-            return 'manual_review', 'same-domain link reached only through email-domain expansion'
     if row.get('source_company') == '__DISCOVERED__':
         return 'manual_review', 'found recursively from a discovered app'
     if lead_type.endswith('_developer'):
@@ -250,8 +249,8 @@ def build_markdown(rows, summary):
 
     lines.append('## 处理建议')
     lines.append('- 优先核验：下一步可逐条走 AppMagic + 商店详情 + 官网/支持/隐私页复核，确认归属后再入库。')
-    lines.append('- 需人工确认：主要是开发者账号、递归发现线索、仅邮箱域名扩展出来的线索，不能直接入库。')
-    lines.append('- 暂缓/噪声：主要是 malformed 链接、公共托管/SaaS/第三方服务域名带出的弱关联，默认不入库。')
+    lines.append('- 需人工确认：主要是开发者账号和递归发现线索，不能直接入库。')
+    lines.append('- 暂缓/噪声：包括邮箱域名扩展整条继承链、malformed 链接及第三方服务域名，默认不入库。')
     lines.append('- 邮箱明文仍只保留在私有备份，不写入本报告。')
     return '\n'.join(lines) + '\n'
 
@@ -275,7 +274,9 @@ def fetch_ios_names(rows):
 def triage(run_dir, fetch_ios_names_enabled=False):
     leads = read_csv(os.path.join(run_dir, 'new_leads.csv'))
     store_rows = read_jsonl(os.path.join(run_dir, 'store_contact_pages.jsonl'))
-    page_rows = read_jsonl(os.path.join(run_dir, 'page_evidence.jsonl'))
+    all_page_rows = read_jsonl(os.path.join(run_dir, 'page_evidence.jsonl'))
+    tainted_groups = email_domain_tainted_groups(all_page_rows)
+    page_rows = filter_email_domain_tainted_pages(all_page_rows)
     summary_path = os.path.join(run_dir, 'summary.json')
     summary = json.load(open(summary_path, encoding='utf-8')) if os.path.exists(summary_path) else {}
 
@@ -311,6 +312,9 @@ def triage(run_dir, fetch_ios_names_enabled=False):
                 'lookup_current_version_release_date': lookup_row.get('currentVersionReleaseDate', ''),
             }
         lead['_source_domain_pages'] = pages_by_domain.get(source_domain(lead.get('source_url', '')), [])
+        lead['_email_domain_tainted'] = (
+            evidence_context_domain(lead, lead=True) in tainted_groups
+        )
         bucket, reason = classify(lead, store_row, existing_keys)
         triaged.append({
             'bucket': bucket,

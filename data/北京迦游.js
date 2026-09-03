@@ -670,5 +670,53 @@ window._loadCompany("北京迦游", [
     "tags": "",
     "removed": false,
     "release_date": "2026/08/20"
+  },
+  {
+    "name": "Jade Mahjong",
+    "company_cn": "北京迦游",
+    "icon": "https://play-lh.googleusercontent.com/rzq-VMYD3uxVQNa2sx5JlOZHd29X7tFuiYu1wYVqP6uFgacnvSxgXSYKfJDVxg5W5x8m67Q18Ov8OHqacSg0ww=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.wonderful.mahjong",
+    "store_link": "https://play.google.com/store/apps/details?id=com.wonderful.mahjong&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5679717060809323731",
+    "developer": "Wonderful  Studio",
+    "downloads": "5M+",
+    "rating_count": 195000,
+    "last_update": "2026/09/02",
+    "tags": "Puzzle, Pair matching, Mahjong solitaire",
+    "removed": false,
+    "release_date": "2025/09/25"
+  },
+  {
+    "name": "Sand Crush",
+    "company_cn": "北京迦游",
+    "icon": "https://play-lh.googleusercontent.com/jFj_peyq-jaOS2IQs_p0emRkR_3iRIDMLQ-qIY5EcT8GXoALCbPcq3h6ThYAqLmwDhol1_5IwLNihwaxfCZ0UxE=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.wonderful.sandcrush",
+    "store_link": "https://play.google.com/store/apps/details?id=com.wonderful.sandcrush&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5679717060809323731",
+    "developer": "Wonderful  Studio",
+    "downloads": "1M+",
+    "rating_count": 12800,
+    "last_update": "2026/06/10",
+    "tags": "Puzzle",
+    "removed": false,
+    "release_date": "2025/07/22"
+  },
+  {
+    "name": "Block Crush!",
+    "company_cn": "北京迦游",
+    "icon": "https://play-lh.googleusercontent.com/f_ImrzQpXw781wa_yNSxhfJz4b_t-MSQ6A1PXPoFBX3b0BkKRwVc7ik4eVbwA-x5S0jRxpZ0KvD__ULeEFwFAw=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.wood.block.sudoku.puzzle.bm",
+    "store_link": "https://play.google.com/store/apps/details?id=com.wood.block.sudoku.puzzle.bm&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5679717060809323731",
+    "developer": "Wonderful  Studio",
+    "downloads": "50M+",
+    "rating_count": 608000,
+    "last_update": "2026/09/02",
+    "tags": "Puzzle, Block",
+    "removed": false,
+    "release_date": "2021/12/03"
   }
 ]);

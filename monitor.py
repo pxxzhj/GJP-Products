@@ -7,6 +7,7 @@ import json
 import html
 import os
 import re
+import sys
 import time
 import subprocess
 import urllib.parse
@@ -40,6 +41,42 @@ def log(msg):
     line = f"[{ts}] {msg}"
     print(line, flush=True)
     REPORT_LINES.append(line)
+
+
+def load_current_library(data_dir=None):
+    """Load the committed company files; /tmp is only a disposable cache."""
+    data_dir = data_dir or os.path.join(BASE_DIR, 'data')
+    apps = []
+    seen = set()
+    for filename in sorted(os.listdir(data_dir)):
+        if not filename.endswith('.js'):
+            continue
+        path = os.path.join(data_dir, filename)
+        with open(path, encoding='utf-8') as handle:
+            content = handle.read()
+        match = re.match(
+            r'window\._loadCompany\("(.*?)",\s*(\[.*\])\);\s*$',
+            content,
+            re.S,
+        )
+        if not match:
+            raise RuntimeError(f'Cannot parse company data file: {path}')
+        company = match.group(1)
+        for app in json.loads(match.group(2)):
+            if app.get('company_cn') != company:
+                raise RuntimeError(
+                    f'Company mismatch in {path}: {app.get("company_cn")} != {company}'
+                )
+            key = (app.get('platform'), str(app.get('pkg_or_id', '')))
+            if not all(key):
+                raise RuntimeError(f'Missing platform or app ID in {path}')
+            if key in seen:
+                raise RuntimeError(
+                    f'Duplicate app key in current library: {key[0]}:{key[1]}'
+                )
+            seen.add(key)
+            apps.append(app)
+    return apps
 
 def normalize_date(d):
     if not d:
@@ -1113,6 +1150,82 @@ def git_commit_push(new_count, update_count):
     else:
         log(f"Git push failed: {result.stderr[:200]}")
 
+
+def run_appmagic_completeness_gate(run_dir=None, runner=None):
+    """Audit AppMagic publishers before allowing the daily commit/push."""
+    if run_dir is None:
+        run_dir = os.path.join(
+            os.path.dirname(BASE_DIR),
+            'product_library_private_evidence',
+            'domestic_reconciliation_latest',
+        )
+    if runner is None:
+        runner = subprocess.run
+    os.makedirs(run_dir, exist_ok=True)
+    summary_path = os.path.join(run_dir, 'reconciliation_summary.json')
+    started_at = time.time()
+    command = [
+        sys.executable,
+        os.path.join(BASE_DIR, 'audit_domestic_reconciliation.py'),
+        '--run-dir', run_dir,
+        '--cache-ttl-hours', os.environ.get('APPMAGIC_CACHE_TTL_HOURS', '20'),
+        '--verify-strong-candidates',
+        '--fail-on-live-candidates',
+    ]
+    log('AppMagic 完整性检查开始')
+    result = runner(command, cwd=BASE_DIR)
+
+    summary = {}
+    if (
+        os.path.exists(summary_path)
+        and os.path.getmtime(summary_path) >= started_at - 1
+    ):
+        try:
+            with open(summary_path, encoding='utf-8') as f:
+                summary = json.load(f)
+        except (OSError, ValueError):
+            summary = {}
+
+    if not summary:
+        raise RuntimeError(
+            'AppMagic 完整性检查未生成当次总结，'
+            '不允许在审计结果不明时提交或推送'
+        )
+
+    live_missing = int(summary.get('strong_store_live') or 0)
+    incomplete = {
+        key: int(summary.get(key) or 0)
+        for key in (
+            'mapping_fetch_errors',
+            'publisher_fetch_errors',
+            'publisher_fetch_truncated',
+            'strong_store_errors',
+        )
+        if int(summary.get(key) or 0)
+    }
+    if incomplete:
+        raise RuntimeError(
+            'AppMagic 完整性检查不完整，'
+            f'不允许提交或推送：{json.dumps(incomplete, ensure_ascii=False)}'
+        )
+    if result.returncode == 0:
+        log('AppMagic 完整性检查通过：无当前在线漏库应用')
+        return {'passed': True, 'live_missing': 0, 'run_dir': run_dir}
+    if live_missing:
+        log(
+            f'AppMagic 完整性检查拦截：发现 {live_missing} 个当前在线漏库应用，'
+            f'审查目录 {run_dir}'
+        )
+        return {
+            'passed': False,
+            'live_missing': live_missing,
+            'run_dir': run_dir,
+        }
+    raise RuntimeError(
+        f'AppMagic 完整性检查执行失败（exit={result.returncode}），'
+        '不允许在审计结果不明时提交或推送'
+    )
+
 # ── main ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1120,7 +1233,7 @@ def main():
     log("竞品监控开始")
     log("=" * 60)
 
-    all_apps = json.load(open(DB_PATH))
+    all_apps = load_current_library()
     existing_keys = set((a['platform'], a['pkg_or_id']) for a in all_apps)
     log(f"数据库: {len(all_apps)} apps, {len(set(a['company_cn'] for a in all_apps))} companies")
 
@@ -1154,16 +1267,22 @@ def main():
         affected.add(u['company'])
 
     # Save database
-    with open(DB_PATH, 'w') as f:
+    with open(DB_PATH, 'w', encoding='utf-8') as f:
         json.dump(all_apps, f, ensure_ascii=False, indent=2)
 
     # Step 4: Regenerate files
     if affected:
         regenerate_files(all_apps, affected)
 
-    # Step 5: Git
-    if added > 0 or updates or metric_updates:
+    # Step 5: AppMagic completeness gate. Developer names and store account
+    # URLs can change, so storefront account scans alone are not sufficient.
+    completeness = run_appmagic_completeness_gate()
+
+    # Step 6: Git
+    if (added > 0 or updates or metric_updates) and completeness['passed']:
         git_commit_push(added, len(updates) + len(metric_updates))
+    elif added > 0 or updates or metric_updates:
+        log('AppMagic 完整性门禁未通过，保留本地更新，未提交、未推送')
 
     # Report
     log("")
@@ -1207,6 +1326,10 @@ def main():
             log(f"    {u['company']}: {u['name']} ({'; '.join(parts)})")
         if len(metric_updates) > 80:
             log(f"    ... {len(metric_updates) - 80} more metric updates")
+
+    log(f"AppMagic 当前在线漏库候选: {completeness['live_missing']}")
+    if completeness['live_missing']:
+        log(f"    审查目录: {completeness['run_dir']}")
 
     log(f"数据库总计: {len(all_apps)} apps")
     log(f"受影响公司: {', '.join(affected) if affected else '无'}")
