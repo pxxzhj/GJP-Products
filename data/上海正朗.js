@@ -2550,7 +2550,7 @@ window._loadCompany("上海正朗", [
     "platform": "iOS",
     "pkg_or_id": "1043517473",
     "store_link": "https://apps.apple.com/app/id1043517473",
-    "dev_link": "https://apps.apple.com/us/developer/shanghai-zhenglang-technology-co-ltd/id492012994?uo=4",
+    "dev_link": "https://apps.apple.com/developer/id492012994",
     "developer": "Shanghai Zhenglang Technology Co., Ltd.",
     "downloads": "",
     "rating_count": 68,

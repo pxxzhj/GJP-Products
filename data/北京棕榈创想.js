@@ -422,7 +422,7 @@ window._loadCompany("北京棕榈创想", [
     "platform": "iOS",
     "pkg_or_id": "6754594372",
     "store_link": "https://apps.apple.com/us/app/solitaire-lite-big-card/id6754594372?uo=4",
-    "dev_link": "https://apps.apple.com/developer/id6754594372",
+    "dev_link": "https://apps.apple.com/developer/id1849114972",
     "developer": "ASTER GAME",
     "downloads": "",
     "rating_count": 0,

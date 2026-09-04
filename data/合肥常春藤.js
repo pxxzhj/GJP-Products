@@ -247,7 +247,7 @@ window._loadCompany("合肥常春藤", [
     "pkg_or_id": "6478063606",
     "store_link": "https://apps.apple.com/app/id6478063606",
     "dev_link": "https://apps.apple.com/developer/id1564616638",
-    "developer": "IVYMOBILE",
+    "developer": "FLYYES TECHNOLOGY PTE. LTD.",
     "downloads": "",
     "rating_count": 84164,
     "last_update": "2026/08/31",

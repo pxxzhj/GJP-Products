@@ -20,6 +20,7 @@ DB_PATH = '/tmp/all_apps_v6.json'
 GP_METRICS_STATE_PATH = os.path.join(BASE_DIR, '.gp_metrics_state.json')
 GP_METRICS_BATCH_SIZE = int(os.environ.get('GP_METRICS_BATCH_SIZE', '800'))
 REPORT_LINES = []
+IOS_DEVELOPER_SCAN_STATS = {}
 GP_DEVELOPER_SCAN_STATS = {}
 
 GP_REQUEST_HEADERS = {
@@ -246,10 +247,18 @@ def extract_ios_developers(all_apps):
     return devs
 
 def check_ios_developers(all_apps):
+    global IOS_DEVELOPER_SCAN_STATS
     devs = extract_ios_developers(all_apps)
     log(f"iOS: checking {len(devs)} developers...")
 
     new_ios_apps = []
+    apps_by_id = {
+        str(app['pkg_or_id']): app
+        for app in all_apps
+        if app.get('platform') == 'iOS'
+    }
+    identity_updates = []
+    cross_company_collisions = []
     for dev_id, info in devs.items():
         url = f"https://itunes.apple.com/lookup?id={dev_id}&entity=software&country=us&limit=200"
         data = itunes_lookup(url)
@@ -265,28 +274,68 @@ def check_ios_developers(all_apps):
                 found_ids.add(aid)
                 app_details[aid] = r
 
-        missing = found_ids - info['known_ids']
-        if missing:
-            for aid in missing:
-                r = app_details.get(aid, {})
-                app = {
-                    'name': r.get('trackName', aid),
-                    'company_cn': info['company'],
-                    'icon': r.get('artworkUrl512', r.get('artworkUrl100', '')),
-                    'platform': 'iOS',
-                    'pkg_or_id': aid,
-                    'store_link': f"https://apps.apple.com/app/id{aid}",
-                    'dev_link': f"https://apps.apple.com/developer/id{dev_id}",
-                    'developer': r.get('artistName', info['developer']),
-                    'downloads': '',
-                    'rating_count': r.get('userRatingCount', 0),
-                    'last_update': normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
-                    'tags': ', '.join(r.get('genres', [])),
-                    'removed': False,
-                    'release_date': normalize_ios_release_date(r),
-                }
-                new_ios_apps.append(app)
-                log(f"  NEW iOS: {app['name']} ({aid}) -> {info['company']}")
+        for aid in found_ids:
+            r = app_details.get(aid, {})
+            existing = apps_by_id.get(aid)
+            current_dev_id = str(r.get('artistId') or dev_id)
+            current_dev_link = f"https://apps.apple.com/developer/id{current_dev_id}"
+            current_developer = r.get('artistName', info['developer'])
+            if existing:
+                if existing.get('company_cn') != info['company']:
+                    collision = {
+                        'id': aid,
+                        'existing_company': existing.get('company_cn', ''),
+                        'observed_company': info['company'],
+                        'developer': current_developer,
+                        'developer_id': current_dev_id,
+                    }
+                    cross_company_collisions.append(collision)
+                    log(
+                        f"  iOS developer cross-company collision: {aid} is "
+                        f"{existing.get('company_cn')} but appeared under "
+                        f"{info['company']} / {current_developer}"
+                    )
+                    continue
+
+                if not r.get('artistId') or not r.get('artistName'):
+                    continue
+                old_dev_link = existing.get('dev_link', '')
+                old_developer = existing.get('developer', '')
+                if (
+                    old_dev_link != current_dev_link
+                    or old_developer != current_developer
+                ):
+                    existing['dev_link'] = current_dev_link
+                    existing['developer'] = current_developer
+                    identity_updates.append({
+                        'company': info['company'],
+                        'id': aid,
+                        'old_url': old_dev_link,
+                        'new_url': current_dev_link,
+                        'old_developer': old_developer,
+                        'new_developer': current_developer,
+                    })
+                continue
+
+            app = {
+                'name': r.get('trackName', aid),
+                'company_cn': info['company'],
+                'icon': r.get('artworkUrl512', r.get('artworkUrl100', '')),
+                'platform': 'iOS',
+                'pkg_or_id': aid,
+                'store_link': f"https://apps.apple.com/app/id{aid}",
+                'dev_link': current_dev_link,
+                'developer': current_developer,
+                'downloads': '',
+                'rating_count': r.get('userRatingCount', 0),
+                'last_update': normalize_past_or_today_date(str(r.get('currentVersionReleaseDate', ''))[:10]),
+                'tags': ', '.join(r.get('genres', [])),
+                'removed': False,
+                'release_date': normalize_ios_release_date(r),
+            }
+            new_ios_apps.append(app)
+            apps_by_id[aid] = app
+            log(f"  NEW iOS: {app['name']} ({aid}) -> {info['company']}")
 
         checked = len([d for d in devs if d <= dev_id])
         if checked % 10 == 0:
@@ -294,7 +343,20 @@ def check_ios_developers(all_apps):
 
         time.sleep(1)
 
-    log(f"iOS check done: {len(new_ios_apps)} new apps found")
+    IOS_DEVELOPER_SCAN_STATS = {
+        'checked': len(devs),
+        'new_apps': len(new_ios_apps),
+        'identity_updates': identity_updates,
+        'cross_company_collisions': cross_company_collisions,
+        'affected_companies': sorted({
+            row['company'] for row in identity_updates
+        }),
+    }
+    log(
+        f"iOS check done: {len(new_ios_apps)} new apps, "
+        f"{len(identity_updates)} identity updates, "
+        f"{len(cross_company_collisions)} cross-company collisions"
+    )
     return new_ios_apps
 
 # ── Step 2: GP developer check ──────────────────────────────────────────────
@@ -603,44 +665,51 @@ def check_gp_metrics_updates(all_apps):
     for i, app in enumerate(selected, 1):
         pkg = app.get('pkg_or_id', '')
         url = app.get('store_link') or f"https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us"
-        try:
-            driver.get(url)
-            time.sleep(1.5)
-            downloads, rating_count = extract_gp_metrics(driver)
-            changed = {}
-
-            old_downloads = app.get('downloads', '')
-            if downloads and parse_downloads(downloads) > parse_downloads(old_downloads):
-                app['downloads'] = downloads
-                changed['downloads'] = (old_downloads, downloads)
-
-            old_rating_count = app.get('rating_count', 0)
-            if not isinstance(old_rating_count, (int, float)):
-                old_rating_count = parse_count_text(old_rating_count)
-            if rating_count and rating_count > int(old_rating_count or 0):
-                app['rating_count'] = rating_count
-                changed['rating_count'] = (old_rating_count, rating_count)
-
-            if changed:
-                updates.append({
-                    'pkg_or_id': pkg,
-                    'name': app.get('name', pkg),
-                    'company': app.get('company_cn', ''),
-                    'changes': changed,
-                })
-
-            if i % 50 == 0 or i == batch_size:
-                log(f"  GP metrics progress: {i}/{batch_size} (updated: {len(updates)}, errors: {errors})")
-
-        except Exception as e:
-            errors += 1
-            log(f"  GP metrics ERROR [{i}/{batch_size}] {pkg}: {str(e)[:80]}")
+        for attempt in range(2):
             try:
-                driver.quit()
-            except Exception:
-                pass
-            driver = make_selenium_driver(timeout=25)
-            time.sleep(1)
+                driver.get(url)
+                time.sleep(1.5)
+                downloads, rating_count = extract_gp_metrics(driver)
+                changed = {}
+
+                old_downloads = app.get('downloads', '')
+                if downloads and parse_downloads(downloads) > parse_downloads(old_downloads):
+                    app['downloads'] = downloads
+                    changed['downloads'] = (old_downloads, downloads)
+
+                old_rating_count = app.get('rating_count', 0)
+                if not isinstance(old_rating_count, (int, float)):
+                    old_rating_count = parse_count_text(old_rating_count)
+                if rating_count and rating_count > int(old_rating_count or 0):
+                    app['rating_count'] = rating_count
+                    changed['rating_count'] = (old_rating_count, rating_count)
+
+                if changed:
+                    updates.append({
+                        'pkg_or_id': pkg,
+                        'name': app.get('name', pkg),
+                        'company': app.get('company_cn', ''),
+                        'changes': changed,
+                    })
+                break
+            except Exception as e:
+                try:
+                    driver.quit()
+                except Exception:
+                    pass
+                driver = make_selenium_driver(timeout=25)
+                if attempt == 0:
+                    log(
+                        f"  GP metrics retry [{i}/{batch_size}] {pkg}: "
+                        f"{str(e)[:80]}"
+                    )
+                    time.sleep(1)
+                    continue
+                errors += 1
+                log(f"  GP metrics ERROR [{i}/{batch_size}] {pkg}: {str(e)[:80]}")
+
+        if i % 50 == 0 or i == batch_size:
+            log(f"  GP metrics progress: {i}/{batch_size} (updated: {len(updates)}, errors: {errors})")
 
     try:
         driver.quit()
@@ -674,6 +743,12 @@ def check_gp_developers(all_apps):
     log(f"GP: checking {len(devs)} developers ({mode})...")
 
     new_gp_pkgs = {}  # pkg -> {company, dev_url}
+    apps_by_pkg = {
+        app['pkg_or_id']: app
+        for app in all_apps
+        if app.get('platform') == 'GP'
+    }
+    storefront_identity_updates = []
     checked = 0
     errors = 0
     driver = None
@@ -700,29 +775,68 @@ def check_gp_developers(all_apps):
                 found_pkgs.add(m.group(1))
         return found_pkgs
 
-    def record_packages(dev_url, info, found_pkgs):
+    def record_packages(dev_url, info, found_pkgs, developer=''):
         missing = found_pkgs - info['known_pkgs']
         for pkg in missing:
+            existing = apps_by_pkg.get(pkg)
+            if existing:
+                if existing.get('company_cn') != info['company']:
+                    log(
+                        f"  GP storefront cross-company collision: {pkg} is "
+                        f"{existing.get('company_cn')} but appeared under {info['company']}"
+                    )
+                    continue
+                old_url = existing.get('dev_link', '')
+                old_developer = existing.get('developer', '')
+                if old_url != dev_url or (developer and old_developer != developer):
+                    existing['dev_link'] = dev_url
+                    if developer:
+                        existing['developer'] = developer
+                    storefront_identity_updates.append({
+                        'company': info['company'],
+                        'pkg': pkg,
+                        'old_url': old_url,
+                        'new_url': dev_url,
+                        'old_developer': old_developer,
+                        'new_developer': developer or old_developer,
+                    })
+                continue
             if pkg not in new_gp_pkgs:
                 new_gp_pkgs[pkg] = {'company': info['company'], 'dev_url': dev_url}
                 log(f"  NEW GP pkg: {pkg} -> {info['company']}")
 
-    def apply_recovered_identity(info, dev_url, developer):
+    def apply_recovered_identities(info, identities_by_pkg):
         old_url = info['url']
-        for app in info['apps']:
+        apps_by_pkg = {app['pkg_or_id']: app for app in info['apps']}
+        grouped = {}
+        for pkg, identity in identities_by_pkg.items():
+            app = apps_by_pkg.get(pkg)
+            if not app:
+                continue
+            dev_url = identity['dev_url']
+            developer = identity['developer']
             app['dev_link'] = dev_url
             if developer:
                 app['developer'] = developer
-        identity_changes.append({
-            'company': info['company'],
-            'developer': developer or info['developer'],
-            'old_url': old_url,
-            'new_url': dev_url,
-        })
-        log(
-            f"  GP developer identity recovered: {info['company']} / "
-            f"{developer or info['developer']}"
-        )
+            group = grouped.setdefault(dev_url, {
+                'developer': developer,
+                'pkgs': [],
+            })
+            group['pkgs'].append(pkg)
+
+        for dev_url, identity in grouped.items():
+            identity_changes.append({
+                'company': info['company'],
+                'developer': identity['developer'] or info['developer'],
+                'old_url': old_url,
+                'new_url': dev_url,
+                'matched_apps': len(identity['pkgs']),
+            })
+            log(
+                f"  GP developer identity recovered: {info['company']} / "
+                f"{identity['developer'] or info['developer']} "
+                f"({len(identity['pkgs'])} apps)"
+            )
 
     if deep_scan:
         driver = make_selenium_driver(timeout=30)
@@ -776,10 +890,10 @@ def check_gp_developers(all_apps):
                         time.sleep(1)
             raise last_error
 
-        def recover_developer_identity(info):
-            identities = {}
+        def recover_developer_identities(info):
+            identities_by_pkg = {}
             seed_errors = []
-            for pkg in list(dict.fromkeys(info['seed_pkgs']))[:3]:
+            for pkg in list(dict.fromkeys(info['seed_pkgs'])):
                 url = f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us'
                 try:
                     req = urllib.request.Request(url, headers=GP_REQUEST_HEADERS)
@@ -788,17 +902,24 @@ def check_gp_developers(all_apps):
                     developer, dev_url = extract_gp_developer_identity(body)
                     if not dev_url:
                         raise RuntimeError('developer identity not found on app page')
-                    identity = identities.setdefault(dev_url, {
+                    identities_by_pkg[pkg] = {
                         'developer': developer,
-                        'pkgs': [],
-                    })
-                    identity['pkgs'].append(pkg)
+                        'dev_url': dev_url,
+                    }
                 except Exception as e:
                     seed_errors.append(f'{pkg}: {str(e)[:80]}')
 
-            if not identities:
-                detail = '; '.join(seed_errors[:3]) or 'no active seed apps'
+            if not identities_by_pkg:
+                detail = '; '.join(seed_errors[:3]) or 'no current library apps'
                 raise RuntimeError(f'developer recovery failed ({detail})')
+
+            identities = {}
+            for pkg, identity in identities_by_pkg.items():
+                group = identities.setdefault(identity['dev_url'], {
+                    'developer': identity['developer'],
+                    'pkgs': [],
+                })
+                group['pkgs'].append(pkg)
             if len(identities) > 1:
                 split = {
                     'company': info['company'],
@@ -808,22 +929,39 @@ def check_gp_developers(all_apps):
                     },
                 }
                 identity_splits.append(split)
-                raise RuntimeError(
-                    f'developer identity split across {len(identities)} store pages'
+                log(
+                    f"  GP developer identity split: {info['company']} / "
+                    f"{info['developer']} -> {len(identities)} current accounts"
                 )
-
-            dev_url, identity = next(iter(identities.items()))
-            return dev_url, identity['developer']
+            if seed_errors:
+                log(
+                    f"  GP identity recovery partial: {info['company']} / "
+                    f"{info['developer']} ({len(identities_by_pkg)} live, "
+                    f"{len(seed_errors)} unavailable/error)"
+                )
+            return identities_by_pkg, identities
 
         def fetch_storefront_with_recovery(dev_url, info):
             try:
-                return fetch_storefront(dev_url), dev_url, '', False
-            except Exception as original_error:
-                recovered_url, developer = recover_developer_identity(info)
-                if recovered_url == dev_url:
-                    raise original_error
-                packages = fetch_storefront(recovered_url)
-                return packages, recovered_url, developer, True
+                return [(dev_url, fetch_storefront(dev_url), info['developer'])], {}, False
+            except Exception:
+                identities_by_pkg, identities = recover_developer_identities(info)
+                storefronts = []
+                for recovered_url, identity in identities.items():
+                    packages = set(identity['pkgs'])
+                    try:
+                        packages.update(fetch_storefront(recovered_url))
+                    except Exception as e:
+                        log(
+                            f"  GP recovered storefront ERROR {recovered_url[:60]}: "
+                            f"{str(e)[:80]}"
+                        )
+                    storefronts.append((
+                        recovered_url,
+                        packages,
+                        identity['developer'],
+                    ))
+                return storefronts, identities_by_pkg, True
 
         with ThreadPoolExecutor(max_workers=8) as pool:
             futures = {
@@ -834,10 +972,13 @@ def check_gp_developers(all_apps):
                 dev_url, info = futures[future]
                 checked += 1
                 try:
-                    found_pkgs, current_url, developer, recovered = future.result()
+                    storefronts, identities_by_pkg, recovered = future.result()
                     if recovered:
-                        apply_recovered_identity(info, current_url, developer)
-                    record_packages(current_url, info, found_pkgs)
+                        apply_recovered_identities(info, identities_by_pkg)
+                    for current_url, found_pkgs, current_developer in storefronts:
+                        record_packages(
+                            current_url, info, found_pkgs, current_developer
+                        )
                 except Exception as e:
                     errors += 1
                     error_details.append({
@@ -854,6 +995,8 @@ def check_gp_developers(all_apps):
         app['company_cn'] for app in normalized_apps
     } | {
         item['company'] for item in identity_changes
+    } | {
+        item['company'] for item in storefront_identity_updates
     }
     GP_DEVELOPER_SCAN_STATS = {
         'checked': checked,
@@ -861,6 +1004,7 @@ def check_gp_developers(all_apps):
         'normalized_apps': len(normalized_apps),
         'recovered_developers': identity_changes,
         'identity_splits': identity_splits,
+        'storefront_identity_updates': storefront_identity_updates,
         'error_details': error_details,
         'affected_companies': sorted(affected_companies),
     }
@@ -1151,7 +1295,7 @@ def git_commit_push(new_count, update_count):
         log(f"Git push failed: {result.stderr[:200]}")
 
 
-def run_appmagic_completeness_gate(run_dir=None, runner=None):
+def run_appmagic_completeness_gate(run_dir=None, gp_error_summary=None, runner=None):
     """Audit AppMagic publishers before allowing the daily commit/push."""
     if run_dir is None:
         run_dir = os.path.join(
@@ -1172,6 +1316,11 @@ def run_appmagic_completeness_gate(run_dir=None, runner=None):
         '--verify-strong-candidates',
         '--fail-on-live-candidates',
     ]
+    if gp_error_summary:
+        command.extend([
+            '--verify-failed-gp-store',
+            '--gp-error-summary', gp_error_summary,
+        ])
     log('AppMagic 完整性检查开始')
     result = runner(command, cwd=BASE_DIR)
 
@@ -1247,6 +1396,7 @@ def main():
     added = 0
     added_apps = []
     affected = set(GP_DEVELOPER_SCAN_STATS.get('affected_companies', []))
+    affected.update(IOS_DEVELOPER_SCAN_STATS.get('affected_companies', []))
     for app in new_ios + new_gp:
         key = (app['platform'], app['pkg_or_id'])
         if key not in existing_keys:
@@ -1276,7 +1426,25 @@ def main():
 
     # Step 5: AppMagic completeness gate. Developer names and store account
     # URLs can change, so storefront account scans alone are not sufficient.
-    completeness = run_appmagic_completeness_gate()
+    current_summary_path = os.path.join(
+        '/tmp', f'monitor_{datetime.now().strftime("%Y%m%d_%H%M%S")}_summary.json'
+    )
+    with open(current_summary_path, 'w', encoding='utf-8') as f:
+        json.dump({
+            'run_date': datetime.now().strftime('%Y-%m-%d'),
+            'added': added_apps,
+            'ios_updates': updates,
+            'metric_updates': metric_updates,
+            'gp_scan': GP_DEVELOPER_SCAN_STATS,
+            'ios_scan': IOS_DEVELOPER_SCAN_STATS,
+            'affected': sorted(affected),
+            'total': len(all_apps),
+            'gp': sum(app['platform'] == 'GP' for app in all_apps),
+            'ios': sum(app['platform'] == 'iOS' for app in all_apps),
+        }, f, ensure_ascii=False, indent=2)
+    completeness = run_appmagic_completeness_gate(
+        gp_error_summary=current_summary_path
+    )
 
     # Step 6: Git
     if (added > 0 or updates or metric_updates) and completeness['passed']:

@@ -517,9 +517,18 @@ def build_failed_gp_review(summary_path, all_apps, domestic_apps, mappings, publ
             and row.get('id') in {app.get('pkg_or_id') for app in matches}
         ]
         live_rows = [row for row in verification if row.get('store_status') == '200']
+        unavailable_rows = [
+            row for row in verification
+            if row.get('store_status') in {'404', 'soft_404'}
+        ]
+        error_rows = [
+            row for row in verification
+            if row.get('store_status') not in {'200', '404', 'soft_404'}
+        ]
         current_store_developers = sorted({
             row.get('current_developer', '') for row in live_rows if row.get('current_developer')
         })
+        active_matches = [app for app in matches if not app.get('removed')]
 
         if excluded:
             status = 'deferred_overseas'
@@ -531,10 +540,16 @@ def build_failed_gp_review(summary_path, all_apps, domestic_apps, mappings, publ
             status = 'unresolved_no_appmagic_mapping'
         elif not any(not app.get('removed') for app in matches):
             status = 'retired_or_removed_apps_appmagic_checked'
-        elif verification and not live_rows:
-            status = 'resolved_all_active_flags_now_store_inaccessible'
         elif current_store_developers:
             status = 'resolved_old_developer_page_apps_migrated_or_split'
+        elif error_rows:
+            status = 'unresolved_store_verification_errors'
+        elif verification and len(verification) < len(active_matches):
+            status = 'unresolved_store_verification_incomplete'
+        elif verification and not live_rows and len(unavailable_rows) == len(active_matches):
+            status = 'resolved_all_current_library_apps_store_unavailable'
+        elif not verification:
+            status = 'not_verified_current_library_apps'
         else:
             status = 'appmagic_checked_store_identity_unresolved'
 
@@ -555,6 +570,8 @@ def build_failed_gp_review(summary_path, all_apps, domestic_apps, mappings, publ
             'official_web_ref_count': len(refs),
             'store_seed_pages_checked': len(verification),
             'store_seed_pages_live': len(live_rows),
+            'store_seed_pages_unavailable': len(unavailable_rows),
+            'store_seed_pages_errors': len(error_rows),
             'current_store_developers': ';'.join(current_store_developers),
         })
     return rows
@@ -573,7 +590,7 @@ def build_report(summary, company_rows, candidates, failures):
         f'- 当前商店可访问审查项：证据完整 {summary.get("review_candidate_import", 0)}，仍需人工确认 {summary.get("review_manual", 0)}',
         f'- AppMagic+官网历史命中但当前已下架：{summary.get("historical_store_unavailable", 0)}',
         f'- 官网开发者账号：核查 {summary.get("official_developer_accounts", 0)}，可展开 {summary.get("official_developer_accounts_live", 0)}，展开应用 {summary.get("official_developer_account_apps", 0)}，库外 {summary.get("official_developer_account_missing_apps", 0)}',
-        f'- 17 个 GP 失败项：国内 {summary["domestic_gp_failures"]}，海外暂缓 {summary["overseas_gp_failures"]}',
+        f'- GP 旧开发者页扫描失败记录：国内 {summary["domestic_gp_failures"]}，海外暂缓 {summary["overseas_gp_failures"]}',
         '',
         '## 逐公司概览',
     ])
@@ -592,13 +609,16 @@ def build_report(summary, company_rows, candidates, failures):
             f'{sum(row.get("status") == "mapped" for row in mapped)}，publisher {len(publisher_names)}，'
             f'候选 {len(by_company_candidates[company])} {dict(candidate_counts)}'
         )
-    lines.extend(['', '## GP 失败开发者处理结果'])
+    lines.extend(['', '## GP 旧开发者页扫描失败处理结果'])
     for row in failures:
         lines.append(
             f'- {row["company"]} / {row["developer"]}: {row["scope_status"]}；'
             f'库内匹配 {row["matched_library_apps"]}，AppMagic publisher '
             f'{row["appmagic_publisher_ids"] or "无"}，扩展 GP {row["appmagic_expanded_gp_apps"]}，'
-            f'种子复核 {row.get("store_seed_pages_live", 0)}/{row.get("store_seed_pages_checked", 0)} 在线，'
+            f'应用页复核 {row.get("store_seed_pages_checked", 0)}：'
+            f'在线 {row.get("store_seed_pages_live", 0)}，'
+            f'明确不可用 {row.get("store_seed_pages_unavailable", 0)}，'
+            f'核验错误 {row.get("store_seed_pages_errors", 0)}；'
             f'当前开发者：{row.get("current_store_developers") or "无可用页面"}'
         )
     lines.extend([
@@ -606,7 +626,9 @@ def build_report(summary, company_rows, candidates, failures):
         '## 口径',
         '- AppMagic united publisher 是公司归属的第一优先级证据。publisher 仅关联一家公司且存在已确认库内应用时，其库外应用进入强证据商店核验。',
         '- AppMagic publisher 同时关联多家公司时仍必须人工确认；官网/支持页/隐私页作为补充证据，不能覆盖跨公司冲突。',
-        '- 海外厂商本轮不做 publisher 深度追溯；17 个失败项中的海外 3 项仅保留为 deferred_overseas。',
+        '- 旧开发者页失效不代表其应用全部下架；必须逐个复核当前库内在线应用，并从在线应用恢复当前开发者账号。',
+        '- 只有明确 404/软 404 才计为商店不可用；网络错误、超时或限流必须保留为核验失败，不能当作下架。',
+        '- 海外厂商本轮不做 publisher 深度追溯；相关扫描失败记录仅保留为 deferred_overseas。',
         '- 本轮不会修改产品库、提交或推送。',
     ])
     return '\n'.join(lines) + '\n'
@@ -715,7 +737,7 @@ def main():
     parser = argparse.ArgumentParser(description='Full domestic AppMagic and web reconciliation.')
     parser.add_argument('--run-dir', help='Private output/cache directory. Created when omitted.')
     parser.add_argument('--web-run-dir', help='Evidence run from audit_web_evidence.py.')
-    parser.add_argument('--gp-error-summary', default='/tmp/monitor_20260901_summary.json')
+    parser.add_argument('--gp-error-summary', default='', help='Current monitor-run summary containing gp_scan.error_details.')
     parser.add_argument('--exclude-company', action='append', default=[])
     parser.add_argument('--exclude-company-prefix', action='append', default=[])
     parser.add_argument('--max-publisher-rows', type=int, default=5000)
@@ -727,6 +749,8 @@ def main():
     args = parser.parse_args()
     if args.fail_on_live_candidates and not args.verify_strong_candidates:
         parser.error('--fail-on-live-candidates requires --verify-strong-candidates')
+    if args.verify_failed_gp_store and not args.gp_error_summary:
+        parser.error('--verify-failed-gp-store requires --gp-error-summary from the current monitor run')
 
     excluded_companies = DEFAULT_EXCLUDED_COMPANIES | set(args.exclude_company)
     excluded_prefixes = DEFAULT_EXCLUDED_PREFIXES + tuple(args.exclude_company_prefix)
@@ -807,7 +831,9 @@ def main():
         'appmagic_publisher_ids', 'current_appmagic_gp_publishers',
         'appmagic_expanded_gp_apps', 'appmagic_missing_gp_candidates',
         'official_web_ref_count',
-        'store_seed_pages_checked', 'store_seed_pages_live', 'current_store_developers',
+        'store_seed_pages_checked', 'store_seed_pages_live',
+        'store_seed_pages_unavailable', 'store_seed_pages_errors',
+        'current_store_developers',
     ])
 
     mapped = sum(row.get('status') == 'mapped' for row in company_rows)

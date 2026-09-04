@@ -758,7 +758,7 @@ window._loadCompany("北京十方途创", [
     "platform": "iOS",
     "pkg_or_id": "6767096274",
     "store_link": "https://apps.apple.com/us/app/arrow-line-flow-escape-asmr/id6767096274?uo=4",
-    "dev_link": "https://apps.apple.com/us/developer/tenyoko-entertainment-inc/id1606670980?uo=4",
+    "dev_link": "https://apps.apple.com/developer/id1606670980",
     "developer": "Tenyoko Entertainment Inc",
     "downloads": "",
     "rating_count": 350,

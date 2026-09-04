@@ -406,7 +406,7 @@ window._loadCompany("北京迦游", [
     "platform": "iOS",
     "pkg_or_id": "6762776406",
     "store_link": "https://apps.apple.com/app/id6762776406",
-    "dev_link": "https://apps.apple.com/us/developer/nebula-studio/id1795182714?uo=4",
+    "dev_link": "https://apps.apple.com/developer/id1795182714",
     "developer": "Nebula Studio",
     "downloads": "",
     "rating_count": 24470,
