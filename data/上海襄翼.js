@@ -1006,5 +1006,21 @@ window._loadCompany("上海襄翼", [
     "tags": "Games, Puzzle, Casual",
     "removed": false,
     "release_date": "2026/09/01"
+  },
+  {
+    "name": "Sweet Match - Puzzle Games",
+    "company_cn": "上海襄翼",
+    "icon": "https://play-lh.googleusercontent.com/RqNGnMHFjfszf0rrGRerBSWQAlPgCL_UE78Ly6AtpP0TO7UEjGfAelDWH9EJl875IZ_8w0IkaOMQ1ihavAst=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.sweetmagic.match3.puzzlegame",
+    "store_link": "https://play.google.com/store/apps/details?id=com.sweetmagic.match3.puzzlegame&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5514859155799869118",
+    "developer": "Wood Puzzle Sudoku Games",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/09/04",
+    "tags": "Puzzle",
+    "removed": false,
+    "release_date": "2026/09/06"
   }
 ]);

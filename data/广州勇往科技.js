@@ -4302,5 +4302,21 @@ window._loadCompany("广州勇往科技", [
     "tags": "Word",
     "removed": false,
     "release_date": "2026/07/20"
+  },
+  {
+    "name": "Clues Card Sort",
+    "company_cn": "广州勇往科技",
+    "icon": "https://play-lh.googleusercontent.com/oQj0qBlQ1tskmcd7fM4iJXC90rg0UWh_F4SIYRI8h9VX_vuo6IQCi-8wgAaUw7L-PahDlybCMzjWePBSfXxgcIQ=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.clues.card.sort.and",
+    "store_link": "https://play.google.com/store/apps/details?id=com.clues.card.sort.and&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=Ocean+Joy&hl=en&gl=us",
+    "developer": "Ocean Joy",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/09/04",
+    "tags": "Puzzle",
+    "removed": false,
+    "release_date": "2026/09/06"
   }
 ]);
