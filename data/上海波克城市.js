@@ -5966,5 +5966,21 @@ window._loadCompany("上海波克城市", [
     "tags": "Music",
     "removed": false,
     "release_date": "2025/07/11"
+  },
+  {
+    "name": "Cat Music Dash",
+    "company_cn": "上海波克城市",
+    "icon": "https://play-lh.googleusercontent.com/Hk2H22_yYjYHq71nKeWGa-W_QAihWTcyBGeGYzhP88QSw0YxXfSRFhmG5KPjI4_lmd2HC0PwgJ4B4xeOsb-HNw=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.rhythm.piano.tiles.hop.dancing.cat.music.dash",
+    "store_link": "https://play.google.com/store/apps/details?id=com.rhythm.piano.tiles.hop.dancing.cat.music.dash&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=4784392365518769673",
+    "developer": "Cobby Labs",
+    "downloads": "100+",
+    "rating_count": 0,
+    "last_update": "2026/08/30",
+    "tags": "Music",
+    "removed": false,
+    "release_date": "2025/05/26"
   }
 ]);
