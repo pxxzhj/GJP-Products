@@ -9,7 +9,7 @@ window._loadCompany("深圳益欣网络", [
     "dev_link": "https://play.google.com/store/apps/developer?id=FireKula&hl=en&gl=us",
     "developer": "FireKula",
     "downloads": "20M+",
-    "rating_count": 14100,
+    "rating_count": 14300,
     "last_update": "2026/04/28",
     "tags": "S, Sci-fi, Arcade Racing, Stylized, 3D, Mecha/Robots, Games, Casual, Arcade Racing: Other, Racing",
     "removed": false,
@@ -238,5 +238,21 @@ window._loadCompany("深圳益欣网络", [
     "tags": "",
     "removed": true,
     "release_date": "2023/03/29"
+  },
+  {
+    "name": "3D Bubble Popping: Puzzle Game",
+    "company_cn": "深圳益欣网络",
+    "icon": "https://play-lh.googleusercontent.com/lgUnmvoZAg-jBFP98TeJjkdaakOBPtIxI51AAspgx_Vp7n9jY_Gn-oortxKPNwZKIG0gu-LRq-KilEs0vF6w=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.firekula.bubblepuzzle",
+    "store_link": "https://play.google.com/store/apps/details?id=com.firekula.bubblepuzzle&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=FireKula&hl=en&gl=us",
+    "developer": "FireKula",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/09/23",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/09/23"
   }
 ]);
