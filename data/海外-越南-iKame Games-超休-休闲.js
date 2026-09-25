@@ -5472,17 +5472,17 @@ window._loadCompany("海外-越南-iKame Games-超休-休闲", [
     "release_date": "2026/03/20"
   },
   {
-    "name": "com.dopify.meow.loop",
+    "name": "Meow Loop",
     "company_cn": "海外-越南-iKame Games-超休-休闲",
-    "icon": "",
+    "icon": "https://play-lh.googleusercontent.com/XY1khpgWfwIxR6a4gun10rVUY5ZVsdYnsoXfMSVrnrkM8mmAjCes0ASoFwyFS9AEedYIe0BwOco8El-emjB4Mw=w240-h480-rw",
     "platform": "GP",
     "pkg_or_id": "com.dopify.meow.loop",
     "store_link": "https://play.google.com/store/apps/details?id=com.dopify.meow.loop&hl=en&gl=us",
     "dev_link": "https://play.google.com/store/apps/dev?id=5891027934210113676&hl=en&gl=us",
-    "developer": "",
-    "downloads": "",
+    "developer": "Dopify Studio",
+    "downloads": "0+",
     "rating_count": 0,
-    "last_update": "",
+    "last_update": "2026/09/24",
     "tags": "",
     "removed": false,
     "release_date": "2026/09/24"
