@@ -422,7 +422,7 @@ window._loadCompany("深圳优智信息", [
     "platform": "GP",
     "pkg_or_id": "com.yg.boxing.annoying",
     "store_link": "https://play.google.com/store/apps/details?gl=US&hl=en-US&id=com.yg.boxing.annoying",
-    "dev_link": "https://play.google.com/store/apps/developer?id=SUPERIOR++STUDIO&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=7981176816074007556",
     "developer": "SUPERIOR  STUDIO",
     "downloads": "1.0M+",
     "rating_count": 3380,
