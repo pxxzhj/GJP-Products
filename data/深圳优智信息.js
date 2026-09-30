@@ -201,7 +201,7 @@ window._loadCompany("深圳优智信息", [
     "dev_link": "https://apps.apple.com/developer/id1514053338",
     "developer": "吕 罗",
     "downloads": "",
-    "rating_count": 47,
+    "rating_count": 48,
     "last_update": "2026/03/06",
     "tags": "Games, Racing, Adventure",
     "removed": false,
@@ -1726,5 +1726,21 @@ window._loadCompany("深圳优智信息", [
     "tags": "",
     "removed": false,
     "release_date": "2026/09/14"
+  },
+  {
+    "name": "Peaks Solitaire Blast",
+    "company_cn": "深圳优智信息",
+    "icon": "https://play-lh.googleusercontent.com/Mxg3rjRrkjTssIO36z6FKcgG3h9cgOmA4OtZhHQELZ7F7ifTQ_5OHPo8hsJb9CdebtmZdgJVgriBKCijQUUZbw=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.yg.peaks.solitaire",
+    "store_link": "https://play.google.com/store/apps/details?id=com.yg.peaks.solitaire&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=7981176816074007556",
+    "developer": "SUPERIOR STUDIO",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/09/30",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/09/28"
   }
 ]);
