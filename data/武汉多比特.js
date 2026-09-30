@@ -16544,19 +16544,19 @@ window._loadCompany("武汉多比特", [
     "release_date": "2026/09/24"
   },
   {
-    "name": "无法访问此网站",
+    "name": "Zoobble: Animal Bubble Sort",
     "company_cn": "武汉多比特",
-    "icon": "",
+    "icon": "https://play-lh.googleusercontent.com/m6YEVi3cCWJ4TUpwhAebzeHgaRzvV_JQkh9gyVqqb9pN2xAug-BrhDddiyb5vAtFfQIzIgSGxeLjTnQgiKN2q4o=s0-br30",
     "platform": "GP",
     "pkg_or_id": "bubble.sorting.match.three.sort.triple",
     "store_link": "https://play.google.com/store/apps/details?id=bubble.sorting.match.three.sort.triple&hl=en&gl=us",
-    "dev_link": "https://play.google.com/store/apps/developer?id=Mind+Crush&hl=en&gl=us",
-    "developer": "",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5734324861250644082",
+    "developer": "Mind Crush",
     "downloads": "0+",
     "rating_count": 0,
-    "last_update": "",
-    "tags": "",
+    "last_update": "2026/09/30",
+    "tags": "Puzzle",
     "removed": false,
-    "release_date": ""
+    "release_date": "2026/09/30"
   }
 ]);
