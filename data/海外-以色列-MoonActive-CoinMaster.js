@@ -601,7 +601,7 @@ window._loadCompany("海外-以色列-MoonActive-CoinMaster", [
     "dev_link": "https://play.google.com/store/apps/dev?id=6898760406631171989&hl=en&gl=us",
     "developer": "Moon Active",
     "downloads": "5K+",
-    "rating_count": 0,
+    "rating_count": 423,
     "last_update": "2026/09/23",
     "tags": "",
     "removed": false,
