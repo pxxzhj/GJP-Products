@@ -25,8 +25,8 @@ window._loadCompany("海外-土耳其-Grand Game-Magicsort", [
     "dev_link": "https://apps.apple.com/developer/id1742757639",
     "developer": "Grand Games A.Ş.",
     "downloads": "",
-    "rating_count": 114212,
-    "last_update": "2026/09/29",
+    "rating_count": 114858,
+    "last_update": "2026/10/07",
     "tags": "Games, Puzzle, Casual",
     "removed": false,
     "release_date": "2024/09/12"
@@ -41,7 +41,7 @@ window._loadCompany("海外-土耳其-Grand Game-Magicsort", [
     "dev_link": "https://apps.apple.com/developer/id1742757639",
     "developer": "Grand Games A.Ş.",
     "downloads": "",
-    "rating_count": 667943,
+    "rating_count": 671524,
     "last_update": "2026/10/05",
     "tags": "Games, Casual, Puzzle",
     "removed": false,
@@ -57,8 +57,8 @@ window._loadCompany("海外-土耳其-Grand Game-Magicsort", [
     "dev_link": "https://apps.apple.com/developer/id1742757639",
     "developer": "Grand Games A.Ş.",
     "downloads": "",
-    "rating_count": 1653,
-    "last_update": "2026/09/25",
+    "rating_count": 1702,
+    "last_update": "2026/10/07",
     "tags": "Games, Puzzle, Casual",
     "removed": false,
     "release_date": "2026/04/26"
@@ -89,7 +89,7 @@ window._loadCompany("海外-土耳其-Grand Game-Magicsort", [
     "dev_link": "https://apps.apple.com/developer/id1742757639",
     "developer": "Grand Games A.Ş.",
     "downloads": "",
-    "rating_count": 285833,
+    "rating_count": 291302,
     "last_update": "2026/09/28",
     "tags": "Games, Puzzle, Casual",
     "removed": false,
@@ -142,5 +142,21 @@ window._loadCompany("海外-土耳其-Grand Game-Magicsort", [
     "tags": "",
     "removed": false,
     "release_date": "2026/09/08"
+  },
+  {
+    "name": "Knock And Drop",
+    "company_cn": "海外-土耳其-Grand Game-Magicsort",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/d6/63/14/d6631410-0bf5-c880-b7ba-a2ddc8c658f7/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6789191690",
+    "store_link": "https://apps.apple.com/us/app/knock-and-drop/id6789191690?uo=4",
+    "dev_link": "https://apps.apple.com/developer/id1742757639",
+    "developer": "Grand Games A.Ş.",
+    "downloads": "",
+    "rating_count": 3243,
+    "last_update": "2026/10/06",
+    "tags": "Games",
+    "removed": false,
+    "release_date": "2026/08/04"
   }
 ]);
