@@ -6382,5 +6382,37 @@ window._loadCompany("上海波克城市", [
     "tags": "Games, Puzzle, Casual, Entertainment",
     "removed": false,
     "release_date": "2026/07/16"
+  },
+  {
+    "name": "slinky.jam.color.puzzle.games.free",
+    "company_cn": "上海波克城市",
+    "icon": "",
+    "platform": "GP",
+    "pkg_or_id": "slinky.jam.color.puzzle.games.free",
+    "store_link": "https://play.google.com/store/apps/details?id=slinky.jam.color.puzzle.games.free&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5008832749065454428",
+    "developer": "",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "",
+    "tags": "",
+    "removed": false,
+    "release_date": "2025/06/20"
+  },
+  {
+    "name": "AfterHours – Party Games",
+    "company_cn": "上海波克城市",
+    "icon": "https://play-lh.googleusercontent.com/2tzi5y4tOc4_GjraW8Gebg0vk-_SOootfXP50H2wJmKpinMs9b1BTEAkXUiLLj_z8YQ68cusWqZpjJXFYBKH7T4=s0-br30",
+    "platform": "GP",
+    "pkg_or_id": "com.afterhours.afterhours",
+    "store_link": "https://play.google.com/store/apps/details?id=com.afterhours.afterhours&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=TinyTitan&hl=en&gl=us",
+    "developer": "TinyTitan",
+    "downloads": "10+",
+    "rating_count": 0,
+    "last_update": "2026/10/06",
+    "tags": "Board",
+    "removed": false,
+    "release_date": "2026/10/06"
   }
 ]);
