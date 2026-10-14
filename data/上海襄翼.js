@@ -905,7 +905,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1587319074",
     "developer": "Shanghai Freemind Software Co., Ltd.",
     "downloads": "",
-    "rating_count": 184,
+    "rating_count": 185,
     "last_update": "2026/10/10",
     "tags": "Games, Entertainment, Casual, Puzzle",
     "removed": false,
