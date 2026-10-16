@@ -254,5 +254,21 @@ window._loadCompany("深圳益欣网络", [
     "tags": "",
     "removed": false,
     "release_date": "2026/09/23"
+  },
+  {
+    "name": "Farm Escape: Animal Traffic",
+    "company_cn": "深圳益欣网络",
+    "icon": "https://play-lh.googleusercontent.com/11-pgdhaHhpJ2mMmVDin1etaAdQ5J4uhGvwGL8KhcZHqbrIBEoWRIe11R1BJCaW8WUJgbUDaC_am2o5IkvPnzA=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.firekula.farmescape",
+    "store_link": "https://play.google.com/store/apps/details?id=com.firekula.farmescape&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=FireKula&hl=en&gl=us",
+    "developer": "FireKula",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/10/13",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/10/13"
   }
 ]);
