@@ -139,6 +139,22 @@ class AppMagicPublisherClassificationTests(unittest.TestCase):
             for row in rows
         ))
 
+    def test_unanchored_publisher_is_explicitly_insufficient(self):
+        rows = build_candidates(
+            [],
+            {'publisher': {'apps': [{
+                'platform': 'GP', 'id': 'candidate.app', 'name': 'Candidate',
+                'store_publisher_name': 'New Studio',
+            }]}},
+            {'publisher': Counter()},
+            {'公司A': Counter({'publisher': 0})},
+            defaultdict(list),
+        )
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]['review_status'], 'manual_review_insufficient_evidence')
+        self.assertEqual(rows[0]['evidence_class'], 'insufficient')
+        self.assertIn('没有已确认的库内应用锚点', rows[0]['status_reason'])
+
     def test_invariant_rejects_future_downgrade(self):
         with self.assertRaises(RuntimeError):
             validate_candidate_classification([{

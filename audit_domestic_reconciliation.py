@@ -24,9 +24,10 @@ from audit_web_evidence import (
     filter_email_domain_tainted_pages,
     load_apps,
 )
-from audit_web_fetcher import itunes_lookup_batch
+from audit_web_fetcher import fetch_url
 from import_confirmed_developers import fetch_gp_detail_html
 import monitor
+from gp_store_verification import verify_app
 
 
 DEFAULT_EXCLUDED_COMPANIES = {'playvalve', '英国tripledot'}
@@ -264,16 +265,14 @@ def match_failed_apps(error, all_apps):
 
 
 def verify_failed_gp_store_pages(summary_path, all_apps, excluded_companies,
-                                 excluded_prefixes, workers=4):
+                                 excluded_prefixes, workers=4, include_overseas=False):
     payload = json_load(summary_path, {})
     errors = payload.get('gp_scan', {}).get('error_details', [])
     tasks = {}
     for error in errors:
-        if is_excluded(error.get('company', ''), excluded_companies, excluded_prefixes):
+        if not include_overseas and is_excluded(error.get('company', ''), excluded_companies, excluded_prefixes):
             continue
         for app in match_failed_apps(error, all_apps):
-            if app.get('removed'):
-                continue
             tasks.setdefault(app['pkg_or_id'], app)
 
     def check(app):
@@ -288,28 +287,8 @@ def verify_failed_gp_store_pages(summary_path, all_apps, excluded_companies,
             'current_dev_link': '',
             'error': '',
         }
-        try:
-            body = fetch_gp_detail_html(
-                f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us'
-            )
-            developer, dev_link = monitor.extract_gp_developer_identity(body)
-            title_match = re.search(r'<meta property="og:title" content="([^"]+)', body, re.S)
-            if not title_match and not developer:
-                row.update({'store_status': 'soft_404', 'error': 'HTTP 200 without app metadata'})
-            else:
-                if not dev_link:
-                    meta = re.search(r'<meta name="appstore:developer_url" content="([^"]+)', body, re.S)
-                    if meta:
-                        dev_link = html.unescape(meta.group(1)).strip()
-                row.update({
-                    'store_status': '200',
-                    'current_developer': developer,
-                    'current_dev_link': dev_link,
-                })
-        except Exception as exc:
-            message = str(exc)
-            status = '404' if '404' in message else 'error'
-            row.update({'store_status': status, 'error': message})
+        row.update(verify_app(pkg))
+        row['previously_removed'] = bool(app.get('removed'))
         return row
 
     rows = []
@@ -321,6 +300,30 @@ def verify_failed_gp_store_pages(summary_path, all_apps, excluded_companies,
                 print(f'Failed GP seed verification: {index}/{len(tasks)}', flush=True)
     rows.sort(key=lambda row: (row['company'], row['id']))
     return rows
+
+
+def verify_ios_lookup(ids):
+    """Keep regional absence distinct from transport or malformed responses."""
+    endpoint = 'https://itunes.apple.com/lookup?id=' + ','.join(ids) + '&country=us'
+    try:
+        response = fetch_url(endpoint, timeout=25)
+        if response['status'] != 200:
+            raise ValueError(response.get('error') or f"HTTP {response['status']}")
+        payload = json.loads(response['text'])
+        rows = payload.get('results')
+        if not isinstance(rows, list) or payload.get('resultCount') != len(rows):
+            raise ValueError('Incomplete Apple Lookup response')
+        if any(not isinstance(row, dict) or row.get('wrapperType') != 'software'
+               or not row.get('trackId') or not row.get('artistName')
+               or not row.get('artistViewUrl') for row in rows):
+            raise ValueError('Incomplete Apple software metadata')
+        found = {str(row['trackId']): row for row in rows}
+        return {app_id: {'store_status': '200' if app_id in found else 'not_found_us',
+                         'item': found.get(app_id, {}), 'store_error': ''}
+                for app_id in ids}
+    except Exception as exc:
+        return {app_id: {'store_status': 'error', 'item': {}, 'store_error': str(exc)}
+                for app_id in ids}
 
 
 def verify_strong_candidates(candidates, workers=4):
@@ -336,24 +339,10 @@ def verify_strong_candidates(candidates, workers=4):
     def check_gp(candidate):
         row = dict(candidate)
         row.update({'store_status': '', 'current_developer': '', 'current_dev_link': '', 'identity_matches_appmagic': False, 'store_error': ''})
-        try:
-            body = fetch_gp_detail_html(
-                f'https://play.google.com/store/apps/details?id={candidate["id"]}&hl=en&gl=us'
-            )
-            developer, dev_link = monitor.extract_gp_developer_identity(body)
-            title_match = re.search(r'<meta property="og:title" content="([^"]+)', body, re.S)
-            if not title_match and not developer:
-                row.update({'store_status': 'soft_404', 'store_error': 'HTTP 200 without app metadata'})
-            else:
-                row.update({
-                    'store_status': '200',
-                    'current_developer': developer,
-                    'current_dev_link': dev_link,
-                    'identity_matches_appmagic': normalize_name(developer) == normalize_name(candidate.get('store_publisher_name')),
-                })
-        except Exception as exc:
-            message = str(exc)
-            row.update({'store_status': '404' if '404' in message else 'error', 'store_error': message})
+        checked = verify_app(candidate['id'])
+        row.update(checked)
+        row['store_error'] = checked.get('error', '')
+        row['identity_matches_appmagic'] = normalize_name(checked.get('current_developer')) == normalize_name(candidate.get('store_publisher_name'))
         return row
 
     with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
@@ -364,17 +353,18 @@ def verify_strong_candidates(candidates, workers=4):
     lookup = {}
     ios_ids = [row['id'] for row in ios_rows]
     for offset in range(0, len(ios_ids), 200):
-        lookup.update(itunes_lookup_batch(ios_ids[offset:offset + 200]))
+        lookup.update(verify_ios_lookup(ios_ids[offset:offset + 200]))
     for candidate in ios_rows:
-        item = lookup.get(candidate['id']) or {}
+        checked = lookup[candidate['id']]
+        item = checked['item']
         developer = item.get('artistName', '')
         row = dict(candidate)
         row.update({
-            'store_status': '200' if item else 'not_found',
+            'store_status': checked['store_status'],
             'current_developer': developer,
             'current_dev_link': item.get('artistViewUrl', ''),
             'identity_matches_appmagic': normalize_name(developer) == normalize_name(candidate.get('store_publisher_name')),
-            'store_error': '',
+            'store_error': checked['store_error'],
         })
         results.append(row)
     results.sort(key=lambda row: (row['company'], row['platform'], row['id']))
@@ -454,17 +444,31 @@ def build_candidates(apps, publisher_apps, publisher_companies, company_publishe
                 refs = sorted(set(web_refs.get((company, key), [])))
                 if owners:
                     status = 'cross_company_library_collision'
+                    reason = '该产品已经存在于其他公司，禁止自动改归属'
+                    evidence_class = 'conflict'
                 elif len(linked_companies) > 1:
                     status = 'appmagic_shared_publisher_manual'
+                    reason = '同一 AppMagic publisher 关联多个库内公司，存在跨公司冲突'
+                    evidence_class = 'conflict'
                 elif refs:
                     status = 'strong_official_and_appmagic'
+                    reason = 'AppMagic 唯一归属，并有官网/支持页/隐私政策中的官方商店线索'
+                    evidence_class = 'strong'
                 elif overlap_count >= 1:
                     # AppMagic united-publisher ownership is the primary source.
                     # A known app ties this publisher to exactly one company,
                     # so website evidence is supplementary, not a gate.
                     status = 'strong_appmagic_unique_publisher'
+                    reason = 'AppMagic publisher 只关联该公司，且存在已确认库内应用锚点'
+                    evidence_class = 'strong'
+                else:
+                    status = 'manual_review_insufficient_evidence'
+                    reason = '当前 AppMagic publisher 没有已确认的库内应用锚点，只有候选自身或辅助线索'
+                    evidence_class = 'insufficient'
                 rows.append({
                     'review_status': status,
+                    'evidence_class': evidence_class,
+                    'status_reason': reason,
                     'company': company,
                     'platform': candidate['platform'],
                     'id': candidate['id'],
@@ -538,15 +542,13 @@ def build_failed_gp_review(summary_path, all_apps, domestic_apps, mappings, publ
             status = 'unresolved_no_matching_library_apps'
         elif not publisher_ids:
             status = 'unresolved_no_appmagic_mapping'
-        elif not any(not app.get('removed') for app in matches):
-            status = 'retired_or_removed_apps_appmagic_checked'
-        elif current_store_developers:
-            status = 'resolved_old_developer_page_apps_migrated_or_split'
         elif error_rows:
             status = 'unresolved_store_verification_errors'
-        elif verification and len(verification) < len(active_matches):
+        elif verification and len(verification) < len(matches):
             status = 'unresolved_store_verification_incomplete'
-        elif verification and not live_rows and len(unavailable_rows) == len(active_matches):
+        elif current_store_developers:
+            status = 'current_identities_found_inventory_reconciliation_required'
+        elif verification and not live_rows and len(unavailable_rows) == len(matches):
             status = 'resolved_all_current_library_apps_store_unavailable'
         elif not verification:
             status = 'not_verified_current_library_apps'
@@ -573,6 +575,14 @@ def build_failed_gp_review(summary_path, all_apps, domestic_apps, mappings, publ
             'store_seed_pages_unavailable': len(unavailable_rows),
             'store_seed_pages_errors': len(error_rows),
             'current_store_developers': ';'.join(current_store_developers),
+            'store_seed_page_statuses': ';'.join(
+                f'{row.get("id", "")}={row.get("store_status", "")}'
+                for row in verification
+            ),
+            'store_seed_page_errors_detail': ';'.join(
+                f'{row.get("id", "")}: {row.get("error", "")}'
+                for row in error_rows
+            ),
         })
     return rows
 
@@ -619,8 +629,25 @@ def build_report(summary, company_rows, candidates, failures):
             f'在线 {row.get("store_seed_pages_live", 0)}，'
             f'明确不可用 {row.get("store_seed_pages_unavailable", 0)}，'
             f'核验错误 {row.get("store_seed_pages_errors", 0)}；'
-            f'当前开发者：{row.get("current_store_developers") or "无可用页面"}'
+            f'当前开发者：{row.get("current_store_developers") or "无可用页面"}；'
+            f'逐应用状态：{row.get("store_seed_page_statuses") or "未检查"}'
+            + (f'；错误：{row["store_seed_page_errors_detail"]}'
+               if row.get('store_seed_page_errors_detail') else '')
         )
+    lines.extend(['', '## AppMagic 当前候选明细'])
+    if not candidates:
+        lines.append('- 本轮没有 AppMagic 库外候选。')
+    else:
+        for row in candidates:
+            lines.append(
+                f'- {row["company"]} / {row["platform"]} `{row["id"]}` / '
+                f'{row.get("name") or "未取到名称"}；'
+                f'开发者 {row.get("store_publisher_name") or "未取到"}；'
+                f'publisher {row.get("publisher_id") or "未取到"}；'
+                f'状态 {row.get("review_status") or "unknown"}；'
+                f'证据 {row.get("evidence_class") or "unknown"}；'
+                f'原因 {row.get("status_reason") or "未分类"}'
+            )
     lines.extend([
         '',
         '## 口径',
@@ -635,7 +662,8 @@ def build_report(summary, company_rows, candidates, failures):
 
 
 def write_current_candidate_report(
-    run_dir, detail_rows, current_developer_extras, verified_appmagic_rows
+    run_dir, detail_rows, current_developer_extras, verified_appmagic_rows,
+    appmagic_candidates
 ):
     rows = []
     for row in detail_rows:
@@ -695,6 +723,23 @@ def write_current_candidate_report(
                 '当前商店页面可访问'
             ),
         })
+    for row in appmagic_candidates:
+        rows.append({
+            'review_status': row.get('review_status') or 'manual_review_insufficient_evidence',
+            'company': row.get('company', ''),
+            'platform': row.get('platform', ''),
+            'id': row.get('id', ''),
+            'name': row.get('name', ''),
+            'developer': row.get('store_publisher_name', ''),
+            'release_date': row.get('release_date', ''),
+            'store_link': row.get('store_link', ''),
+            'evidence_source': (
+                'AppMagic_united_publisher+current_store'
+                if row.get('evidence_class') == 'strong'
+                else 'AppMagic_candidate_review'
+            ),
+            'reason': row.get('status_reason', '未分类'),
+        })
     deduped = {}
     for row in rows:
         key = app_key(row.get('platform'), row.get('id'))
@@ -716,7 +761,9 @@ def write_current_candidate_report(
     lines = ['# 当前可访问应用审查清单', '']
     lines.append(f'- 总计：{len(rows)}')
     lines.append(f'- 证据完整候选：{sum(row["review_status"] == "candidate_import" for row in rows)}')
-    lines.append(f'- 需要人工确认：{sum(row["review_status"] == "manual_review" for row in rows)}')
+    lines.append(
+        f'- 需要人工确认：{sum(row["review_status"].startswith("manual_review") for row in rows)}'
+    )
     lines.append('- 日期口径：本次均为历史遗漏；无当天或近 7 天新上架。')
     lines.append('')
     for company in sorted(by_company):
@@ -727,7 +774,10 @@ def write_current_candidate_report(
                 f'{row["name"]} | {row["developer"]} | {row["release_date"]}'
             )
         lines.append('')
-    lines.append('未确认前不写入产品库。')
+    lines.append(
+        '单独运行本审计不会写入产品库；每日 monitor 会自动补入 '
+        'candidate_import，人工项不会自动导入。'
+    )
     with open(os.path.join(run_dir, 'current_candidate_review.md'), 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
     return rows
@@ -801,9 +851,6 @@ def main():
             'company', 'id', 'library_developer', 'library_dev_link', 'store_status',
             'current_developer', 'current_dev_link', 'error',
         ])
-    elif os.path.exists(store_verification_path):
-        with open(store_verification_path, newline='', encoding='utf-8-sig') as f:
-            store_verification = list(csv.DictReader(f))
     failures = build_failed_gp_review(
         args.gp_error_summary, all_apps, apps, mappings, publisher_apps, web_refs,
         excluded_companies, excluded_prefixes, store_verification=store_verification,
@@ -819,7 +866,7 @@ def main():
         'removed', 'website_url', 'support_url',
     ])
     write_csv(os.path.join(run_dir, 'appmagic_missing_candidates.csv'), candidates, [
-        'review_status', 'company', 'platform', 'id', 'name', 'store_publisher_name',
+        'review_status', 'evidence_class', 'status_reason', 'company', 'platform', 'id', 'name', 'store_publisher_name',
         'store_publisher_id', 'store_link', 'release_date', 'first_detected',
         'appmagic_removed', 'publisher_id', 'known_company_overlap',
         'publisher_linked_companies', 'existing_library_companies',
@@ -833,7 +880,8 @@ def main():
         'official_web_ref_count',
         'store_seed_pages_checked', 'store_seed_pages_live',
         'store_seed_pages_unavailable', 'store_seed_pages_errors',
-        'current_store_developers',
+        'current_store_developers', 'store_seed_page_statuses',
+        'store_seed_page_errors_detail',
     ])
 
     mapped = sum(row.get('status') == 'mapped' for row in company_rows)
@@ -871,7 +919,7 @@ def main():
         or strong_by_key.get(app_key(row.get('platform'), row.get('id')), {}).get('store_status') == '200'
     ]
     current_review_rows = write_current_candidate_report(
-        run_dir, detail_rows, current_developer_extras, strong_rows
+        run_dir, detail_rows, current_developer_extras, strong_rows, candidates
     )
     summary = {
         'run_dir': run_dir,
@@ -894,6 +942,7 @@ def main():
         'publisher_fetch_truncated': sum(bool(row.get('possibly_truncated')) for row in publisher_apps.values()),
         'candidates': len(candidates),
         'candidate_statuses': dict(Counter(row['review_status'] for row in candidates)),
+        'candidate_evidence_classes': dict(Counter(row.get('evidence_class', 'unknown') for row in candidates)),
         'strong_appmagic_candidates': sum(
             row.get('review_status') in STRONG_CANDIDATE_STATUSES
             for row in candidates
@@ -909,7 +958,18 @@ def main():
             for row in strong_rows
         ),
         'strong_store_errors': sum(
-            row.get('store_status') == 'error' for row in strong_rows
+            row.get('store_status') not in {'200', '404', 'soft_404', 'not_found_us'} for row in strong_rows
+        ),
+        'strong_store_not_found_us': sum(
+            row.get('store_status') == 'not_found_us' for row in strong_rows
+        ),
+        'failed_gp_store_errors': sum(
+            row['store_seed_pages_errors'] for row in failures
+            if row['scope_status'] != 'deferred_overseas'
+        ),
+        'failed_gp_store_unchecked': sum(
+            max(0, row['matched_library_apps'] - row['store_seed_pages_checked'])
+            for row in failures if row['scope_status'] != 'deferred_overseas'
         ),
         'web_pages': web_summary.get('site_pages_fetched', 0),
         'web_page_errors': web_summary.get('stats', {}).get('site_page_errors', 0),
@@ -917,8 +977,11 @@ def main():
         'private_email_evidence_rows': web_summary.get('email_evidence_rows', 0),
         'companies_with_web_evidence': len(web_summary.get('companies_with_evidence', [])),
         'review_candidate_import': sum(row.get('review_status') == 'candidate_import' for row in current_review_rows),
-        'review_manual': sum(row.get('review_status') == 'manual_review' for row in current_review_rows),
-        'historical_store_unavailable': sum(row.get('store_status') != '200' for row in strong_rows) + len(developer_extras) - len(current_developer_extras),
+        'review_manual': sum(
+            row.get('review_status', '').startswith('manual_review')
+            for row in current_review_rows
+        ),
+        'historical_store_unavailable': sum(row.get('store_status') in {'404', 'soft_404'} for row in strong_rows),
         'official_developer_accounts': developer_summary.get('developer_accounts', 0),
         'official_developer_accounts_live': developer_summary.get('account_statuses', {}).get('ok', 0),
         'official_developer_account_apps': developer_summary.get('apps_from_accounts', 0),
@@ -939,6 +1002,8 @@ def main():
                 'publisher_fetch_errors',
                 'publisher_fetch_truncated',
                 'strong_store_errors',
+                'failed_gp_store_errors',
+                'failed_gp_store_unchecked',
             )
             if summary[key]
         }

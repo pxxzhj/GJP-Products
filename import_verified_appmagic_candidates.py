@@ -98,6 +98,9 @@ def fetch_gp(candidate):
         release_date = monitor.normalize_date(candidate.get('first_detected', ''))
         release_source = 'AppMagic First Detected'
     if not release_date:
+        release_date = monitor.fetch_appmagic_release_date(package)
+        release_source = 'AppMagic' if release_date else ''
+    if not release_date:
         release_date = monitor.fetch_apkcombo_release_date(package, name)
         release_source = 'APKCombo' if release_date else ''
     if not release_date and last_update:
@@ -180,6 +183,25 @@ def load_verified_candidates(path):
         seen.add(key)
         if not row.get('company'):
             raise RuntimeError(f'candidate has no company: {key[0]}:{key[1]}')
+        if row.get('review_status') not in {
+            'strong_official_and_appmagic',
+            'strong_appmagic_unique_publisher',
+        }:
+            raise RuntimeError(
+                f'candidate is not strong AppMagic evidence: {key[0]}:{key[1]}'
+            )
+        linked_companies = [
+            value for value in row.get('publisher_linked_companies', '').split(';')
+            if value
+        ]
+        if linked_companies != [row['company']]:
+            raise RuntimeError(
+                f'candidate publisher is not uniquely owned: {key[0]}:{key[1]}'
+            )
+        if row.get('existing_library_companies'):
+            raise RuntimeError(
+                f'candidate already collides with the library: {key[0]}:{key[1]}'
+            )
     return candidates
 
 
@@ -187,11 +209,214 @@ def clean_for_storage(app):
     return {key: value for key, value in app.items() if not key.startswith('_')}
 
 
+def ios_developer_id(app):
+    match = re.search(r'/id(\d+)', app.get('dev_link', ''))
+    return match.group(1) if match else ''
+
+
+def fetch_ios_developer(artist_id):
+    endpoint = (
+        'https://itunes.apple.com/lookup?'
+        f'id={artist_id}&entity=software&country=us&limit=200'
+    )
+    payload = monitor.itunes_lookup(endpoint, retries=4)
+    if not payload:
+        raise RuntimeError('US developer Lookup failed')
+    return [
+        row for row in payload.get('results', [])
+        if row.get('wrapperType') == 'software' and row.get('trackId')
+    ]
+
+
+def fetch_gp_developer_packages(dev_link):
+    body = fetch_gp_detail_html(dev_link)
+    packages = set(re.findall(
+        r'/store/apps/details\?id=([A-Za-z0-9_.]+)', body
+    ))
+    if not packages:
+        raise RuntimeError('developer page returned no current app links')
+    return packages
+
+
+def merge_app(apps, positions, raw_app, source, added, already_present,
+              cross_company_collisions):
+    app = clean_for_storage(raw_app)
+    key = (app['platform'], app['pkg_or_id'])
+    if key in positions:
+        existing = apps[positions[key]]
+        if existing.get('company_cn') != app['company_cn']:
+            cross_company_collisions.append({
+                'platform': key[0],
+                'id': key[1],
+                'existing_company': existing.get('company_cn', ''),
+                'observed_company': app['company_cn'],
+                'developer': app.get('developer', ''),
+                'source': source,
+            })
+            return 'collision'
+        present = {
+            'platform': key[0],
+            'id': key[1],
+            'company': app['company_cn'],
+        }
+        if present not in already_present:
+            already_present.append(present)
+        return 'existing_same_company'
+
+    positions[key] = len(apps)
+    apps.append(app)
+    added.append({
+        'platform': key[0],
+        'id': key[1],
+        'company': app['company_cn'],
+        'name': app['name'],
+        'developer': app['developer'],
+        'dev_link': app.get('dev_link', ''),
+        'release_source': raw_app.get('_release_source', ''),
+        'source': source,
+    })
+    return 'added'
+
+
+def expand_native_developer_accounts(
+    apps,
+    positions,
+    seed_apps,
+    added,
+    already_present,
+    cross_company_collisions,
+    max_rounds=3,
+):
+    ios_queue = []
+    gp_queue = []
+    queued_ios = set()
+    queued_gp = set()
+    scanned_ios = set()
+    scanned_gp = set()
+    expansion_errors = []
+
+    def enqueue(app, depth):
+        if depth > max_rounds:
+            return
+        company = app.get('company_cn', '')
+        if app.get('platform') == 'iOS':
+            artist_id = ios_developer_id(app)
+            key = (company, artist_id)
+            if artist_id and key not in queued_ios and key not in scanned_ios:
+                queued_ios.add(key)
+                ios_queue.append((company, artist_id, depth))
+        elif app.get('platform') == 'GP':
+            dev_link = app.get('dev_link', '')
+            key = (company, dev_link)
+            if (
+                dev_link
+                and 'play.google.com' in dev_link
+                and key not in queued_gp
+                and key not in scanned_gp
+            ):
+                queued_gp.add(key)
+                gp_queue.append((company, dev_link, depth))
+
+    for app in seed_apps:
+        key = (app['platform'], app['pkg_or_id'])
+        existing = apps[positions[key]] if key in positions else None
+        if existing and existing.get('company_cn') == app.get('company_cn'):
+            enqueue(app, 0)
+
+    while ios_queue or gp_queue:
+        if ios_queue:
+            company, artist_id, depth = ios_queue.pop(0)
+            queued_ios.discard((company, artist_id))
+            scanned_ios.add((company, artist_id))
+            try:
+                rows = fetch_ios_developer(artist_id)
+                for row in rows:
+                    raw_app = ios_app(row, company)
+                    merge_status = merge_app(
+                        apps, positions, raw_app, 'native_developer_expansion',
+                        added, already_present, cross_company_collisions,
+                    )
+                    if merge_status != 'collision':
+                        enqueue(raw_app, depth + 1)
+            except Exception as exc:
+                expansion_errors.append({
+                    'platform': 'iOS',
+                    'company': company,
+                    'developer_id': artist_id,
+                    'error': str(exc),
+                })
+
+        if gp_queue:
+            company, dev_link, depth = gp_queue.pop(0)
+            queued_gp.discard((company, dev_link))
+            scanned_gp.add((company, dev_link))
+            try:
+                packages = fetch_gp_developer_packages(dev_link)
+            except Exception as exc:
+                expansion_errors.append({
+                    'platform': 'GP',
+                    'company': company,
+                    'developer_link': dev_link,
+                    'error': str(exc),
+                })
+                continue
+
+            for package in sorted(packages):
+                key = ('GP', package)
+                existing = apps[positions[key]] if key in positions else None
+                if existing:
+                    if existing.get('company_cn') != company:
+                        cross_company_collisions.append({
+                            'platform': 'GP',
+                            'id': package,
+                            'existing_company': existing.get('company_cn', ''),
+                            'observed_company': company,
+                            'developer': existing.get('developer', ''),
+                            'source': 'native_developer_expansion',
+                        })
+                    else:
+                        enqueue(existing, depth + 1)
+                    continue
+                try:
+                    raw_app = fetch_gp({
+                        'id': package,
+                        'company': company,
+                        'release_date': '',
+                        'first_detected': '',
+                    })
+                    merge_app(
+                        apps, positions, raw_app,
+                        'native_developer_expansion', added,
+                        already_present, cross_company_collisions,
+                    )
+                    enqueue(raw_app, depth + 1)
+                except Exception as exc:
+                    expansion_errors.append({
+                        'platform': 'GP',
+                        'company': company,
+                        'id': package,
+                        'developer_link': dev_link,
+                        'error': str(exc),
+                    })
+
+    return {
+        'scanned_ios_accounts': len(scanned_ios),
+        'scanned_gp_accounts': len(scanned_gp),
+        'errors': expansion_errors,
+    }
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--input', default=DEFAULT_CSV)
     parser.add_argument('--workers', type=int, default=4)
     parser.add_argument('--report-dir')
+    parser.add_argument(
+        '--expand-developers',
+        action='store_true',
+        help='Expand native Apple/Google developer accounts after importing.',
+    )
+    parser.add_argument('--max-expansion-rounds', type=int, default=3)
     args = parser.parse_args()
 
     candidates = load_verified_candidates(args.input)
@@ -255,34 +480,33 @@ def main():
     }
     added = []
     already_present = []
+    cross_company_collisions = []
     affected = set()
     for raw_app in fetched:
-        app = clean_for_storage(raw_app)
-        key = (app['platform'], app['pkg_or_id'])
-        if key in positions:
-            existing = apps[positions[key]]
-            if existing.get('company_cn') != app['company_cn']:
-                raise RuntimeError(
-                    f'company collision for {key[0]}:{key[1]}: '
-                    f'{existing.get("company_cn")} != {app["company_cn"]}'
-                )
-            already_present.append({
-                'platform': key[0],
-                'id': key[1],
-                'company': app['company_cn'],
-            })
-            continue
-        positions[key] = len(apps)
-        apps.append(app)
-        affected.add(app['company_cn'])
-        added.append({
-            'platform': key[0],
-            'id': key[1],
-            'company': app['company_cn'],
-            'name': app['name'],
-            'developer': app['developer'],
-            'release_source': raw_app.get('_release_source', ''),
-        })
+        if merge_app(
+            apps, positions, raw_app, 'appmagic_verified_candidate',
+            added, already_present, cross_company_collisions,
+        ) == 'added':
+            affected.add(raw_app['company_cn'])
+
+    expansion = {
+        'scanned_ios_accounts': 0,
+        'scanned_gp_accounts': 0,
+        'errors': [],
+    }
+    if args.expand_developers and fetched:
+        before_expansion = len(added)
+        expansion = expand_native_developer_accounts(
+            apps,
+            positions,
+            fetched,
+            added,
+            already_present,
+            cross_company_collisions,
+            max_rounds=max(0, args.max_expansion_rounds),
+        )
+        for row in added[before_expansion:]:
+            affected.add(row['company'])
 
     keys = [(app['platform'], app['pkg_or_id']) for app in apps]
     if len(keys) != len(set(keys)):
@@ -309,6 +533,19 @@ def main():
             failed,
             key=lambda row: (row['company'], row['platform'], row['id']),
         ),
+        'cross_company_collisions': sorted(
+            cross_company_collisions,
+            key=lambda row: (
+                row.get('observed_company', ''),
+                row.get('platform', ''),
+                row.get('id', ''),
+            ),
+        ),
+        'expansion_errors': expansion['errors'],
+        'expanded_accounts': {
+            'iOS': expansion['scanned_ios_accounts'],
+            'GP': expansion['scanned_gp_accounts'],
+        },
         'added_by_company': dict(sorted(Counter(
             row['company'] for row in added
         ).items())),
@@ -322,10 +559,15 @@ def main():
         json.dump(report, handle, ensure_ascii=False, indent=2)
     print(json.dumps({
         key: value for key, value in report.items()
-        if key not in {'added', 'already_present', 'failed'}
+        if key not in {
+            'added', 'already_present', 'failed',
+            'cross_company_collisions', 'expansion_errors',
+        }
     } | {
         'already_present': len(already_present),
         'failed': len(failed),
+        'cross_company_collisions': len(cross_company_collisions),
+        'expansion_errors': len(expansion['errors']),
         'report': report_path,
     }, ensure_ascii=False, indent=2), flush=True)
 

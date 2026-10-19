@@ -58,10 +58,149 @@ class AppMagicCompletenessGateTests(unittest.TestCase):
             result = run_appmagic_completeness_gate(
                 run_dir=run_dir,
                 runner=runner,
+                auto_repair=False,
             )
 
         self.assertFalse(result['passed'])
         self.assertEqual(result['live_missing'], 3)
+
+    def test_live_missing_apps_are_repaired_then_reaudited(self):
+        with tempfile.TemporaryDirectory() as run_dir:
+            audit_calls = []
+
+            def runner(command, cwd):
+                audit_calls.append(command)
+                live_missing = 1 if len(audit_calls) == 1 else 0
+                with open(
+                    os.path.join(run_dir, 'reconciliation_summary.json'),
+                    'w',
+                    encoding='utf-8',
+                ) as f:
+                    json.dump({'strong_store_live': live_missing}, f)
+                with open(
+                    os.path.join(
+                        run_dir, 'strong_candidate_store_verification.csv'
+                    ),
+                    'w',
+                    encoding='utf-8',
+                ) as f:
+                    f.write('store_status\n200\n')
+                return SimpleNamespace(returncode=1 if live_missing else 0)
+
+            def repair_runner(command, cwd):
+                self.assertIn('--expand-developers', command)
+                report_dir = command[command.index('--report-dir') + 1]
+                with open(
+                    os.path.join(report_dir, 'import_report.json'),
+                    'w',
+                    encoding='utf-8',
+                ) as f:
+                    json.dump({
+                        'added': [{
+                            'platform': 'GP',
+                            'id': 'new.app',
+                            'company': '公司A',
+                            'name': 'New App',
+                            'developer': 'Developer A',
+                        }],
+                        'already_present': [],
+                        'failed': [],
+                        'expansion_errors': [{
+                            'platform': 'iOS',
+                            'company': '公司A',
+                            'developer_id': '100',
+                            'error': 'old developer entry unavailable',
+                        }],
+                        'cross_company_collisions': [],
+                    }, f)
+                return SimpleNamespace(returncode=0)
+
+            result = run_appmagic_completeness_gate(
+                run_dir=run_dir,
+                runner=runner,
+                repair_runner=repair_runner,
+            )
+
+        self.assertTrue(result['passed'])
+        self.assertEqual(len(audit_calls), 2)
+        self.assertEqual(result['repair_rounds'], 1)
+        self.assertEqual(result['auto_repair_added'][0]['id'], 'new.app')
+        self.assertEqual(len(result['repair_warnings']), 1)
+
+    def test_incomplete_audit_blocks_before_auto_repair(self):
+        with tempfile.TemporaryDirectory() as run_dir:
+            def runner(command, cwd):
+                with open(
+                    os.path.join(run_dir, 'reconciliation_summary.json'),
+                    'w',
+                    encoding='utf-8',
+                ) as f:
+                    json.dump({
+                        'strong_store_live': 1,
+                        'publisher_fetch_errors': 2,
+                    }, f)
+                return SimpleNamespace(returncode=1)
+
+            repair_called = []
+            result = run_appmagic_completeness_gate(
+                run_dir=run_dir,
+                runner=runner,
+                repair_runner=lambda command, cwd: repair_called.append(command),
+            )
+
+        self.assertFalse(result['passed'])
+        self.assertEqual(result['blocking_reason'], 'audit_incomplete')
+        self.assertEqual(result['incomplete'], {'publisher_fetch_errors': 2})
+        self.assertEqual(repair_called, [])
+
+    def test_auto_repair_failures_remain_blocking(self):
+        with tempfile.TemporaryDirectory() as run_dir:
+            def runner(command, cwd):
+                with open(
+                    os.path.join(run_dir, 'reconciliation_summary.json'),
+                    'w',
+                    encoding='utf-8',
+                ) as f:
+                    json.dump({'strong_store_live': 1}, f)
+                with open(
+                    os.path.join(
+                        run_dir, 'strong_candidate_store_verification.csv'
+                    ),
+                    'w',
+                    encoding='utf-8',
+                ) as f:
+                    f.write('store_status\n200\n')
+                return SimpleNamespace(returncode=1)
+
+            def repair_runner(command, cwd):
+                report_dir = command[command.index('--report-dir') + 1]
+                with open(
+                    os.path.join(report_dir, 'import_report.json'),
+                    'w',
+                    encoding='utf-8',
+                ) as f:
+                    json.dump({
+                        'added': [],
+                        'already_present': [],
+                        'failed': [{
+                            'platform': 'GP',
+                            'id': 'new.app',
+                            'company': '公司A',
+                            'error': 'timeout',
+                        }],
+                        'expansion_errors': [],
+                        'cross_company_collisions': [],
+                    }, f)
+                return SimpleNamespace(returncode=0)
+
+            result = run_appmagic_completeness_gate(
+                run_dir=run_dir,
+                runner=runner,
+                repair_runner=repair_runner,
+            )
+
+        self.assertFalse(result['passed'])
+        self.assertEqual(result['blocking_reason'], 'auto_repair_incomplete')
 
     def test_clean_audit_allows_daily_commit(self):
         with tempfile.TemporaryDirectory() as run_dir:

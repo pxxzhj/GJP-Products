@@ -369,7 +369,7 @@ def normalize_gp_developer_url(dev_link, developer=''):
     parsed = urllib.parse.urlsplit(dev_link)
     if parsed.path.rstrip('/').endswith('/developer') and developer:
         query = urllib.parse.parse_qs(parsed.query)
-        query['id'] = [developer]
+        query.setdefault('id', [developer])
         query.setdefault('hl', ['en'])
         query.setdefault('gl', ['us'])
         encoded = urllib.parse.urlencode(query, doseq=True)
@@ -423,8 +423,7 @@ def extract_gp_developers(all_apps):
             }
         devs[dev_link]['known_pkgs'].add(a['pkg_or_id'])
         devs[dev_link]['apps'].append(a)
-        if not a.get('removed'):
-            devs[dev_link]['seed_pkgs'].append(a['pkg_or_id'])
+        devs[dev_link]['seed_pkgs'].append(a['pkg_or_id'])
     return devs
 
 def clean_detail_text(value):
@@ -818,6 +817,8 @@ def check_gp_developers(all_apps):
             app['dev_link'] = dev_url
             if developer:
                 app['developer'] = developer
+            if app.get('removed') and app.get('release_date'):
+                app['removed'] = False
             group = grouped.setdefault(dev_url, {
                 'developer': developer,
                 'pkgs': [],
@@ -872,36 +873,23 @@ def check_gp_developers(all_apps):
                 time.sleep(2)
     else:
         def fetch_storefront(dev_url):
-            req = urllib.request.Request(dev_url, headers=GP_REQUEST_HEADERS)
-            last_error = None
-            for attempt in range(2):
-                try:
-                    with urllib.request.urlopen(req, timeout=30) as response:
-                        body = response.read().decode('utf-8', errors='ignore')
-                    packages = set(re.findall(
-                        r'/store/apps/details\?id=([a-zA-Z0-9_.]+)', body
-                    ))
-                    if not packages:
-                        raise RuntimeError('developer page returned no apps')
-                    return packages
-                except Exception as e:
-                    last_error = e
-                    if attempt == 0:
-                        time.sleep(1)
-            raise last_error
+            from gp_store_verification import scan_developer
+            result = scan_developer(dev_url)
+            if not result['complete']:
+                raise RuntimeError(f"developer inventory incomplete: {result['error']}")
+            return set(result['packages'])
 
         def recover_developer_identities(info):
+            from gp_store_verification import verify_app
             identities_by_pkg = {}
             seed_errors = []
             for pkg in list(dict.fromkeys(info['seed_pkgs'])):
                 url = f'https://play.google.com/store/apps/details?id={pkg}&hl=en&gl=us'
                 try:
-                    req = urllib.request.Request(url, headers=GP_REQUEST_HEADERS)
-                    with urllib.request.urlopen(req, timeout=30) as response:
-                        body = response.read().decode('utf-8', errors='ignore')
-                    developer, dev_url = extract_gp_developer_identity(body)
-                    if not dev_url:
-                        raise RuntimeError('developer identity not found on app page')
+                    result = verify_app(pkg)
+                    if result['store_status'] != '200':
+                        raise RuntimeError(f"{result['store_status']}: {result['error']}")
+                    developer, dev_url = result['current_developer'], result['current_dev_link']
                     identities_by_pkg[pkg] = {
                         'developer': developer,
                         'dev_url': dev_url,
@@ -910,7 +898,7 @@ def check_gp_developers(all_apps):
                     seed_errors.append(f'{pkg}: {str(e)[:80]}')
 
             if not identities_by_pkg:
-                detail = '; '.join(seed_errors[:3]) or 'no current library apps'
+                detail = '; '.join(seed_errors[:3]) or 'no historical apps matched this exact entry'
                 raise RuntimeError(f'developer recovery failed ({detail})')
 
             identities = {}
@@ -934,6 +922,10 @@ def check_gp_developers(all_apps):
                     f"{info['developer']} -> {len(identities)} current accounts"
                 )
             if seed_errors:
+                error_details.append({
+                    'company': info['company'], 'developer': info['developer'],
+                    'url': info['url'], 'error': 'partial app verification: ' + '; '.join(seed_errors),
+                })
                 log(
                     f"  GP identity recovery partial: {info['company']} / "
                     f"{info['developer']} ({len(identities_by_pkg)} live, "
@@ -952,6 +944,10 @@ def check_gp_developers(all_apps):
                     try:
                         packages.update(fetch_storefront(recovered_url))
                     except Exception as e:
+                        error_details.append({
+                            'company': info['company'], 'developer': identity['developer'],
+                            'url': recovered_url, 'error': f'recovered account inventory incomplete: {e}',
+                        })
                         log(
                             f"  GP recovered storefront ERROR {recovered_url[:60]}: "
                             f"{str(e)[:80]}"
@@ -1000,7 +996,7 @@ def check_gp_developers(all_apps):
     }
     GP_DEVELOPER_SCAN_STATS = {
         'checked': checked,
-        'errors': errors,
+        'errors': len(error_details),
         'normalized_apps': len(normalized_apps),
         'recovered_developers': identity_changes,
         'identity_splits': identity_splits,
@@ -1012,6 +1008,13 @@ def check_gp_developers(all_apps):
     # Deduplicate against existing DB
     existing_pkgs = set(a['pkg_or_id'] for a in all_apps if a['platform'] == 'GP')
     truly_new = {p: v for p, v in new_gp_pkgs.items() if p not in existing_pkgs}
+
+    if truly_new:
+        from gp_candidate_ownership import authorize_candidates
+        truly_new, pending = authorize_candidates(all_apps, truly_new)
+        GP_DEVELOPER_SCAN_STATS['ownership_pending'] = pending
+        for row in pending:
+            log(f"  GP ownership pending: {row['id']} / {row['company']}: {row['reason']}")
 
     if not truly_new:
         if driver:
@@ -1166,12 +1169,14 @@ def check_ios_updates(all_apps):
                     change['new_release'] = new_release
                     a['release_date'] = new_release
 
+            new_rc = r.get('userRatingCount', 0)
+            if isinstance(new_rc, int) and new_rc > 0 and new_rc != a.get('rating_count', 0):
+                change['old_rating_count'] = a.get('rating_count', 0)
+                change['new_rating_count'] = new_rc
+                a['rating_count'] = new_rc
+
             if len(change) > 3:
                 updates.append(change)
-
-            new_rc = r.get('userRatingCount', 0)
-            if isinstance(new_rc, int) and new_rc > 0:
-                a['rating_count'] = new_rc
 
         log(f"  iOS updates batch {i // batch_size + 1}: checked {min(i + batch_size, len(ios_apps))}/{len(ios_apps)}")
         time.sleep(1)
@@ -1274,7 +1279,25 @@ def regenerate_files(all_apps, affected_companies):
 
 # ── Step 5: git commit + push ────────────────────────────────────────────────
 
+def validate_before_publish(runner=None):
+    runner = runner or subprocess.run
+    scripts = [
+        'monitor.py', 'audit_domestic_reconciliation.py',
+        'import_verified_appmagic_candidates.py', 'gp_store_verification.py',
+        'gp_candidate_ownership.py', 'review_failed_gp_entries.py',
+        'review_daily_gp_candidates.py',
+    ]
+    for command in [
+        [sys.executable, '-m', 'py_compile', *scripts],
+        [sys.executable, '-m', 'unittest', 'discover', '-p', 'test_*.py'],
+        ['git', 'diff', '--check'],
+        ['node', 'validate_library.js'],
+    ]:
+        runner(command, cwd=BASE_DIR, check=True)
+
+
 def git_commit_push(new_count, update_count):
+    validate_before_publish()
     os.chdir(BASE_DIR)
     subprocess.run(['git', 'add', 'data/', 'index.html', 'product_index.js'], check=True)
 
@@ -1295,8 +1318,15 @@ def git_commit_push(new_count, update_count):
         log(f"Git push failed: {result.stderr[:200]}")
 
 
-def run_appmagic_completeness_gate(run_dir=None, gp_error_summary=None, runner=None):
-    """Audit AppMagic publishers before allowing the daily commit/push."""
+def run_appmagic_completeness_gate(
+    run_dir=None,
+    gp_error_summary=None,
+    runner=None,
+    repair_runner=None,
+    auto_repair=True,
+    max_repair_rounds=None,
+):
+    """Repair verified AppMagic omissions, then audit before commit/push."""
     if run_dir is None:
         run_dir = os.path.join(
             os.path.dirname(BASE_DIR),
@@ -1305,75 +1335,199 @@ def run_appmagic_completeness_gate(run_dir=None, gp_error_summary=None, runner=N
         )
     if runner is None:
         runner = subprocess.run
+    if repair_runner is None:
+        repair_runner = runner
+    if max_repair_rounds is None:
+        max_repair_rounds = int(
+            os.environ.get('APPMAGIC_AUTO_REPAIR_ROUNDS', '3')
+        )
+    auto_repair = (
+        auto_repair
+        and os.environ.get('APPMAGIC_AUTO_REPAIR', '1') != '0'
+    )
     os.makedirs(run_dir, exist_ok=True)
     summary_path = os.path.join(run_dir, 'reconciliation_summary.json')
-    started_at = time.time()
-    command = [
-        sys.executable,
-        os.path.join(BASE_DIR, 'audit_domestic_reconciliation.py'),
-        '--run-dir', run_dir,
-        '--cache-ttl-hours', os.environ.get('APPMAGIC_CACHE_TTL_HOURS', '20'),
-        '--verify-strong-candidates',
-        '--fail-on-live-candidates',
-    ]
-    if gp_error_summary:
-        command.extend([
-            '--verify-failed-gp-store',
-            '--gp-error-summary', gp_error_summary,
-        ])
-    log('AppMagic 完整性检查开始')
-    result = runner(command, cwd=BASE_DIR)
+    verification_path = os.path.join(
+        run_dir, 'strong_candidate_store_verification.csv'
+    )
+    repaired_apps = []
+    repair_reports = []
+    repair_warnings = []
 
-    summary = {}
-    if (
-        os.path.exists(summary_path)
-        and os.path.getmtime(summary_path) >= started_at - 1
-    ):
-        try:
-            with open(summary_path, encoding='utf-8') as f:
-                summary = json.load(f)
-        except (OSError, ValueError):
-            summary = {}
+    def audit_once(round_index):
+        started_at = time.time()
+        command = [
+            sys.executable,
+            os.path.join(BASE_DIR, 'audit_domestic_reconciliation.py'),
+            '--run-dir', run_dir,
+            '--cache-ttl-hours',
+            os.environ.get('APPMAGIC_CACHE_TTL_HOURS', '20'),
+            '--verify-strong-candidates',
+            '--fail-on-live-candidates',
+        ]
+        if gp_error_summary:
+            command.extend([
+                '--verify-failed-gp-store',
+                '--gp-error-summary', gp_error_summary,
+            ])
+        label = '初次检查' if round_index == 0 else f'修复后第 {round_index} 次复查'
+        log(f'AppMagic 完整性检查开始（{label}）')
+        result = runner(command, cwd=BASE_DIR)
+        summary = {}
+        if (
+            os.path.exists(summary_path)
+            and os.path.getmtime(summary_path) >= started_at - 1
+        ):
+            try:
+                with open(summary_path, encoding='utf-8') as f:
+                    summary = json.load(f)
+            except (OSError, ValueError):
+                summary = {}
+        if not summary:
+            raise RuntimeError(
+                'AppMagic 完整性检查未生成当次总结，'
+                '不允许在审计结果不明时提交或推送'
+            )
+        return result, summary
 
-    if not summary:
-        raise RuntimeError(
-            'AppMagic 完整性检查未生成当次总结，'
-            '不允许在审计结果不明时提交或推送'
-        )
-
-    live_missing = int(summary.get('strong_store_live') or 0)
-    incomplete = {
-        key: int(summary.get(key) or 0)
-        for key in (
-            'mapping_fetch_errors',
-            'publisher_fetch_errors',
-            'publisher_fetch_truncated',
-            'strong_store_errors',
-        )
-        if int(summary.get(key) or 0)
-    }
-    if incomplete:
-        raise RuntimeError(
-            'AppMagic 完整性检查不完整，'
-            f'不允许提交或推送：{json.dumps(incomplete, ensure_ascii=False)}'
-        )
-    if result.returncode == 0:
-        log('AppMagic 完整性检查通过：无当前在线漏库应用')
-        return {'passed': True, 'live_missing': 0, 'run_dir': run_dir}
-    if live_missing:
-        log(
-            f'AppMagic 完整性检查拦截：发现 {live_missing} 个当前在线漏库应用，'
-            f'审查目录 {run_dir}'
-        )
+    def blocked(reason, live_missing=0, incomplete=None, report=''):
         return {
             'passed': False,
             'live_missing': live_missing,
             'run_dir': run_dir,
+            'blocking_reason': reason,
+            'incomplete': incomplete or {},
+            'repair_report': report,
+            'auto_repair_added': repaired_apps,
+            'repair_rounds': len(repair_reports),
+            'repair_warnings': repair_warnings,
         }
-    raise RuntimeError(
-        f'AppMagic 完整性检查执行失败（exit={result.returncode}），'
-        '不允许在审计结果不明时提交或推送'
-    )
+
+    for round_index in range(max_repair_rounds + 1):
+        result, summary = audit_once(round_index)
+        live_missing = int(summary.get('strong_store_live') or 0)
+        incomplete = {
+            key: int(summary.get(key) or 0)
+            for key in (
+                'mapping_fetch_errors',
+                'publisher_fetch_errors',
+                'publisher_fetch_truncated',
+                'strong_store_errors',
+                'failed_gp_store_errors',
+                'failed_gp_store_unchecked',
+            )
+            if int(summary.get(key) or 0)
+        }
+        if incomplete:
+            log(
+                'AppMagic 完整性检查不完整，保留本地更新：'
+                f'{json.dumps(incomplete, ensure_ascii=False)}'
+            )
+            return blocked(
+                'audit_incomplete', live_missing, incomplete=incomplete
+            )
+        if live_missing == 0 and result.returncode == 0:
+            if repaired_apps:
+                log(
+                    f'AppMagic 自动修复完成：补入 {len(repaired_apps)} 个应用，'
+                    '复查无当前在线漏库应用'
+                )
+            else:
+                log('AppMagic 完整性检查通过：无当前在线漏库应用')
+            return {
+                'passed': True,
+                'live_missing': 0,
+                'run_dir': run_dir,
+                'blocking_reason': '',
+                'incomplete': {},
+                'repair_report': repair_reports[-1] if repair_reports else '',
+                'auto_repair_added': repaired_apps,
+                'repair_rounds': len(repair_reports),
+                'repair_warnings': repair_warnings,
+            }
+        if live_missing == 0:
+            log(
+                f'AppMagic 完整性检查异常退出（exit={result.returncode}），'
+                '保留本地更新'
+            )
+            return blocked('audit_failed_without_live_candidates')
+        if not auto_repair:
+            log(
+                f'AppMagic 完整性检查拦截：发现 {live_missing} 个当前在线漏库应用，'
+                f'审查目录 {run_dir}'
+            )
+            return blocked('live_candidates_need_import', live_missing)
+        if round_index >= max_repair_rounds:
+            log(
+                f'AppMagic 自动修复达到 {max_repair_rounds} 轮后仍有 '
+                f'{live_missing} 个在线漏项，保留本地更新'
+            )
+            return blocked('auto_repair_round_limit', live_missing)
+        if not os.path.exists(verification_path):
+            return blocked('verified_candidate_file_missing', live_missing)
+
+        repair_dir = os.path.join(
+            run_dir, 'auto_repair', f'round_{round_index + 1}'
+        )
+        os.makedirs(repair_dir, exist_ok=True)
+        report_path = os.path.join(repair_dir, 'import_report.json')
+        repair_started_at = time.time()
+        log(
+            f'AppMagic 自动修复第 {round_index + 1} 轮：'
+            f'准备补入 {live_missing} 个已核验在线应用并展开原生开发者账号'
+        )
+        repair_result = repair_runner([
+            sys.executable,
+            os.path.join(BASE_DIR, 'import_verified_appmagic_candidates.py'),
+            '--input', verification_path,
+            '--report-dir', repair_dir,
+            '--expand-developers',
+        ], cwd=BASE_DIR)
+        report = {}
+        if (
+            os.path.exists(report_path)
+            and os.path.getmtime(report_path) >= repair_started_at - 1
+        ):
+            try:
+                with open(report_path, encoding='utf-8') as f:
+                    report = json.load(f)
+            except (OSError, ValueError):
+                report = {}
+        if repair_result.returncode != 0 or not report:
+            log('AppMagic 自动修复执行失败，保留本地更新')
+            return blocked(
+                'auto_repair_execution_failed', live_missing,
+                report=report_path,
+            )
+        repair_reports.append(report_path)
+        repaired_apps.extend(report.get('added') or [])
+        failures = report.get('failed') or []
+        expansion_errors = report.get('expansion_errors') or []
+        blocking_expansion_errors = [
+            row for row in expansion_errors if row.get('id')
+        ]
+        account_expansion_warnings = [
+            row for row in expansion_errors if not row.get('id')
+        ]
+        repair_warnings.extend(account_expansion_warnings)
+        collisions = report.get('cross_company_collisions') or []
+        if failures or blocking_expansion_errors or collisions:
+            log(
+                'AppMagic 自动修复未完整收敛：'
+                f'候选抓取失败 {len(failures)}，已发现应用抓取失败 '
+                f'{len(blocking_expansion_errors)}，跨公司冲突 {len(collisions)}'
+            )
+            return blocked(
+                'auto_repair_incomplete', live_missing, report=report_path
+            )
+        if account_expansion_warnings:
+            log(
+                f'AppMagic 自动修复提示：{len(account_expansion_warnings)} 个'
+                '原生开发者入口无法展开；继续以完整 AppMagic 复查为准'
+            )
+        if not report.get('added') and not report.get('already_present'):
+            log('AppMagic 自动修复没有产生进展，保留本地更新')
+            return blocked('auto_repair_no_progress', live_missing, report=report_path)
 
 # ── main ─────────────────────────────────────────────────────────────────────
 
@@ -1445,6 +1599,29 @@ def main():
     completeness = run_appmagic_completeness_gate(
         gp_error_summary=current_summary_path
     )
+    repaired_keys = {
+        (row.get('platform'), str(row.get('id', '')))
+        for row in completeness.get('auto_repair_added', [])
+    }
+    if repaired_keys:
+        all_apps = load_current_library()
+        repaired_by_key = {
+            (app['platform'], str(app['pkg_or_id'])): app
+            for app in all_apps
+            if (app['platform'], str(app['pkg_or_id'])) in repaired_keys
+        }
+        known_added_keys = {
+            (app['platform'], str(app['pkg_or_id'])) for app in added_apps
+        }
+        for key in sorted(repaired_keys):
+            app = repaired_by_key.get(key)
+            if app and key not in known_added_keys:
+                added_apps.append(app)
+                known_added_keys.add(key)
+                affected.add(app['company_cn'])
+        added = len(added_apps)
+        with open(DB_PATH, 'w', encoding='utf-8') as f:
+            json.dump(all_apps, f, ensure_ascii=False, indent=2)
 
     # Step 6: Git
     if (added > 0 or updates or metric_updates) and completeness['passed']:
@@ -1496,8 +1673,25 @@ def main():
             log(f"    ... {len(metric_updates) - 80} more metric updates")
 
     log(f"AppMagic 当前在线漏库候选: {completeness['live_missing']}")
+    if completeness.get('repair_rounds'):
+        log(
+            f"AppMagic 自动修复: {completeness['repair_rounds']} 轮，"
+            f"补入 {len(completeness.get('auto_repair_added', []))} 个应用"
+        )
     if completeness['live_missing']:
         log(f"    审查目录: {completeness['run_dir']}")
+    if completeness.get('blocking_reason'):
+        log(f"    阻断原因: {completeness['blocking_reason']}")
+    if completeness.get('incomplete'):
+        log(
+            '    未完成项: '
+            + json.dumps(completeness['incomplete'], ensure_ascii=False)
+        )
+    if completeness.get('repair_warnings'):
+        log(
+            f"    原生开发者入口扩展提示: "
+            f"{len(completeness['repair_warnings'])}"
+        )
 
     log(f"数据库总计: {len(all_apps)} apps")
     log(f"受影响公司: {', '.join(affected) if affected else '无'}")
