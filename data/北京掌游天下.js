@@ -9646,5 +9646,21 @@ window._loadCompany("北京掌游天下", [
     "tags": "",
     "removed": false,
     "release_date": "2026/08/05"
+  },
+  {
+    "name": "Sell Fries: After Dark",
+    "company_cn": "北京掌游天下",
+    "icon": "https://play-lh.googleusercontent.com/ddPIR1yQXWDROvJYhx5h8ib3tg3BcVNTzl1ZHcHMpO0C0L_hJgBdvF6YCye9OkNf9VQCTj82EPtbghLPrJTb9g4=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.genigames.sell.fries",
+    "store_link": "https://play.google.com/store/apps/details?id=com.genigames.sell.fries&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=GenI+Games&hl=en&gl=us",
+    "developer": "GenI Games",
+    "downloads": "",
+    "rating_count": 0,
+    "last_update": "2026/10/20",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/10/20"
   }
 ]);
