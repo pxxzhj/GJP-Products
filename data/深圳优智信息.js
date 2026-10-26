@@ -1790,5 +1790,37 @@ window._loadCompany("深圳优智信息", [
     "tags": "",
     "removed": false,
     "release_date": "2026/10/21"
+  },
+  {
+    "name": "Waterpark & Shop - Simulator",
+    "company_cn": "深圳优智信息",
+    "icon": "https://play-lh.googleusercontent.com/gf-Y0u_aHHFG8waeTXSsAaV5jWgs16yj5I-kqJv2rwfn2D5SYbQXK0z2r2TKuV6llNCgxTdmlE1v9zHLouXKWA=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.kosingames.waterparkshopsimulator",
+    "store_link": "https://play.google.com/store/apps/details?id=com.kosingames.waterparkshopsimulator&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=7084811162521026784",
+    "developer": "Kosin Games",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/10/24",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/10/21"
+  },
+  {
+    "name": "Retail Store Simulator",
+    "company_cn": "深圳优智信息",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/94/81/65/94816501-140a-f97e-9318-7cb8c725f729/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "platform": "iOS",
+    "pkg_or_id": "6499522230",
+    "store_link": "https://apps.apple.com/us/app/retail-store-simulator/id6499522230?uo=4",
+    "dev_link": "https://apps.apple.com/us/developer/martin-sinko/id1554061108?uo=4",
+    "developer": "Martin Sinko",
+    "downloads": "",
+    "rating_count": 552,
+    "last_update": "2025/01/06",
+    "tags": "Games, Casual, Simulation",
+    "removed": false,
+    "release_date": "2024/04/30"
   }
 ]);
