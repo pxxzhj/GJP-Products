@@ -746,7 +746,7 @@ window._loadCompany("北京数驱互娱", [
     "developer": "PANDAS OF CARIBBEAN LIMITED",
     "downloads": "",
     "rating_count": 106262,
-    "last_update": "2026/10/22",
+    "last_update": "2026/11/02",
     "tags": "Games, Puzzle, Board",
     "removed": false,
     "release_date": "2026/03/23"

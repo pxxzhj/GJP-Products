@@ -2766,5 +2766,21 @@ window._loadCompany("北京十方途创", [
     "tags": "Games, Casual",
     "removed": false,
     "release_date": "2024/12/03"
+  },
+  {
+    "name": "Loop Escape: Rotate Rings",
+    "company_cn": "北京十方途创",
+    "icon": "https://play-lh.googleusercontent.com/2ijanRBigYSYSEX2rXHx0gUpqG9kREa_VLK-0v3EHFyt1EyPT4V9pWmitMA4skBRo8JUgbqC7K9A7Lw1bo0O=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.hfgame.app.loopring",
+    "store_link": "https://play.google.com/store/apps/details?id=com.hfgame.app.loopring&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=hopes+studio&hl=en&gl=us",
+    "developer": "hopes studio",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/10/30",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/10/30"
   }
 ]);

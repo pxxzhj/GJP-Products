@@ -1498,7 +1498,7 @@ window._loadCompany("海外-法国-Voodoo", [
     "developer": "Voodoo",
     "downloads": "",
     "rating_count": 8647,
-    "last_update": "2026/10/22",
+    "last_update": "2026/11/02",
     "tags": "Games, Action, Puzzle",
     "removed": false,
     "release_date": "2024/11/20"

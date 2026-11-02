@@ -138,7 +138,7 @@ window._loadCompany("海外-以色列-MoonActive-CoinMaster", [
     "developer": "Moon Active",
     "downloads": "",
     "rating_count": 1379041,
-    "last_update": "2026/10/26",
+    "last_update": "2026/11/02",
     "tags": "Games, Adventure, Casual",
     "removed": false,
     "release_date": "2010/12/11"
