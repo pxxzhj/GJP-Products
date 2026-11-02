@@ -534,7 +534,7 @@ window._loadCompany("合肥常春藤", [
     "platform": "GP",
     "pkg_or_id": "com.ivymobi.applock.free",
     "store_link": "https://play.google.com/store/apps/details?gl=US&hl=en-US&id=com.ivymobi.applock.free",
-    "dev_link": "https://play.google.com/store/apps/dev?id=7277785332880557957",
+    "dev_link": "https://play.google.com/store/apps/developer?id=IVYMOBILE&hl=en&gl=us",
     "developer": "IVYMOBILE",
     "downloads": "20M+",
     "rating_count": 508000,
