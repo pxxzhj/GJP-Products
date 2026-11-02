@@ -617,7 +617,7 @@ window._loadCompany("上海元笛软件", [
     "dev_link": "https://apps.apple.com/developer/id906211332",
     "developer": "Edaysoft",
     "downloads": "",
-    "rating_count": 95,
+    "rating_count": 94,
     "last_update": "2022/11/29",
     "tags": "Music, Education",
     "removed": false,
