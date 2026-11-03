@@ -73,7 +73,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1587319074",
     "developer": "Shanghai Freemind Software Co., Ltd.",
     "downloads": "",
-    "rating_count": 1703,
+    "rating_count": 1706,
     "last_update": "2026/10/09",
     "tags": "Puzzle, Match-3: Other, Match-3",
     "removed": false,
@@ -361,7 +361,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1587319074",
     "developer": "Shanghai Freemind Software Co., Ltd.",
     "downloads": "",
-    "rating_count": 1918,
+    "rating_count": 1919,
     "last_update": "2026/08/28",
     "tags": "Block Sudoku, Puzzle, Block Puzzle",
     "removed": false,
@@ -905,7 +905,7 @@ window._loadCompany("上海襄翼", [
     "dev_link": "https://apps.apple.com/developer/id1587319074",
     "developer": "Shanghai Freemind Software Co., Ltd.",
     "downloads": "",
-    "rating_count": 261,
+    "rating_count": 274,
     "last_update": "2026/10/29",
     "tags": "Games, Entertainment, Casual, Puzzle",
     "removed": false,
@@ -1038,5 +1038,21 @@ window._loadCompany("上海襄翼", [
     "tags": "",
     "removed": false,
     "release_date": "2026/10/31"
+  },
+  {
+    "name": "Amaze Escape: Arrow Puzzle",
+    "company_cn": "上海襄翼",
+    "icon": "https://play-lh.googleusercontent.com/CCKxNjshEleMZz0FrYPIAp8VfTBr5ECTWEmKTArmydSPz4o7Mo0yD_a3IGBThgDHv44uWik9yAwiEg2WbCKTQg=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.infiniti.game.puzzle.arrows.amazeescape",
+    "store_link": "https://play.google.com/store/apps/details?id=com.infiniti.game.puzzle.arrows.amazeescape&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=Bubble+Shooter+Fun+Games&hl=en&gl=us",
+    "developer": "Bubble Shooter Fun Games",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/11/03",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/11/03"
   }
 ]);
