@@ -78,5 +78,21 @@ window._loadCompany("上海小传科技-传音", [
     "tags": "2D, Brick Breaker, Games, Puzzle, Stylized, Casual, Animal",
     "removed": false,
     "release_date": "2022/07/28"
+  },
+  {
+    "name": "Arcade Center: Mini Games",
+    "company_cn": "上海小传科技-传音",
+    "icon": "https://play-lh.googleusercontent.com/xoqPzouEOWrkfxQLc80pFbgVciu2Jx2BMVV7nayD6l3eDVPFwC1wg5hRbp6aGG0OA22CrZEAu_9UsbNRAOEzOQ=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.arcadecenter.minigames",
+    "store_link": "https://play.google.com/store/apps/details?id=com.arcadecenter.minigames&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=PALM+STUDIO&hl=en&gl=us",
+    "developer": "PALM STUDIO",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/11/04",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/11/04"
   }
 ]);
