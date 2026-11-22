@@ -38,7 +38,7 @@ window._loadCompany("上海元笛软件", [
     "platform": "GP",
     "pkg_or_id": "beatmaker.edm.musicgames.beathop",
     "store_link": "https://play.google.com/store/apps/details?gl=US&hl=en-US&id=beatmaker.edm.musicgames.beathop",
-    "dev_link": "https://play.google.com/store/apps/developer?id=Joy+Journey+Girls&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=5888091719203368573",
     "developer": "Joy Journey Girls",
     "downloads": "5.0M+",
     "rating_count": 13700,
