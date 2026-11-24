@@ -105,7 +105,7 @@ window._loadCompany("深圳优智信息", [
     "dev_link": "https://apps.apple.com/developer/id1514053338",
     "developer": "吕 罗",
     "downloads": "",
-    "rating_count": 55,
+    "rating_count": 54,
     "last_update": "2026/03/06",
     "tags": "Games, Racing, Casual",
     "removed": false,

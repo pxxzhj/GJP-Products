@@ -78,5 +78,21 @@ window._loadCompany("长沙三六互娱", [
     "tags": "Casual",
     "removed": false,
     "release_date": "2026/07/04"
+  },
+  {
+    "name": "Karma Rogue:道長請出牌‌",
+    "company_cn": "长沙三六互娱",
+    "icon": "https://play-lh.googleusercontent.com/eutsoCDI6x8S0lYYGni4DiukpoLIGaDtY-KxoHRUzmxl_4IUOsudmvWLMgS3_noy9dQRJjqBK_PMDamfZEl7TA=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.joker.xsxj.gp",
+    "store_link": "https://play.google.com/store/apps/details?id=com.joker.xsxj.gp&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/dev?id=8672979723194855117",
+    "developer": "YOUGUAN NETWORK TECHNOLOGY LIMITED",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/11/18",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/11/18"
   }
 ]);
