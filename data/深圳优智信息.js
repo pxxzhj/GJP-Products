@@ -1870,5 +1870,21 @@ window._loadCompany("深圳优智信息", [
     "tags": "Games, Action, Simulation, Graphics & Design",
     "removed": false,
     "release_date": "2026/11/02"
+  },
+  {
+    "name": "Hexa Tap Blast",
+    "company_cn": "深圳优智信息",
+    "icon": "https://play-lh.googleusercontent.com/pcsb/AEecphYCStgUkH7CnyNXyxypt-8R4DEIS-3UGzvvt_jKFFF-es6BmYD7wWX-TrbEas87lZGG5pi4PBWBxPq3oGoFphKN7Yt9tm4=w240-h480-rw",
+    "platform": "GP",
+    "pkg_or_id": "com.yg.hexa.blast",
+    "store_link": "https://play.google.com/store/apps/details?id=com.yg.hexa.blast&hl=en&gl=us",
+    "dev_link": "https://play.google.com/store/apps/developer?id=SUPERIOR++STUDIO&hl=en&gl=us",
+    "developer": "SUPERIOR STUDIO",
+    "downloads": "0+",
+    "rating_count": 0,
+    "last_update": "2026/11/26",
+    "tags": "",
+    "removed": false,
+    "release_date": "2026/11/26"
   }
 ]);

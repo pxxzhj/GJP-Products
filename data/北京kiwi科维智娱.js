@@ -9,8 +9,8 @@ window._loadCompany("北京kiwi科维智娱", [
     "dev_link": "https://apps.apple.com/developer/id1704802085",
     "developer": "JoyGame Studio Limited",
     "downloads": "",
-    "rating_count": 54346,
-    "last_update": "2026/11/20",
+    "rating_count": 54480,
+    "last_update": "2026/11/25",
     "tags": "Games, Board, Puzzle",
     "removed": false,
     "release_date": "2024/09/09"
