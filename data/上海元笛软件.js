@@ -521,7 +521,7 @@ window._loadCompany("上海元笛软件", [
     "dev_link": "https://play.google.com/store/apps/dev?id=4701754753078659156",
     "developer": "Joy Journey Music Games",
     "downloads": "100K+",
-    "rating_count": 4800,
+    "rating_count": 5290,
     "last_update": "2026/09/22",
     "tags": "Puzzle",
     "removed": false,

@@ -88,7 +88,7 @@ window._loadCompany("上海小传科技-传音", [
     "store_link": "https://play.google.com/store/apps/details?id=com.arcadecenter.minigames&hl=en&gl=us",
     "dev_link": "https://play.google.com/store/apps/developer?id=PALM+STUDIO&hl=en&gl=us",
     "developer": "PALM STUDIO",
-    "downloads": "1+",
+    "downloads": "5+",
     "rating_count": 0,
     "last_update": "2026/11/04",
     "tags": "",
